@@ -1,0 +1,60 @@
+# miui init rc
+
+on init
+    # Create cgroup mount point for memory and freezer
+    mount tmpfs none /sys/fs/cgroup mode=0750,uid=0,gid=1000
+    mkdir /sys/fs/cgroup/memory 0750 root system
+    mount cgroup none /sys/fs/cgroup/memory memory
+    mkdir /sys/fs/cgroup/freezer 0750 root system
+    mount cgroup none /sys/fs/cgroup/freezer freezer
+
+#mdbd
+service mdbd /sbin/mdbd
+    class core
+    socket mdbd stream 660 system system
+    disabled
+    seclabel u:r:mdbd:s0
+
+service shelld /system/xbin/shelld
+    class main
+
+#service for su
+service su_daemon /system/xbin/su --daemon
+    class main
+    oneshot
+
+# service for mcd init
+service mcd_init /system/bin/mcd init 4
+    user root
+    group system
+    class main
+    disabled
+    oneshot
+
+on property:init.svc.zygote=running
+    start mcd_init
+
+#service for mcd main service
+service mcd_service /system/bin/mcd
+    class main
+    disabled
+
+on property:sys.boot_completed=1
+    start mcd_service
+
+service mdb_svc  /system/xbin/mdb_svc
+    class late_start
+    disabled
+
+service tunman /system/xbin/tunman
+    socket tunman stream 0666 system system
+    class main
+    disabled
+
+on property:net.svc.tunman=start
+    start tunman
+
+service otad /bin/otad
+    class main
+    socket otad stream 0660 updater updater
+    seclabel u:r:otad:s0
