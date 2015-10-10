@@ -159,19 +159,6 @@ TARGET_GLOBAL_CPPFLAGS += -DANDROID_MULTI_SIM
 # Added to indicate that protobuf-c is supported in this build
 PROTOBUF_SUPPORTED := true
 
-# Enable dex pre-opt to speed up initial boot
-ifneq ($(TARGET_USES_AOSP),true)
-  ifeq ($(HOST_OS),linux)
-    ifeq ($(WITH_DEXPREOPT),)
-      WITH_DEXPREOPT := true
-      ifneq ($(TARGET_BUILD_VARIANT),user)
-        # Retain classes.dex in APK's for non-user builds
-        DEX_PREOPT_DEFAULT := nostripping
-      endif
-    endif
-  endif
-endif
-
 # Wifi
 BOARD_HAS_QCOM_WLAN := true
 BOARD_HAS_QCOM_WLAN_SDK := true
