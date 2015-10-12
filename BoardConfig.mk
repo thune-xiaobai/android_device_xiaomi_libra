@@ -79,15 +79,15 @@ USE_OPENGL_RENDERER := true
 BOARD_USE_LEGACY_UI := true
 
 #Kernel
-#BOARD_CUSTOM_BOOTIMG_MK := device/xiaomi/libra/mkbootimg.mk
-TARGET_KERNEL_SOURCE := kernel/xiaomi/qcom
-TARGET_KERNEL_CONFIG := msm8994-perf_defconfig
+BOARD_CUSTOM_BOOTIMG_MK := device/xiaomi/libra/mkbootimg.mk
+#TARGET_KERNEL_SOURCE := kernel/xiaomi/libra
+#TARGET_KERNEL_CONFIG := msm8994-perf_defconfig
 BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x37 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 boot_cpus=0-5 ramoops_memreserve=2M androidboot.selinux=permissive
 BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_PAGESIZE := 4096
 BOARD_MKBOOTIMG_ARGS := --kernel_offset 0x0000000 --ramdisk_offset 0x02000000 --tags_offset 0x00000100 --dt device/xiaomi/libra/dt.img
 
-TARGET_PREBUILT_KERNEL := device/xiaomi/libra/kernel
+#TARGET_PREBUILT_KERNEL := device/xiaomi/libra/kernel
 BOARD_KERNEL_SEPARATED_DT := true
 BOARD_HAS_NO_SELECT_BUTTON := true
 
