@@ -14,6 +14,8 @@ else
 	LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
 endif
 
+TARGET_OTA_ASSERT_DEVICE := 4C,libra
+
 PRODUCT_COPY_FILES += \
     $(LOCAL_KERNEL):kernel \
     device/xiaomi/libra/dt.img:dt.img
@@ -283,4 +285,5 @@ PRODUCT_PACKAGES += \
 	init.target.rc \
 	init.usb.rc \
 	ueventd.goldfish.rc \
-	ueventd.qcom.rc
+	ueventd.qcom.rc \
+    fstab.qcom
