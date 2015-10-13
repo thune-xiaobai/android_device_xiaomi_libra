@@ -68,10 +68,10 @@ PRODUCT_COPY_FILES += \
 
 #Sensor
 PRODUCT_COPY_FILES += \
-	$(LOCAL_PATH)/sensor/sensors/sensor_def_qcomdev.conf:system/etc/sensor/sensors/sensor_def_qcomdev.conf \
+	$(LOCAL_PATH)/sensor/sensors/sensor_def_qcomdev.conf:system/etc/sensors/sensor_def_qcomdev.conf \
 	$(LOCAL_PATH)/sensor/sensor_diag.cfg:system/etc/sensor_diag.cfg \
-    $(LOCAL_PATH)/sensor/sensors.lsm6db0.so:system/lib/hw/sensors.default.so \
-    $(LOCAL_PATH)/sensor/lib64/sensors.lsm6db0.so:system/lib64/hw/sensors.default.so
+    $(LOCAL_PATH)/sensor/sensors.lsm6db0.so:system/lib/hw/sensors.lsm6db0.so \
+    $(LOCAL_PATH)/sensor/lib64/sensors.lsm6db0.so:system/lib64/hw/sensors.lsm6db0.so
 
 #keylayout
 PRODUCT_COPY_FILES += \
@@ -81,6 +81,18 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl \
     $(LOCAL_PATH)/synaptics_dsx_edge.kl:system/usr/keylayout/synaptics_dsx_edge.kl \
     $(LOCAL_PATH)/synaptics_dsx.kl:system/usr/keylayout/synaptics_dsx.kl
+
+#hostapd
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/hostapd/hostapd.accept:system/etc/hostapd/hostapd.accept \
+    $(LOCAL_PATH)/hostapd/hostapd.deny:system/etc/hostapd/hostapd.deny \
+    $(LOCAL_PATH)/hostapd/hostapd_default.conf:system/etc/hostapd/hostapd_default.conf
+
+#data
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/data/dsi_config.xml:system/etc/data/dsi_config.xml \
+    $(LOCAL_PATH)/data/netmgr_config.xml:system/etc/data/netmgr_config.xml \
+    $(LOCAL_PATH)/data/qmi_config.xml:system/etc/data/qmi_config.xml 
 
 #misc
 PRODUCT_COPY_FILES += \
@@ -227,10 +239,11 @@ PRODUCT_PACKAGES += \
 
 # Power
 PRODUCT_PACKAGES += \
-    power.msm8992
+    power.qcom
 
 # Ril
 PRODUCT_PACKAGES += \
+    libtinyxml2 \
     libxml2
 
 # USB

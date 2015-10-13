@@ -10,6 +10,6 @@ $(call inherit-product, device/xiaomi/libra/device_libra.mk)
 ## Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := libra
 PRODUCT_NAME := cm_libra
-PRODUCT_BRAND := xiaomi
-PRODUCT_MODEL := libra
-PRODUCT_MANUFACTURER := xiaomi
+PRODUCT_BRAND := Xiaomi
+PRODUCT_MODEL := Mi-4c
+PRODUCT_MANUFACTURER := Xiaomi
