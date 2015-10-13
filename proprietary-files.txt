@@ -15,6 +15,8 @@ bin/ipacm
 bin/amploader
 bin/cnss-daemon
 bin/ssr_diag
+bin/halsensors
+bin/sensor_select.sh
 bin/mmi
 bin/msm_irqbalance
 bin/mmbn-daemon

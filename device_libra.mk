@@ -7,20 +7,7 @@ $(call inherit-product-if-exists, vendor/xiaomi/libra/libra-vendor.mk)
 
 DEVICE_PACKAGE_OVERLAYS += device/xiaomi/libra/overlay
 
-
-ifeq ($(TARGET_PREBUILT_KERNEL),)
-	LOCAL_KERNEL := device/xiaomi/libra/kernel
-else
-	LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
-endif
-
 TARGET_OTA_ASSERT_DEVICE := 4C,libra
-
-PRODUCT_COPY_FILES += \
-    $(LOCAL_KERNEL):kernel \
-    device/xiaomi/libra/dt.img:dt.img
-
-#$(call inherit-product, build/target/product/full.mk)
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
@@ -246,6 +233,10 @@ PRODUCT_PACKAGES += \
     libtinyxml2 \
     libxml2
 
+# Sensors
+PRODUCT_PACKAGES += \
+    sensors.msm8992
+
 # USB
 PRODUCT_PACKAGES += \
     com.android.future.usb.accessory
@@ -296,7 +287,6 @@ PRODUCT_PACKAGES += \
 	init.qcom.usb.rc \
 	init.recovery.hardware.rc \
 	init.target.rc \
-	init.usb.rc \
 	ueventd.goldfish.rc \
 	ueventd.qcom.rc \
     fstab.qcom
