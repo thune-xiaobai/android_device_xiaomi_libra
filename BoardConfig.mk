@@ -142,6 +142,10 @@ TARGET_HW_DISK_ENCRYPTION := false
 #Enable peripheral manager
 TARGET_PER_MGR_ENABLED := true
 
+# GPS
+TARGET_NO_RPC := true
+TARGET_GPS_HAL_PATH := $(LOCAL_PATH)/gps
+
 # Power
 TARGET_POWERHAL_VARIANT := qcom
 
@@ -200,6 +204,19 @@ TARGET_RECOVERY_QCOM_RTC_FIX := true
 BOARD_SUPPRESS_SECURE_ERASE := true
 TW_EXTERNAL_STORAGE_PATH := "/usb-otg"
 TW_EXTERNAL_STORAGE_MOUNT_POINT := "usb-otg"
+
+# Enable dex pre-opt to speed up initial boot
+ifneq ($(TARGET_USES_AOSP),true)
+  ifeq ($(HOST_OS),linux)
+    ifeq ($(WITH_DEXPREOPT),)
+      WITH_DEXPREOPT := true
+      ifneq ($(TARGET_BUILD_VARIANT),user)
+        # Retain classes.dex in APK's for non-user builds
+        DEX_PREOPT_DEFAULT := nostripping
+      endif
+    endif
+  endif
+endif
 
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk

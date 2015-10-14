@@ -13,6 +13,9 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
 $(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
 
+PRODUCT_COPY_FILES += \
+    device/xiaomi/libra/kernel:kernel
+
 #media
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/media/media_profiles.xml:system/etc/media_profiles.xml \
@@ -228,6 +231,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     power.qcom
 
+PRODUCT_BOOT_JARS += \
+    qcmediaplayer
+
 # Ril
 PRODUCT_PACKAGES += \
     libtinyxml2 \
@@ -255,9 +261,6 @@ PRODUCT_PACKAGES += \
     hostapd \
     hostapd_cli \
     dhcpcd.conf
-
-PRODUCT_BOOT_JARS += \
-    qcmediaplayer
 
 # Screen density
 PRODUCT_AAPT_CONFIG := normal
