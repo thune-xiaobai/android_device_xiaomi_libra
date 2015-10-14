@@ -158,6 +158,9 @@ BOARD_USES_QC_TIME_SERVICES := true
 #Use dlmalloc instead of jemalloc for mallocs
 MALLOC_IMPL := dlmalloc
 
+# CMHW
+BOARD_HARDWARE_CLASS := device/xiaomi/libra/cmhw
+
 # Ril
 TARGET_RIL_VARIANT := caf
 SIM_COUNT := 2
