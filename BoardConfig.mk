@@ -119,9 +119,6 @@ TARGET_INIT_VENDOR_LIB := libinit_msm
 
 TARGET_LDPRELOAD := libNimsWrap.so
 
-# Enable sensor multi HAL
-USE_SENSOR_MULTI_HAL := true
-
 # Camera
 USE_DEVICE_SPECIFIC_CAMERA := true
 # Force camera module to be compiled only in 32-bit mode on 64-bit systems
@@ -153,6 +150,9 @@ BOARD_USES_QC_TIME_SERVICES := true
 
 #Use dlmalloc instead of jemalloc for mallocs
 MALLOC_IMPL := dlmalloc
+
+# FM
+TARGET_QCOM_NO_FM_FIRMWARE := true
 
 # CMHW
 BOARD_HARDWARE_CLASS := device/xiaomi/libra/cmhw
