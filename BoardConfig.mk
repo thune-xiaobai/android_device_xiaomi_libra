@@ -69,7 +69,7 @@ AUDIO_FEATURE_ENABLED_PCM_OFFLOAD := true
 AUDIO_FEATURE_ENABLED_PCM_OFFLOAD_24 := true
 AUDIO_FEATURE_ENABLED_PROXY_DEVICE := true
 
-# Some framework code requires this to enable BT
+# Bluetooth
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_QCOM := true
 BOARD_HAS_QCA_BT_ROME := true
@@ -141,10 +141,6 @@ TARGET_HW_DISK_ENCRYPTION := false
 
 #Enable peripheral manager
 TARGET_PER_MGR_ENABLED := true
-
-# GPS
-TARGET_NO_RPC := true
-TARGET_GPS_HAL_PATH := $(LOCAL_PATH)/gps
 
 # Power
 TARGET_POWERHAL_VARIANT := qcom

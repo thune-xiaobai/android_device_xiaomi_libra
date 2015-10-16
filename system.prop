@@ -22,7 +22,7 @@ persist.sys.ssr.enable_ramdumps=1
 persist.radio.multisim.config=dsds
 DEVICE_PROVISIONED=1
 # Start in TD-SCDMA, GSM/WCDMA and LTE mode
-ro.telephony.default_network=20
+ro.telephony.default_network=22
 
 debug.sf.hw=1
 debug.egl.hw=1

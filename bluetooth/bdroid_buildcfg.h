@@ -22,7 +22,6 @@
 #ifndef _BDROID_BUILDCFG_H
 #define _BDROID_BUILDCFG_H
 #define BTM_DEF_LOCAL_NAME   "Xiaomi 4c"
-#define BLUETOOTH_QTI_SW                TRUE
 // Disables read remote device feature
 #define BTA_SKIP_BLE_READ_REMOTE_FEAT FALSE
 #define MAX_ACL_CONNECTIONS    7
@@ -30,5 +29,5 @@
 #define BLE_VND_INCLUDED   TRUE
 // skips conn update at conn completion
 #define BTA_BLE_SKIP_CONN_UPD  FALSE
-#define BLE_PERIPHERAL_ADV_NAME  FALSE
+#define BLE_PERIPHERAL_ADV_NAME  TRUE
 #endif
