@@ -33,9 +33,6 @@ on early-init
     symlink /data/tombstones /tombstones
 
 on init
-    # Immersion
-    export VIBE_PIPE_PATH /dev/pipes
-    mkdir /dev/pipes 0771 system system
     mkdir /cust 0771 system system
 
 on early-boot
@@ -77,6 +74,8 @@ on post-fs-data
     mkdir /tombstones/dsps 0771 system system
     mkdir /data/misc/dts 0770 media audio
     mkdir /persist/property 0700 root root
+    chown system system /dev/sysmatdrv
+    chmod 0660 /dev/sysmatdrv
 
 on boot
     start rmt_storage
@@ -253,13 +252,6 @@ service imsdatadaemon /system/bin/imsdatadaemon
     socket ims_datad stream 0660 system radio
     group system wifi radio inet net_raw log qcom_diag net_admin
     disabled
-
-service immvibed /system/bin/immvibed
-    class late_start
-    user system
-    group system
-    oneshot
-
 #
 service select_sns_hal /system/bin/sensor_select.sh
     class main
@@ -273,6 +265,30 @@ service select_sns_hal /system/bin/sensor_select.sh
 #    group system wifi
 #    oneshot
 #
+
+service smonsir /system/bin/smonsir
+    user root
+    group root
+    oneshot
+    disabled
+
+service smprosrv /system/bin/smprosrv
+    user root
+    group root
+    oneshot
+    disabled
+
+on property:persist.sys.matsir.enable=1
+    setprop sys.sysmat.service.control start
+    start smonsir
+    start smprosrv
+
+service smeloop /system/bin/smeloop
+    class late_start
+    user root
+    group root
+    oneshot
+
 on property:sys.ims.QMI_DAEMON_STATUS=1
     start imsdatadaemon
 

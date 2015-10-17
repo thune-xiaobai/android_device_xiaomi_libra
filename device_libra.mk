@@ -63,9 +63,7 @@ PRODUCT_COPY_FILES += \
 #Sensor
 PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/sensor/sensors/sensor_def_qcomdev.conf:system/etc/sensors/sensor_def_qcomdev.conf \
-	$(LOCAL_PATH)/sensor/sensor_diag.cfg:system/etc/sensor_diag.cfg \
-    $(LOCAL_PATH)/sensor/sensors.lsm6db0.so:system/lib/hw/sensors.lsm6db0.so \
-    $(LOCAL_PATH)/sensor/lib64/sensors.lsm6db0.so:system/lib64/hw/sensors.lsm6db0.so
+	$(LOCAL_PATH)/sensor/sensor_diag.cfg:system/etc/sensor_diag.cfg
 
 #keylayout
 PRODUCT_COPY_FILES += \

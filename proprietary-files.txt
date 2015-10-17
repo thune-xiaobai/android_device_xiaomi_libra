@@ -10,8 +10,6 @@ bin/dun-server
 bin/sapd
 bin/qmuxd
 bin/netmgrd
-bin/ipacm-diag
-bin/ipacm
 bin/amploader
 bin/cnss-daemon
 bin/ssr_diag
