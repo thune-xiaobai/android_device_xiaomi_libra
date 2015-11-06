@@ -18,7 +18,9 @@ PRODUCT_COPY_FILES += \
 
 #chargeonlymode
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/rootdir/etc/sbin/chargeonlymode:root/sbin/chargeonlymode
+    $(LOCAL_PATH)/rootdir/etc/sbin/chargeonlymode:root/sbin/chargeonlymode \
+    $(LOCAL_PATH)/rootdir/etc/sbin/qcrypto_module.ko:root/sbin/qcrypto_module.ko \
+    $(LOCAL_PATH)/rootdir/etc/sbin/qdrbg_module.ko:root/sbin/qdrbg_module.ko
 
 #media
 PRODUCT_COPY_FILES += \
@@ -184,6 +186,14 @@ PRODUCT_PACKAGES += \
 # GPS
 PRODUCT_PACKAGES += \
     gps.msm8992
+
+# Vendor
+PRODUCT_PACKAGES += \
+    com.qualcomm.location \
+    com.qualcomm.msapm \
+    qcrilmsgtunnel \
+    TimeService \
+    com.qualcomm.qti.services.secureui
 
 # Graphics
 PRODUCT_PACKAGES += \
