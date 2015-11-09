@@ -4583,7 +4583,7 @@
         apn="internet.itelcel.com"
         authtype="1"
         password="webgprs2002"
-        type="default,supl,dun"
+        type="default,supl"
         user="webgprs"
     />
 
@@ -4591,7 +4591,6 @@
         mcc="334"
         mnc="020"
         apn="mms.itelcel.com"
-        authtype="1"
         mmsc="http://mms.itelcel.com/servlets/mms"
         mmsport="8080"
         mmsproxy="148.233.151.240"
@@ -4623,17 +4622,17 @@
         user="movistar"
     />
 
-    <apn carrier="movistar Internet"
+    <apn carrier="Movistar INTERNET"
         mcc="334"
         mnc="030"
         apn="internet.movistar.mx"
         authtype="1"
         password="movistar"
-        type="default,supl,dun"
+        type="default"
         user="movistar"
     />
 
-    <apn carrier="movistar MMS"
+    <apn carrier="Movistar MMS"
         mcc="334"
         mnc="030"
         apn="mms.movistar.mx"
@@ -4650,9 +4649,8 @@
         mcc="334"
         mnc="050"
         apn="web.iusacellgsm.mx"
-        authtype="0"
         password="Iusacellgsm"
-        type="default,supl,dun"
+        type="default,supl"
         user="Iusacellgsm"
     />
 
@@ -4660,10 +4658,7 @@
         mcc="334"
         mnc="050"
         apn="mms.iusacellgsm.mx"
-        authtype="0"
         mmsc="http://mms.iusacell3g.com/"
-        mmsport="80"
-        mmsproxy="192.200.1.40"
         password="mmsiusacellgsm"
         type="mms"
         user="mmsiusacellgsm"
@@ -4671,22 +4666,56 @@
 
     <apn carrier="Unefon Internet"
         mcc="334"
-        mnc="050"
+        mnc="040"
         apn="web.iusacellgsm.mx"
-        authtype="0"
         password="Iusacellgsm"
-        type="default,supl,dun"
+        type="default,supl"
         user="Iusacellgsm"
     />
 
     <apn carrier="Unefon MMS"
         mcc="334"
-        mnc="050"
+        mnc="040"
         apn="mms.iusacellgsm.mx"
-        authtype="0"
         mmsc="http://mms.iusacell3g.com/"
-        mmsport="80"
-        mmsproxy="192.200.1.40"
+        password="mmsiusacellgsm"
+        type="mms"
+        user="mmsiusacellgsm"
+    />
+
+    <apn carrier="Unefon Internet"
+        mcc="334"
+        mnc="070"
+        apn="web.iusacellgsm.mx"
+        password="Iusacellgsm"
+        type="default,supl"
+        user="Iusacellgsm"
+    />
+
+    <apn carrier="Unefon MMS"
+        mcc="334"
+        mnc="070"
+        apn="mms.iusacellgsm.mx"
+        mmsc="http://mms.iusacell3g.com/"
+        password="mmsiusacellgsm"
+        type="mms"
+        user="mmsiusacellgsm"
+    />
+
+    <apn carrier="Unefon Internet"
+        mcc="334"
+        mnc="080"
+        apn="web.iusacellgsm.mx"
+        password="Iusacellgsm"
+        type="default,supl"
+        user="Iusacellgsm"
+    />
+
+    <apn carrier="Unefon MMS"
+        mcc="334"
+        mnc="080"
+        apn="mms.iusacellgsm.mx"
+        mmsc="http://mms.iusacell3g.com/"
         password="mmsiusacellgsm"
         type="mms"
         user="mmsiusacellgsm"
@@ -22356,29 +22385,6 @@
         user="COMCELWEB"
     />
 
-    <apn carrier="movistar INTERNET"
-        mcc="732"
-        mnc="101"
-        apn="internet.movistar.com.co"
-        authtype="1"
-        password="movistar"
-        type="default,supl,dun"
-        user="movistar"
-    />
-
-    <apn carrier="movistar MMS"
-        mcc="732"
-        mnc="101"
-        apn="mms.movistar.com.co"
-        authtype="1"
-        mmsc="http://mms.movistar.com.co"
-        mmsport="9001"
-        mmsproxy="192.168.222.7"
-        password="movistar"
-        type="mms"
-        user="movistar"
-    />
-
     <apn carrier="TIGO Multimedia"
         mcc="732"
         mnc="103"
@@ -22397,14 +22403,33 @@
         mnc="103"
         apn="web.colombiamovil.com.co"
         authtype="1"
-        password=""
         type="default,supl,dun"
-        user=""
+    />
+
+    <apn carrier="TIGO Multimedia"
+        mcc="732"
+        mnc="111"
+        apn="mms.colombiamovil.com.co"
+        authtype="1"
+        mmsc="http://mms.ola.com.co"
+        mmsport="8080"
+        mmsproxy="190.102.206.48"
+        password="mms-cm1900"
+        type="mms"
+        user="mms-cm1900"
+    />
+
+    <apn carrier="TIGO WEB"
+        mcc="732"
+        mnc="111"
+        apn="web.colombiamovil.com.co"
+        authtype="1"
+        type="default,supl,dun"
     />
 
     <apn carrier="movistar INTERNET"
         mcc="732"
-        mnc="103"
+        mnc="001"
         apn="internet.movistar.com.co"
         authtype="1"
         password="movistar"
@@ -22414,7 +22439,7 @@
 
     <apn carrier="movistar MMS"
         mcc="732"
-        mnc="103"
+        mnc="001"
         apn="mms.movistar.com.co"
         authtype="1"
         mmsc="http://mms.movistar.com.co"
@@ -22425,80 +22450,34 @@
         user="movistar"
     />
 
-    <apn carrier="APN Privado "
+    <apn carrier="movistar INTERNET"
         mcc="732"
-        mnc="103"
+        mnc="123"
+        apn="internet.movistar.com.co"
+        authtype="1"
+        password="movistar"
+        type="default,supl,dun"
+        user="movistar"
+    />
+
+    <apn carrier="movistar MMS"
+        mcc="732"
+        mnc="123"
+        apn="mms.movistar.com.co"
+        authtype="1"
+        mmsc="http://mms.movistar.com.co"
+        mmsport="9001"
+        mmsproxy="192.168.222.7"
+        password="movistar"
+        type="mms"
+        user="movistar"
+    />
+
+    <apn carrier="APN Privado"
+        mcc="732"
+        mnc="130"
         apn="Avantel.co"
         type="default,supl"
-    />
-
-    <apn carrier="TIGO Multimedia"
-        mcc="732"
-        mnc="111"
-        apn="mms.colombiamovil.com.co"
-        authtype="1"
-        mmsc="http://mms.ola.com.co"
-        mmsport="8080"
-        mmsproxy="190.102.206.48"
-        password="mms-cm1900"
-        type="mms"
-        user="mms-cm1900"
-    />
-
-    <apn carrier="TIGO WEB"
-        mcc="732"
-        mnc="111"
-        apn="web.colombiamovil.com.co"
-        authtype="1"
-        password=""
-        type="default,supl,dun"
-        user=""
-    />
-
-    <apn carrier="movistar INTERNET"
-        mcc="732"
-        mnc="111"
-        apn="internet.movistar.com.co"
-        authtype="1"
-        password="movistar"
-        type="default,supl,dun"
-        user="movistar"
-    />
-
-    <apn carrier="movistar MMS"
-        mcc="732"
-        mnc="111"
-        apn="mms.movistar.com.co"
-        authtype="1"
-        mmsc="http://mms.movistar.com.co"
-        mmsport="9001"
-        mmsproxy="192.168.222.7"
-        password="movistar"
-        type="mms"
-        user="movistar"
-    />
-
-    <apn carrier="movistar INTERNET"
-        mcc="732"
-        mnc="123"
-        apn="internet.movistar.com.co"
-        authtype="1"
-        password="movistar"
-        type="default,supl,dun"
-        user="movistar"
-    />
-
-    <apn carrier="movistar MMS"
-        mcc="732"
-        mnc="123"
-        apn="mms.movistar.com.co"
-        authtype="1"
-        mmsc="http://mms.movistar.com.co"
-        mmsport="9001"
-        mmsproxy="192.168.222.7"
-        password="movistar"
-        type="mms"
-        user="movistar"
     />
 
     <apn carrier="Digitel GSM"
