@@ -245,13 +245,6 @@ PRODUCT_PACKAGES += \
     libstagefrighthw \
     qcmediaplayer
 
-# FM
-PRODUCT_PACKAGES += \
-    FM2 \
-    FMRecord \
-    libqcomfm_jni \
-    qcom.fmradio
-
 # Power
 PRODUCT_PACKAGES += \
     power.qcom

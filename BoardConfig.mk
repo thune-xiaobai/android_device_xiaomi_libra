@@ -151,9 +151,6 @@ BOARD_USES_QC_TIME_SERVICES := true
 #Use dlmalloc instead of jemalloc for mallocs
 MALLOC_IMPL := dlmalloc
 
-# FM
-TARGET_QCOM_NO_FM_FIRMWARE := true
-
 # CMHW
 BOARD_HARDWARE_CLASS := device/xiaomi/libra/cmhw
 
