@@ -88,6 +88,10 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/data/netmgr_config.xml:system/etc/data/netmgr_config.xml \
     $(LOCAL_PATH)/data/qmi_config.xml:system/etc/data/qmi_config.xml 
 
+#wake_gesture
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/wakegesture.sh:system/bin/wakegesture.sh
+
 #misc
 PRODUCT_COPY_FILES += \
     $(call find-copy-subdir-files,*,$(LOCAL_PATH)/misc,system/etc)
@@ -282,6 +286,11 @@ PRODUCT_PACKAGES += \
     hostapd \
     hostapd_cli \
     dhcpcd.conf
+
+#FINGERPRINT
+PRODUCT_BUILD_PROP_OVERRIDES += \
+    BUILD_FINGERPRINT=Xiaomi/libra/libra:5.1.1/LMY47V/5.11.5:user/release-keys \
+    PRIVATE_BUILD_DESC="libra-user 5.1.1 LMY47V 5.11.5 release-keys"
 
 # Screen density
 PRODUCT_AAPT_CONFIG := normal

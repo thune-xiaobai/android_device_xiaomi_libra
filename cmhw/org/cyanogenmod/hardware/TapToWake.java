@@ -27,7 +27,7 @@ import java.io.File;
  */
 public class TapToWake {
 
-    private static final String WAKEUP_GESTURE_FILE = "/sys/devices/soc.0/f9924000.i2c/i2c-2/2-0070/input/input7/wakeup_gesture";
+    private static final String WAKEUP_GESTURE_FILE = "/data/wake_gesture";
 
     /**
      * Whether device supports it
