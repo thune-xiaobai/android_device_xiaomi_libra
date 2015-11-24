@@ -134,9 +134,7 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
     frameworks/native/data/etc/android.hardware.sensor.barometer.xml:system/etc/permissions/android.hardware.sensor.barometer.xml \
     frameworks/native/data/etc/android.hardware.sensor.stepcounter.xml:system/etc/permissions/android.hardware.sensor.stepcounter.xml \
-    frameworks/native/data/etc/android.hardware.sensor.stepdetector.xml:system/etc/permissions/android.hardware.sensor.stepdetector.xml \
-    frameworks/native/data/etc/android.hardware.sensor.ambient_temperature.xml:system/etc/permissions/android.hardware.sensor.ambient_temperature.xml \
-    frameworks/native/data/etc/android.hardware.sensor.relative_humidity.xml:system/etc/permissions/android.hardware.sensor.relative_humidity.xml
+    frameworks/native/data/etc/android.hardware.sensor.stepdetector.xml:system/etc/permissions/android.hardware.sensor.stepdetector.xml
 
 #FEATURE_OPENGLES_EXTENSION_PACK support string config file
 PRODUCT_COPY_FILES += \
@@ -261,6 +259,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     sensors.msm8992
 
+#stlport
+PRODUCT_PACKAGES += \
+    libstlport
+
 # USB
 PRODUCT_PACKAGES += \
     com.android.future.usb.accessory
@@ -279,11 +281,6 @@ PRODUCT_PACKAGES += \
     hostapd \
     hostapd_cli \
     dhcpcd.conf
-
-#FINGERPRINT
-PRODUCT_BUILD_PROP_OVERRIDES += \
-    BUILD_FINGERPRINT=Xiaomi/libra/libra:5.1.1/LMY47V/5.11.5:user/release-keys \
-    PRIVATE_BUILD_DESC="libra-user 5.1.1 LMY47V 5.11.5 release-keys"
 
 # Screen density
 PRODUCT_AAPT_CONFIG := normal

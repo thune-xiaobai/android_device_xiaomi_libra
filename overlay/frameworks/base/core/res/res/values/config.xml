@@ -224,9 +224,6 @@
     <!-- Flag indicating if the speed up audio on mt call code should be executed -->
     <bool name="config_speed_up_audio_on_mt_calls">true</bool>
 
-    <!-- Configuration to enable non-default PDP during IWLAN -->
-    <bool name="config_feature_iwlan_enabled">true</bool>
-
     <!-- Flag specifying whether VoLTE is available on device -->
     <bool name="config_device_volte_available">true</bool>
 
@@ -317,5 +314,4 @@
     <bool name="config_suspendWhenScreenOffDueToProximity">true</bool>
     
     <string name="config_perf_profile_prop">sys.perf.profile</string>
-    <string name="config_perf_profile_default_entry">1</string>
 </resources>

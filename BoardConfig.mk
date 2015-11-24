@@ -30,7 +30,7 @@ TARGET_CPU_SMP := true
 # Graphics
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
 TARGET_USES_ION := true
-#TARGET_USES_NEW_ION_API :=true
+TARGET_USES_NEW_ION_API :=true
 TARGET_USES_OVERLAY := true
 USE_OPENGL_RENDERER := true
 
@@ -39,6 +39,7 @@ MAX_EGL_CACHE_SIZE := 2048*1024
 
 HAVE_ADRENO_SOURCE:= false
 OVERRIDE_RS_DRIVER:= libRSDriver_adreno.so
+BOARD_USES_OPENSSL_SYMBOLS := true
 
 MINIMAL_FONT_FOOTPRINT := true
 
@@ -68,6 +69,7 @@ AUDIO_FEATURE_ENABLED_MULTI_VOICE_SESSIONS := true
 AUDIO_FEATURE_ENABLED_PCM_OFFLOAD := true
 AUDIO_FEATURE_ENABLED_PCM_OFFLOAD_24 := true
 AUDIO_FEATURE_ENABLED_PROXY_DEVICE := true
+AUDIO_USE_LL_AS_PRIMARY_OUTPUT := true
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH_QCOM := true
@@ -79,9 +81,9 @@ BOARD_USE_LEGACY_UI := true
 
 #Kernel
 BOARD_CUSTOM_BOOTIMG_MK := device/xiaomi/libra/mkbootimg.mk
-#TARGET_KERNEL_SOURCE := kernel/xiaomi/libra
-#TARGET_KERNEL_CONFIG := msm8994-perf_defconfig
-BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x37 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 boot_cpus=0-5 ramoops_memreserve=2M androidboot.selinux=permissive
+TARGET_KERNEL_SOURCE := kernel/xiaomi/qcom
+TARGET_KERNEL_CONFIG := msm8994-perf_defconfig
+BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x37 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 boot_cpus=0-5 ramoops_memreserve=2M androidboot.selinux=disabled
 BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_PAGESIZE := 4096
 BOARD_MKBOOTIMG_ARGS := --kernel_offset 0x0000000 --ramdisk_offset 0x02000000 --tags_offset 0x00000100 --dt device/xiaomi/libra/dt.img
