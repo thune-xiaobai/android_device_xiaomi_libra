@@ -35,9 +35,6 @@
    <!-- display for radio tech -->
    <bool name="config_display_rat">false</bool>
 
-   <!-- spn display control -->
-   <bool name="config_spn_display_control">false</bool>
-
    <!-- Configure wifi tcp buffersizes in the form:
         rmem_min,rmem_def,rmem_max,wmem_min,wmem_def,wmem_max -->
    <string name="config_wifi_tcp_buffers" translatable="false">524288,2097152,4194304,262144,524288,1048576</string>
@@ -282,7 +279,6 @@
     <string name="config_hardwareFlpPackageName">com.android.location.fused</string>
     <string name="config_geocoderProviderPackageName">@null</string>
     <string name="config_geofenceProviderPackageName">@null</string>
-    <string name="config_geofenceServicesProvider">com.qualcomm.location</string>
     <string name="config_comboNetworkLocationProvider">com.qualcomm.location</string>
 
 
@@ -312,6 +308,4 @@
          Otherwise, the device may fail to wake out of suspend reliably.
          The default is false. -->
     <bool name="config_suspendWhenScreenOffDueToProximity">true</bool>
-    
-    <string name="config_perf_profile_prop">sys.perf.profile</string>
 </resources>

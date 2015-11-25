@@ -14,7 +14,8 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
 $(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
 
 PRODUCT_COPY_FILES += \
-    device/xiaomi/libra/kernel:kernel
+    device/xiaomi/libra/kernel:kernel \
+    device/xiaomi/libra/dt.img:dt.img
 
 #chargeonlymode
 PRODUCT_COPY_FILES += \
@@ -154,7 +155,9 @@ PRODUCT_PACKAGES += \
     audio.usb.default \
     audio.r_submix.default \
     audio.primary.msm8992 \
-    tinymix
+    tinymix \
+    libtinycompress \
+    cplay
 
 PRODUCT_PACKAGES += \
     libaudio-resampler \
@@ -236,9 +239,7 @@ PRODUCT_PACKAGES += \
     libOmxCore \
     libOmxEvrcEnc \
     libOmxQcelp13Enc \
-    libOmxVdec \
     libOmxVdecHevc \
-    libOmxVenc \
     libOmxVidcCommon \
     libstagefrighthw \
     qcmediaplayer
