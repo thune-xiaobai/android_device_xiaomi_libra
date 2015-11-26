@@ -26,7 +26,8 @@ PRODUCT_COPY_FILES += \
 #media
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/media/media_profiles.xml:system/etc/media_profiles.xml \
-    $(LOCAL_PATH)/media/media_codecs.xml:system/etc/media_codecs.xml
+    $(LOCAL_PATH)/media/media_codecs.xml:system/etc/media_codecs.xml \
+    $(LOCAL_PATH)/media/media_codecs_performance.xml:system/etc/media_codecs_performance.xml
 
 #acdbdata
 PRODUCT_COPY_FILES += \

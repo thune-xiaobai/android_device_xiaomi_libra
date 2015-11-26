@@ -78,8 +78,8 @@ BOARD_USE_LEGACY_UI := true
 
 #Kernel
 BOARD_CUSTOM_BOOTIMG_MK := device/xiaomi/libra/mkbootimg.mk
-TARGET_KERNEL_SOURCE := kernel/xiaomi/qcom
-TARGET_KERNEL_CONFIG := msm8994-perf_defconfig
+#TARGET_KERNEL_SOURCE := kernel/xiaomi/qcom
+#TARGET_KERNEL_CONFIG := msm8994-perf_defconfig
 BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x37 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 boot_cpus=0-5 ramoops_memreserve=2M androidboot.selinux=disabled
 BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_PAGESIZE := 4096
@@ -123,6 +123,7 @@ USE_DEVICE_SPECIFIC_CAMERA := true
 # Once camera module can run in the native mode of the system (either
 # 32-bit or 64-bit), the following line should be deleted
 BOARD_QTI_CAMERA_32BIT_ONLY := true
+COMMON_GLOBAL_CFLAGS       += -DCAMERA_VENDOR_L_COMPAT
 
 # Charger
 BOARD_CHARGER_ENABLE_SUSPEND := true
