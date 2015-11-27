@@ -21,6 +21,7 @@ persist.sys.ssr.restart_level=ALL_ENABLE
 persist.sys.ssr.enable_ramdumps=1
 persist.radio.multisim.config=dsds
 DEVICE_PROVISIONED=1
+ro.telephony.ril.config=simactivation
 
 debug.sf.hw=1
 debug.egl.hw=1

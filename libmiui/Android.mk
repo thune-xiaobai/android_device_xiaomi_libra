@@ -17,11 +17,10 @@ include $(CLEAR_VARS)
 
 LOCAL_SRC_FILES := \
     miui_log.c \
-    miui_camera.c \
-    miui_ril.c
+    miui_camera.c
 
 LOCAL_SHARED_LIBRARIES := libutils libgui liblog libbinder
-LOCAL_MODULE := libmoto
+LOCAL_MODULE := libmiui
 LOCAL_MODULE_TAGS := optional
 
 LOCAL_CFLAGS_arm64 += -DLIBMIUI_64BIT

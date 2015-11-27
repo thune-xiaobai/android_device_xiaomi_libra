@@ -37,6 +37,11 @@ on init
     start qfintverify
     # Set permissions for persist partition
     mkdir /persist 0771 system system
+
+    # Symbols required for motorola blobs
+    export LD_LIBRARY_PATH=/system/lib64:/system/lib
+    export LD_PRELOAD "libmiui.so:libboringssl-compat.so"
+
     symlink /sdcard /mnt/sdcard
     symlink /sdcard /storage/sdcard0
 
@@ -92,6 +97,9 @@ on boot
     chown system system /sys/class/leds/red/blink
     chown system system /sys/class/leds/green/blink
     chown system system /sys/class/leds/blue/blink
+
+    #Create NETMGR daemon socket area
+    mkdir /dev/socket/netmgr 0750 radio radio
 
     setprop wifi.interface wlan0
 
@@ -170,9 +178,6 @@ on boot
     write /data/misc/radio/copy_complete 0
     chown radio radio /data/misc/radio/copy_complete
     chmod 0660 /data/misc/radio/copy_complete
-
-    # Socket location for RIDL
-    mkdir /dev/socket/RIDL 2770 system system
 
     #doubletap to wake
     export WAKEUP_GESTURE_FILE=`ls /sys/devices/soc.0/f9924000.i2c/i2c-2/2-0070/input/input?/wake_gesture | head -n 1`
@@ -285,18 +290,19 @@ on post-fs-data
     mkdir /data/system/perfd 0770 root system
     chmod 2770 /data/system/perfd
 
-service qfintverify /sbin/qfintverify
-    user root
-    class core
-    seclabel u:r:qfips:s0
-    oneshot
-
     # RIDL data
     mkdir /data/misc/SelfHost/ 0710 system shell
     mkdir /data/misc/SelfHost/QCLogs/ 2750 system shell
     mkdir /data/misc/SelfHost/QCLogs/temp/ 0700 system shell
     mkdir /data/misc/SelfHost/storage/ 0700 system shell
     mkdir /data/misc/SelfHost/Running/ 2750 system shell
+    mkdir /data/misc/SelfHost/socket/ 2770 system system
+
+service qfintverify /sbin/qfintverify
+    user root
+    class core
+    seclabel u:r:qfips:s0
+    oneshot
 
 service qcomsysd /system/bin/qcom-system-daemon
     class main
@@ -963,6 +969,6 @@ service RIDL /system/vendor/bin/RIDLClient.exe
     class late_start
     oneshot
     user system
-    group system inet log sdcard_r sdcard_rw
+    group system inet log sdcard_r sdcard_rw qcom_diag
     # removed for security team - misc bluetooth radio gps wifi diag media_rw
-    # limited to 12 groups.  Unused: audio usb qcom_diag net_bt_admin net_bt_stac net_raw net_admin
+    # limited to 12 groups.  Unused: audio usb net_bt_admin net_bt_stac net_raw net_admin

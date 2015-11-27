@@ -195,7 +195,6 @@ PRODUCT_PACKAGES += \
 
 # Vendor
 PRODUCT_PACKAGES += \
-    com.qualcomm.location \
     com.qualcomm.msapm \
     qcrilmsgtunnel \
     TimeService \
@@ -256,6 +255,11 @@ PRODUCT_BOOT_JARS += \
 PRODUCT_PACKAGES += \
     libtinyxml2 \
     libxml2
+
+#workaround
+PRODUCT_PACKAGES += \
+    libmiui \
+    libboringssl-compat
 
 # Sensors
 PRODUCT_PACKAGES += \
