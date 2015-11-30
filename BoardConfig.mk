@@ -70,7 +70,6 @@ AUDIO_FEATURE_ENABLED_PCM_OFFLOAD_24 := true
 AUDIO_FEATURE_ENABLED_PROXY_DEVICE := true
 
 # Bluetooth
-BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_QCOM := true
 BOARD_HAS_QCA_BT_ROME := true
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/xiaomi/libra/bluetooth
@@ -175,8 +174,6 @@ WIFI_DRIVER_MODULE_PATH         := "/system/lib/modules/wlan.ko"
 WIFI_DRIVER_MODULE_NAME         := "wlan"
 WIFI_DRIVER_FW_PATH_AP          := "ap"
 WIFI_DRIVER_FW_PATH_STA         := "sta"
-TARGET_USES_QCOM_WCNSS_QMI      := true
-TARGET_USES_WCNSS_MAC_ADDR_REV  := true
 WPA_SUPPLICANT_VERSION          := VER_0_8_X
 
 #Recovery
