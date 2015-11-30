@@ -199,6 +199,18 @@ PRODUCT_PACKAGES += \
     TimeService \
     com.qualcomm.qti.services.secureui
 
+PRODUCT_PACKAGES += \
+    libqmi_cci \
+    libqmi_common_so \
+    libqmiservices \
+    libqminvapi \
+    libqmi_client_qmux \
+    libqmi_encdec \
+    libsmemlog \
+    libidl \
+    libdsutils \
+    libdiag
+
 # Graphics
 PRODUCT_PACKAGES += \
     consumerir.msm8992.so \
