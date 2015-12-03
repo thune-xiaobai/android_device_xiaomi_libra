@@ -123,7 +123,6 @@ USE_DEVICE_SPECIFIC_CAMERA := true
 # Once camera module can run in the native mode of the system (either
 # 32-bit or 64-bit), the following line should be deleted
 BOARD_QTI_CAMERA_32BIT_ONLY := true
-COMMON_GLOBAL_CFLAGS       += -DCAMERA_VENDOR_L_COMPAT
 
 # Charger
 BOARD_CHARGER_ENABLE_SUSPEND := true
@@ -144,11 +143,14 @@ TARGET_POWERHAL_VARIANT := qcom
 # Qualcomm support
 BOARD_USES_QCOM_HARDWARE := true
 
+# QC_AV
+TARGET_ENABLE_QC_AV_ENHANCEMENTS := true
+
 # Time services
 BOARD_USES_QC_TIME_SERVICES := true
 
 #Use dlmalloc instead of jemalloc for mallocs
-MALLOC_IMPL := dlmalloc
+#MALLOC_IMPL := dlmalloc
 
 # CMHW
 BOARD_HARDWARE_CLASS := device/xiaomi/libra/cmhw

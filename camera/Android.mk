@@ -11,18 +11,14 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)
 
 LOCAL_SRC_FILES := \
-    miui_log.c \
-    miui_camera.c
+    libcamera_shim.c
 
-LOCAL_SHARED_LIBRARIES := libutils libgui liblog libbinder
-LOCAL_MODULE := libmiui
+LOCAL_SHARED_LIBRARIES := libutils libgui liblog
+LOCAL_MODULE := libcamera_shim
 LOCAL_MODULE_TAGS := optional
-
-LOCAL_CFLAGS_arm64 += -DLIBMIUI_64BIT
 
 include $(BUILD_SHARED_LIBRARY)

@@ -31,48 +31,48 @@ PRODUCT_COPY_FILES += \
 
 #acdbdata
 PRODUCT_COPY_FILES += \
-	$(LOCAL_PATH)/acdbdata/Forte/Forte_Bluetooth_cal.acdb:system/etc/acdbdata/Forte/Forte_Bluetooth_cal.acdb \
-	$(LOCAL_PATH)/acdbdata/Forte/Forte_Handset_cal.acdb:system/etc/acdbdata/Forte/Forte_Handset_cal.acdb \
-	$(LOCAL_PATH)/acdbdata/Forte/Forte_Speaker_cal.acdb:system/etc/acdbdata/Forte/Forte_Speaker_cal.acdb \
-	$(LOCAL_PATH)/acdbdata/Forte/Forte_General_cal.acdb:system/etc/acdbdata/Forte/Forte_General_cal.acdb \
-	$(LOCAL_PATH)/acdbdata/Forte/Forte_Hdmi_cal.acdb:system/etc/acdbdata/Forte/Forte_Hdmi_cal.acdb \
-	$(LOCAL_PATH)/acdbdata/Forte/Forte_Global_cal.acdb:system/etc/acdbdata/Forte/Forte_Global_cal.acdb \
-	$(LOCAL_PATH)/acdbdata/Forte/Forte_Headset_cal.acdb:system/etc/acdbdata/Forte/Forte_Headset_cal.acdb
+    $(LOCAL_PATH)/acdbdata/Forte/Forte_Bluetooth_cal.acdb:system/etc/acdbdata/Forte/Forte_Bluetooth_cal.acdb \
+    $(LOCAL_PATH)/acdbdata/Forte/Forte_Handset_cal.acdb:system/etc/acdbdata/Forte/Forte_Handset_cal.acdb \
+    $(LOCAL_PATH)/acdbdata/Forte/Forte_Speaker_cal.acdb:system/etc/acdbdata/Forte/Forte_Speaker_cal.acdb \
+    $(LOCAL_PATH)/acdbdata/Forte/Forte_General_cal.acdb:system/etc/acdbdata/Forte/Forte_General_cal.acdb \
+    $(LOCAL_PATH)/acdbdata/Forte/Forte_Hdmi_cal.acdb:system/etc/acdbdata/Forte/Forte_Hdmi_cal.acdb \
+    $(LOCAL_PATH)/acdbdata/Forte/Forte_Global_cal.acdb:system/etc/acdbdata/Forte/Forte_Global_cal.acdb \
+    $(LOCAL_PATH)/acdbdata/Forte/Forte_Headset_cal.acdb:system/etc/acdbdata/Forte/Forte_Headset_cal.acdb
 
 #audio
 PRODUCT_COPY_FILES += \
-	$(LOCAL_PATH)/audio/audio_platform_info_i2s.xml:system/etc/audio_platform_info_i2s.xml \
-	$(LOCAL_PATH)/audio/mixer_paths.xml:system/etc/mixer_paths.xml \
-	$(LOCAL_PATH)/audio/audio_platform_info.xml:system/etc/audio_platform_info.xml \
-	$(LOCAL_PATH)/audio/sound_trigger_mixer_paths.xml:system/etc/sound_trigger_mixer_paths.xml \
-	$(LOCAL_PATH)/audio/audio_policy.conf:system/etc/audio_policy.conf \
-	$(LOCAL_PATH)/audio/sound_trigger_platform_info.xml:system/etc/sound_trigger_platform_info.xml \
-	$(LOCAL_PATH)/audio/mixer_paths_i2s.xml:system/etc/mixer_paths_i2s.xml \
-	$(LOCAL_PATH)/audio/surround_sound_3mic/surround_sound_rec_AZ.cfg:system/etc/surround_sound_3mic/surround_sound_rec_AZ.cfg
+    $(LOCAL_PATH)/audio/audio_platform_info_i2s.xml:system/etc/audio_platform_info_i2s.xml \
+    $(LOCAL_PATH)/audio/mixer_paths.xml:system/etc/mixer_paths.xml \
+    $(LOCAL_PATH)/audio/audio_platform_info.xml:system/etc/audio_platform_info.xml \
+    $(LOCAL_PATH)/audio/sound_trigger_mixer_paths.xml:system/etc/sound_trigger_mixer_paths.xml \
+    $(LOCAL_PATH)/audio/audio_policy.conf:system/etc/audio_policy.conf \
+    $(LOCAL_PATH)/audio/sound_trigger_platform_info.xml:system/etc/sound_trigger_platform_info.xml \
+    $(LOCAL_PATH)/audio/mixer_paths_i2s.xml:system/etc/mixer_paths_i2s.xml \
+    $(LOCAL_PATH)/audio/surround_sound_3mic/surround_sound_rec_AZ.cfg:system/etc/surround_sound_3mic/surround_sound_rec_AZ.cfg
 
 #permissions
 PRODUCT_COPY_FILES += \
-	$(LOCAL_PATH)/permissions/cneapiclient.xml:system/etc/permissions/cneapiclient.xml \
-	$(LOCAL_PATH)/permissions/com.qti.snapdragon.sdk.display.xml:system/etc/permissions/com.qti.snapdragon.sdk.display.xml \
-	$(LOCAL_PATH)/permissions/com.qualcomm.location.vzw_library.xml:system/etc/permissions/com.qualcomm.location.vzw_library.xml \
-	$(LOCAL_PATH)/permissions/com.qualcomm.location.xml:system/etc/permissions/com.qualcomm.location.xml \
-	$(LOCAL_PATH)/permissions/com.quicinc.cne.xml:system/etc/permissions/com.quicinc.cne.xml \
-	$(LOCAL_PATH)/permissions/dpmapi.xml:system/etc/permissions/dpmapi.xml \
-	$(LOCAL_PATH)/permissions/embms.xml:system/etc/permissions/embms.xml \
-	$(LOCAL_PATH)/permissions/interface_permissions.xml:system/etc/permissions/interface_permissions.xml \
-	$(LOCAL_PATH)/permissions/qcnvitems.xml:system/etc/permissions/qcnvitems.xml \
-	$(LOCAL_PATH)/permissions/qcrilhook.xml:system/etc/permissions/qcrilhook.xml \
-	$(LOCAL_PATH)/permissions/qti_permissions.xml:system/etc/permissions/qti_permissions.xml
+    $(LOCAL_PATH)/permissions/cneapiclient.xml:system/etc/permissions/cneapiclient.xml \
+    $(LOCAL_PATH)/permissions/com.qti.snapdragon.sdk.display.xml:system/etc/permissions/com.qti.snapdragon.sdk.display.xml \
+    $(LOCAL_PATH)/permissions/com.qualcomm.location.vzw_library.xml:system/etc/permissions/com.qualcomm.location.vzw_library.xml \
+    $(LOCAL_PATH)/permissions/com.qualcomm.location.xml:system/etc/permissions/com.qualcomm.location.xml \
+    $(LOCAL_PATH)/permissions/com.quicinc.cne.xml:system/etc/permissions/com.quicinc.cne.xml \
+    $(LOCAL_PATH)/permissions/dpmapi.xml:system/etc/permissions/dpmapi.xml \
+    $(LOCAL_PATH)/permissions/embms.xml:system/etc/permissions/embms.xml \
+    $(LOCAL_PATH)/permissions/interface_permissions.xml:system/etc/permissions/interface_permissions.xml \
+    $(LOCAL_PATH)/permissions/qcnvitems.xml:system/etc/permissions/qcnvitems.xml \
+    $(LOCAL_PATH)/permissions/qcrilhook.xml:system/etc/permissions/qcrilhook.xml \
+    $(LOCAL_PATH)/permissions/qti_permissions.xml:system/etc/permissions/qti_permissions.xml
 
 #Sensor
 PRODUCT_COPY_FILES += \
-	$(LOCAL_PATH)/sensor/sensors/sensor_def_qcomdev.conf:system/etc/sensors/sensor_def_qcomdev.conf \
-	$(LOCAL_PATH)/sensor/sensor_diag.cfg:system/etc/sensor_diag.cfg
+    $(LOCAL_PATH)/sensor/sensors/sensor_def_qcomdev.conf:system/etc/sensors/sensor_def_qcomdev.conf \
+    $(LOCAL_PATH)/sensor/sensor_diag.cfg:system/etc/sensor_diag.cfg
 
 #keylayout
 PRODUCT_COPY_FILES += \
-	$(LOCAL_PATH)/ft5x46.kl:system/usr/keylayout/ft5x46.kl \
-	$(LOCAL_PATH)/Generic.kl:system/usr/keylayout/Generic.kl \
+    $(LOCAL_PATH)/ft5x46.kl:system/usr/keylayout/ft5x46.kl \
+    $(LOCAL_PATH)/Generic.kl:system/usr/keylayout/Generic.kl \
     $(LOCAL_PATH)/atmel-maxtouch.kl:system/usr/keylayout/atmel-maxtouch.kl \
     $(LOCAL_PATH)/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl \
     $(LOCAL_PATH)/synaptics_dsx_edge.kl:system/usr/keylayout/synaptics_dsx_edge.kl \
@@ -258,7 +258,6 @@ PRODUCT_PACKAGES += \
 
 #workaround
 PRODUCT_PACKAGES += \
-    libmiui \
     libboringssl-compat
 
 # Sensors
@@ -267,7 +266,8 @@ PRODUCT_PACKAGES += \
 
 #stlport
 PRODUCT_PACKAGES += \
-    libstlport
+    libstlport \
+    libcamera_shim
 
 # USB
 PRODUCT_PACKAGES += \
@@ -288,6 +288,10 @@ PRODUCT_PACKAGES += \
     hostapd_cli \
     dhcpcd.conf
 
+#gps
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/gps/gps.conf:system/etc/gps.conf
+
 # Screen density
 PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := xxhdpi
@@ -303,19 +307,19 @@ PRODUCT_MODEL := Mi-4c
 
 # Init scripts
 PRODUCT_PACKAGES += \
-	init.class_main.sh \
-	init.mdm.sh \
-	init.qcom.class_core.sh \
-	init.qcom.early_boot.sh	\
-	init.qcom.factory.sh \
-	init.qcom.sh \
-	init.qcom.syspart_fixup.sh \
-	init.qcom.usb.sh \
-	init.qcom.rc \
-	init.qcom.usb.cdrom.rc \
-	init.qcom.usb.rc \
-	init.recovery.hardware.rc \
-	init.target.rc \
-	ueventd.goldfish.rc \
-	ueventd.qcom.rc \
+    init.class_main.sh \
+    init.mdm.sh \
+    init.qcom.class_core.sh \
+    init.qcom.early_boot.sh	\
+    init.qcom.factory.sh \
+    init.qcom.sh \
+    init.qcom.syspart_fixup.sh \
+    init.qcom.usb.sh \
+    init.qcom.rc \
+    init.qcom.usb.cdrom.rc \
+    init.qcom.usb.rc \
+    init.recovery.hardware.rc \
+    init.target.rc \
+    ueventd.goldfish.rc \
+    ueventd.qcom.rc \
     fstab.qcom

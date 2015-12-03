@@ -38,9 +38,10 @@ on init
     # Set permissions for persist partition
     mkdir /persist 0771 system system
 
-    # Symbols required for motorola blobs
     export LD_LIBRARY_PATH=/system/lib64:/system/lib
-    export LD_PRELOAD "libmiui.so:libboringssl-compat.so"
+    export LD_PRELOAD "libboringssl-compat.so"
+
+    export LD_SHIM_LIBS /system/vendor/lib/libmmcamera2_stats_modules.so|libcamera_shim.so
 
     symlink /sdcard /mnt/sdcard
     symlink /sdcard /storage/sdcard0
@@ -189,6 +190,9 @@ on boot
 on post-fs-data
     # Create directory for TZ Apps
     mkdir /data/misc/qsee 0770 system system
+
+    #Create folder for mm-qcamera-daemon
+    mkdir /data/misc/camera 0770 camera camera
 
     mkdir /data/media 0770 media_rw media_rw
     chown media_rw media_rw /data/media
