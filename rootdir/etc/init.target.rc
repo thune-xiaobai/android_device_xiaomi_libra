@@ -259,12 +259,11 @@ service select_sns_hal /system/bin/sensor_select.sh
     group root
     oneshot
 
-#service wcnss-service /system/bin/wcnss_service
-#    class late_start
-#    user root
-#    group system wifi
-#    oneshot
-#
+service wcnss-service /system/bin/wcnss_service
+    class late_start
+    user root
+    group system wifi
+    oneshot
 
 service smonsir /system/bin/smonsir
     user root

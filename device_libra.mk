@@ -278,7 +278,6 @@ PRODUCT_PACKAGES += \
     wpa_supplicant.conf \
     wpa_supplicant \
     libwpa_client \
-    wcnss_service \
     libwcnss_qmi \
     libQWiFiSoftApCfg \
     libqsap_sdk \
@@ -287,6 +286,10 @@ PRODUCT_PACKAGES += \
     hostapd \
     hostapd_cli \
     dhcpcd.conf
+
+#wcnss
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/wcnss_service:system/bin/wcnss_service
 
 #gps
 PRODUCT_COPY_FILES += \

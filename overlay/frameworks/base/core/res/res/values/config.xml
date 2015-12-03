@@ -308,5 +308,5 @@
          The default is false. -->
     <bool name="config_suspendWhenScreenOffDueToProximity">true</bool>
 
-    <string name="config_radio_access_family">LTE|TD_SCDMA|CDMA|EVDO|GSM|WCDMA</string>
+    <string name="config_radio_access_family">GPRS|EDGE|UMTS|HSDPA|HSUPA|HSPA|LTE|HSPAP|GSM|TD_SCDMA|WCDMA|LTE_CA|1xRTT|EVDO_A</string>
 </resources>

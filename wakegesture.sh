@@ -11,3 +11,5 @@ else
     ln -sf $WAKEUP_GESTURE_FILE /data/wake_gesture
     chown system system /data/wake_gesture
 fi
+
+touch /data/misc/wifi/test.bin
