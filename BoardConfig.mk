@@ -155,6 +155,9 @@ BOARD_USES_QC_TIME_SERVICES := true
 # CMHW
 BOARD_HARDWARE_CLASS := device/xiaomi/libra/cmhw
 
+# dt2w
+TARGET_TAP_TO_WAKE_NODE := "/data/wake_gesture"
+
 # Ril
 TARGET_RIL_VARIANT := caf
 SIM_COUNT := 2
