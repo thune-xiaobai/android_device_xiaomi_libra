@@ -146,6 +146,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.opengles.aep.xml:system/etc/permissions/android.hardware.opengles.aep.xml
 
+# wcnss
+PRODUCT_COPY_FILES += \
+    device/xiaomi/libra/wcnss_service:system/bin/wcnss_service
+
 #ANT+ stack
 PRODUCT_PACKAGES += \
     com.dsi.ant.antradio_library \
@@ -286,7 +290,6 @@ PRODUCT_PACKAGES += \
     wpa_supplicant.conf \
     wpa_supplicant \
     libwpa_client \
-    wcnss_service \
     libwcnss_qmi \
     libQWiFiSoftApCfg \
     libqsap_sdk \
