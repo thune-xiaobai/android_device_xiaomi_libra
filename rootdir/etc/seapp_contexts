@@ -14,9 +14,11 @@ user=system seinfo=platform name=com.qualcomm.location.XT domain=location_app ty
 user=system seinfo=platform name=com.qualcomm.msapm domain=location_app type=location_app_data_file
 user=_app seinfo=platform name=com.qualcomm.location.qvtester domain=location_app type=location_app_data_file
 user=_app seinfo=platform name=com.qualcomm.qct.dlt domain=location_app type=location_app_data_file
-user=updater seinfo=platform domain=updater type=app_data_file
 user=theme seinfo=platform domain=theme type=app_data_file
 user=backup seinfo=platform domain=backup type=app_data_file
+user=system seinfo=platform name=com.xiaomi.mitunes domain=miassistant type=app_data_file
+user=system seinfo=platform name=com.miui.networkassistant.test domain=networkassistant type=app_data_file
+user=updater seinfo=platform domain=updater type=app_data_file
 user=system seinfo=platform name=com.miui.networkassistant domain=networkassistant type=app_data_file
 user=system seinfo=platform name=com.miui.networkassistant:deamon domain=networkassistant type=app_data_file
-user=system seinfo=platform name=com.xiaomi.mitunes domain=miassistant type=app_data_file
+user=system seinfo=platform name=com.miui.networkassistant:shandow domain=networkassistant type=app_data_file

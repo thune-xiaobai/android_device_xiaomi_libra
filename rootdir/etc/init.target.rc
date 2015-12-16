@@ -31,6 +31,8 @@ on early-init
     mkdir /firmware 0771 system system
     mkdir /bt_firmware 0771 system system
     symlink /data/tombstones /tombstones
+    chown system root  /sys/module/msm_thermal/core_control/cpus_offlined
+    chmod 666 /sys/module/msm_thermal/core_control/cpus_offlined
 
 on init
     mkdir /cust 0771 system system
@@ -92,6 +94,7 @@ on boot
     write /proc/sys/kernel/sched_boost 1
     chown system system /sys/class/leds/button-backlight/max_brightness
     chown system system /sys/class/leds/button-backlight1/max_brightness
+    write /sys/block/mmcblk0/queue/read_ahead_kb 128
 
 #start camera server as daemon
 service qcamerasvr /system/bin/mm-qcamera-daemon
@@ -306,14 +309,6 @@ service imscmservice /system/bin/imscmservice
    user system
    group radio net_raw diag qcom_diag log
 
-service service_ad /system/bin/adenable
-    user root
-    oneshot
-    disabled
-
-on property:persist.sys.ltm_enable=*
-    start service_ad
-
 service ppd /system/bin/mm-pp-daemon
     class late_start
     user system
@@ -388,11 +383,6 @@ service fidodaemon /system/vendor/bin/fidodaemon
 service bugreport_daemon /system/xbin/bugreport_daemon
     class late_start
 
-service eyecare /system/bin/eyecare
-    class late_start
-    user root
-    group root
-
 on property:persist.sys.display_ce=10
     write /sys/devices/virtual/graphics/fb0/msm_fb_dispparam 0xF0
 
@@ -413,3 +403,8 @@ on property:persist.sys.display_cabc=3
 
 service mtservice /system/bin/mtd
     class late_start
+
+service displayfeature /system/bin/displayfeature
+    class late_start
+    user root
+    group root

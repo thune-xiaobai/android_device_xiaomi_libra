@@ -138,19 +138,22 @@ com.qti.snapdragon.sdk.display.IColorService   u:object_r:color_service:s0
 wfdservice                                     u:object_r:wfdservice_service:s0
 DigitalPen                                     u:object_r:usf_service:s0
 dts_eagle_service                              u:object_r:dtseagleservice_service:s0
+DisplayFeatureControl                          u:object_r:DisplayFeatureControl_service:s0
 #line 1 "device/qcom/sepolicy/test/service_contexts"
 com.qualcomm.qti.auth.securesampleauthdaemon   u:object_r:fidotest_service:s0
 #line 1 "miui/device/common/sepolicy/common/service_contexts"
-security          u:object_r:system_server_service:s0
-MiuiBackup        u:object_r:system_server_service:s0
-MiuiInit          u:object_r:system_server_service:s0
 miui.shell        u:object_r:shelld_service:s0
 miui.whetstone.mcd u:object_r:mcd_service:s0
 miui.whetstone.klo u:object_r:mcd_service:s0
 miui.whetstone.power u:object_r:mcd_service:s0
 miui.whetstone.net u:object_r:mcd_service:s0
 miui.whetstone    u:object_r:system_app_service:s0
-whetstone.activity u:object_r:system_server_service:s0
 mdb.remote_display u:object_r:mdb_display_service:s0
+#line 1 "miui/device/common/sepolicy/v21/service_contexts"
+security          u:object_r:system_server_service:s0
+MiuiBackup        u:object_r:system_server_service:s0
+MiuiInit          u:object_r:system_server_service:s0
+whetstone.activity u:object_r:system_server_service:s0
+miui.security.keystore  u:object_r:system_server_service:s0
 #line 1 "vendor/xiaomi/proprietary/mtdservice/sepolicy/service_contexts"
 com.xiaomi.mtservice        u:object_r:mt_service:s0

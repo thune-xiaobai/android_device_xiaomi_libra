@@ -238,10 +238,6 @@
 # LocalTransport (backup) uses this directory
 /cache/backup(/.*)?	u:object_r:cache_backup_file:s0
 #############################
-# Cust files
-#
-/cust(/.*)?		u:object_r:system_file:s0
-#############################
 # sysfs files
 #
 /sys/devices/platform/nfc-power/nfc_power -- u:object_r:sysfs_nfc_power_writable:s0
@@ -461,11 +457,11 @@
 /system/bin/usf_pairing                         u:object_r:usf_exec:s0
 /system/bin/usf_tester                          u:object_r:usf_exec:s0
 /system/bin/immvibed                            u:object_r:immvibed_exec:s0
-/system/bin/adenable                            u:object_r:adenable_exec:s0
-/system/bin/eyecare                             u:object_r:eyecare_exec:s0
 /system/bin/smprosrv                            u:object_r:smprosrv_exec:s0
 /system/bin/smonsir                             u:object_r:smonsir_exec:s0
+/system/bin/smeloop                             u:object_r:smeloop_exec:s0
 /system/bin/mcStarter                           u:object_r:mcStarter_exec:s0
+/system/bin/displayfeature                      u:object_r:displayfeature_exec:s0
 
 ###################################
 # sysfs files
@@ -668,5 +664,10 @@
 ########################################
 # Dev socket nodes
 /dev/socket/otad        u:object_r:otad_socket:s0
+
+#############################
+# Cust files
+#
+/cust(/.*)?         u:object_r:system_file:s0
 #line 1 "vendor/xiaomi/proprietary/mtdservice/sepolicy/file_contexts"
 /system/bin/mtd            u:object_r:mt_daemon_exec:s0
