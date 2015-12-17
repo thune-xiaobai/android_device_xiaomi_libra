@@ -441,6 +441,10 @@
         <path name="low-latency-playback" />
     </path>
 
+    <path name="low-latency-playback speaker-and-headphones">
+        <path name="low-latency-playback" />
+    </path>
+
     <path name="low-latency-playback hdmi">
         <ctl name="HDMI Mixer MultiMedia5" value="1" />
     </path>
@@ -1577,8 +1581,8 @@
         <ctl name="RX2 MIX1 INP1" value="RX2" />
         <ctl name="CLASS_H_DSM MUX" value="DSM_HPHL_RX1" />
         <ctl name="HPHL DAC Switch" value="1" />
-        <ctl name="HPHL Volume" value="16" />
-        <ctl name="HPHR Volume" value="16" />
+        <ctl name="HPHL Volume" value="20" />
+        <ctl name="HPHR Volume" value="20" />
         <ctl name="RX1 Digital Volume" value="84" />
         <ctl name="RX2 Digital Volume" value="84" />
     </path>
@@ -1665,7 +1669,7 @@
         <ctl name="RX2 Digital Volume" value="84" />
         <ctl name="RX7 MIX1 INP1" value="RX1" />
         <ctl name="RX7 Digital Volume" value="84" />
-        <ctl name="COMP0 Switch" value="1" />
+        <ctl name="SPK DRV Volume" value="5" />
     </path>
 
     <path name="speaker-protected-and-headphones">

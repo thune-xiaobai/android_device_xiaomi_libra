@@ -420,6 +420,7 @@ on property:sys.usb.config=diag,acm_smd,acm_tty,rmnet_smd,mass_storage
 # RmNet using USB BAM to IPA BAM
 on property:sys.usb.config=diag,serial_smd,serial_tty,rmnet_ipa,mass_storage,adb
     stop adbd
+    stop mdbd
     write /sys/class/android_usb/android0/enable 0
     write /sys/class/android_usb/android0/idVendor 05C6
     write /sys/class/android_usb/android0/idProduct 9025
@@ -754,20 +755,6 @@ on property:sys.usb.config=rndis,serial_smd,adb
     start adbd
     setprop sys.usb.state rndis,adb
 
-#for CT test
-on property:sys.usb.config=rndis,diag,modem,adb
-    stop adbd
-    stop mdbd
-    write /sys/class/android_usb/android0/enable 0
-    write /sys/class/android_usb/android0/idVendor 05C6
-    write /sys/class/android_usb/android0/idProduct 9942
-    write /sys/class/android_usb/android0/f_diag/clients diag
-    write /sys/class/android_usb/android0/f_serial/transports smd
-    write /sys/class/android_usb/android0/functions rndis,diag,serial,adb
-    write /sys/class/android_usb/android0/enable 1
-    start adbd
-    setprop sys.usb.state rndis,adb
-
 on property:sys.usb.config=rndis,serial_smd,diag
     write /sys/class/android_usb/android0/enable 0
     write /sys/class/android_usb/android0/idVendor 05C6
@@ -806,6 +793,20 @@ on property:sys.usb.config=rndis,diag,diag_mdm,adb
     write /sys/class/android_usb/android0/idProduct 9042
     write /sys/class/android_usb/android0/f_diag/clients diag,diag_mdm
     write /sys/class/android_usb/android0/functions rndis,diag,adb
+    write /sys/class/android_usb/android0/enable 1
+    start adbd
+    setprop sys.usb.state rndis,adb
+
+#for CT test
+on property:sys.usb.config=rndis,diag,modem,adb
+    stop adbd
+    stop mdbd
+    write /sys/class/android_usb/android0/enable 0
+    write /sys/class/android_usb/android0/idVendor 05C6
+    write /sys/class/android_usb/android0/idProduct 9942
+    write /sys/class/android_usb/android0/f_diag/clients diag
+    write /sys/class/android_usb/android0/f_serial/transports smd
+    write /sys/class/android_usb/android0/functions rndis,diag,serial,adb
     write /sys/class/android_usb/android0/enable 1
     start adbd
     setprop sys.usb.state rndis,adb

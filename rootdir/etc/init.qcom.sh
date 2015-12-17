@@ -112,15 +112,6 @@ start_msm_irqbalance()
 }
 
 baseband=`getprop ro.baseband`
-#
-# Suppress default route installation during RA for IPV6; user space will take
-# care of this
-# exception default ifc
-for file in /proc/sys/net/ipv6/conf/*
-do
-  echo 0 > $file/accept_ra_defrtr
-done
-echo 1 > /proc/sys/net/ipv6/conf/default/accept_ra_defrtr
 
 case "$baseband" in
         "svlte2a")
@@ -168,6 +159,36 @@ else
 echo 48 > /sys/class/leds/red/max_brightness
 echo 48 > /sys/class/leds/green/max_brightness
 echo 96 > /sys/class/leds/blue/max_brightness
+fi
+
+# Update the panel color property
+if [ $(getprop ro.boot.hwversion | grep -e 3.*) ]; then
+    if [ -f /sys/bus/i2c/devices/2-004a/panel_color ]; then
+        # Atmel
+        color=`cat /sys/bus/i2c/devices/2-004a/panel_color`
+    elif [ -f /sys/bus/i2c/devices/2-0038/panel_color ]; then
+        color=`cat /sys/bus/i2c/devices/2-0038/panel_color`
+    else
+        color="0"
+    fi
+
+    case "$color" in
+        "1")
+            setprop sys.panel.color WHITE
+            ;;
+        "2")
+            setprop sys.panel.color BLACK
+            ;;
+        "7")
+            setprop sys.panel.color PURPLE
+            ;;
+        "8")
+            setprop sys.panel.color GOLDEN
+            ;;
+        *)
+            setprop sys.panel.color UNKNOWN
+            ;;
+    esac
 fi
 
 #start_sensors
