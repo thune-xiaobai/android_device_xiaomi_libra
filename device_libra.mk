@@ -192,10 +192,7 @@ PRODUCT_PACKAGES += \
 
 # Vendor
 PRODUCT_PACKAGES += \
-    com.qualcomm.msapm \
     qcrilmsgtunnel \
-    TimeService \
-    com.qualcomm.qti.services.secureui
 
 # Graphics
 PRODUCT_PACKAGES += \
@@ -243,7 +240,7 @@ PRODUCT_PACKAGES += \
 
 # Power
 PRODUCT_PACKAGES += \
-    power.qcom
+    power.msm8992
 
 PRODUCT_BOOT_JARS += \
     qcmediaplayer
