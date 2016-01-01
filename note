@@ -1,2 +1,7 @@
 maybe we need to revert this commit:
 	https://github.com/CyanogenMod/android_hardware_qcom_audio/commit/a75d1c3354fdd049400eed0908d17e15f8bf183f
+        https://github.com/CyanogenMod/android_hardware_qcom_audio/commit/eec6acfa6feb0391529da0b5d0f6e3e88d3f1a5b
+
+revert these to make cdma work:
+        https://github.com/CyanogenMod/android_packages_services_Telephony/commit/4ee48b421eb42ee1ca204836256868c646ae291e
+        https://github.com/CyanogenMod/android_frameworks_opt_telephony/commit/158e9fd7ea3e04e0b855e09716f83be4de0cef82
