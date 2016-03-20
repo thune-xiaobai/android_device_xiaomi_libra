@@ -17,7 +17,7 @@ include $(CLEAR_VARS)
 LOCAL_SRC_FILES := \
     libcamera_shim.c
 
-LOCAL_SHARED_LIBRARIES := libutils libgui liblog
+LOCAL_SHARED_LIBRARIES := libutils libgui liblog libcutils libbinder libui
 LOCAL_MODULE := libcamera_shim
 LOCAL_MODULE_TAGS := optional
 

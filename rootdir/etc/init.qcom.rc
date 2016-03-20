@@ -47,7 +47,6 @@ on init
     symlink /sdcard /storage/sdcard0
 
 on early-boot
-    start wakeup-symlink
     # set RLIMIT_MEMLOCK to 64MB
     setrlimit 8 67108864 67108864
     # Allow subsystem (modem etc) debugging
@@ -181,10 +180,15 @@ on boot
     chmod 0660 /data/misc/radio/copy_complete
 
     #doubletap to wake
-    export WAKEUP_GESTURE_FILE=`ls /sys/devices/soc.0/f9924000.i2c/i2c-2/2-0070/input/input?/wake_gesture | head -n 1`
-    chown system system $WAKEUP_GESTURE_FILE
-    exec ln -sf $WAKEUP_GESTURE_FILE /data/wake_gesture
-    chown system system /data/wake_gesture
+    chown system system /sys/devices/soc.0/f9924000.i2c/i2c-2/2-0070/input/input1/wake_gesture
+
+    #torch
+    chown system system /sys/class/leds/led:torch_0/brightness
+    chmod 0666 /sys/class/leds/led:torch_0/brightness
+
+    #Dynamic FPS
+    chown system graphics /sys/class/graphics/fb0/dynamic_fps
+    chmod 0644 /sys/class/graphics/fb0/dynamic_fps
 
 # msm specific files that need to be created on /data
 on post-fs-data
@@ -345,6 +349,12 @@ on property:radio.atfwd.start=false
 service qcom-debug /system/bin/sh /system/etc/init.qcom.debug.sh
     class core
     user root
+    oneshot
+
+service qcom-post-boot /system/bin/sh /system/etc/init.qcom.post_boot.sh
+    class late_start
+    user root
+    disabled
     oneshot
 
 # corefile limit and ETB enabling
@@ -577,30 +587,31 @@ service btwlancoex /system/bin/sh /system/etc/init.qcom.coex.sh
     disabled
     oneshot
 
-service amp_init /system/bin/amploader -i
-    class late_start
-    user root
-    disabled
-    oneshot
+#service amp_init /system/bin/amploader -i
+#    class late_start
+#    user root
+#    disabled
+#    oneshot
 
-service amp_load /system/bin/amploader -l 7000
-    class late_start
-    user root
-    disabled
-    oneshot
+#service amp_load /system/bin/amploader -l 7000
+#    class late_start
+#    user root
+#    disabled
+#    oneshot
 
-service amp_unload /system/bin/amploader -u
-    class late_start
-    user root
-    disabled
-    oneshot
+#service amp_unload /system/bin/amploader -u
+#    class late_start
+#    user root
+#    disabled
+#    oneshot
 
 service p2p_supplicant /system/bin/wpa_supplicant \
-    -ip2p0 -Dnl80211 -c/data/misc/wifi/p2p_supplicant.conf \
-    -I/system/etc/wifi/p2p_supplicant_overlay.conf -N \
     -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf \
     -I/system/etc/wifi/wpa_supplicant_overlay.conf \
-    -O/data/misc/wifi/sockets -puse_p2p_group_interface=1 -dd \
+    -O/data/misc/wifi/sockets -N \
+    -ip2p0 -Dnl80211 -c/data/misc/wifi/p2p_supplicant.conf \
+    -I/system/etc/wifi/p2p_supplicant_overlay.conf \
+    -puse_p2p_group_interface=1 -dd \
     -e/data/misc/wifi/entropy.bin -g@android:wpa_wlan0
 #   we will start as root and wpa_supplicant will switch to user wifi
 #   after setting up the capabilities required for WEXT
@@ -610,6 +621,7 @@ service p2p_supplicant /system/bin/wpa_supplicant \
     socket wpa_wlan0 dgram 660 wifi wifi
     disabled
     oneshot
+
 
 service wpa_supplicant /system/bin/wpa_supplicant \
     -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf \
@@ -765,20 +777,9 @@ service config-zram /system/bin/sh /system/etc/init.qcom.zram.sh
    disabled
    oneshot
 
-service wakeup-symlink /system/bin/sh /system/bin/wakegesture.sh
-    class late_start
-    user root
-    disabled
-    oneshot
-
 on property:sys.boot_completed=1
     start qcom-post-boot
     start config-zram
-
-service atfwd /system/bin/ATFWD-daemon
-    class late_start
-    user system
-    group system radio
 
 service hostapd /system/bin/hostapd -dd /data/hostapd/hostapd.conf
     class late_start
@@ -845,11 +846,6 @@ service profiler_daemon /system/bin/profiler_daemon
     group root
     disabled
 
-# Binding fuse mount point to /storage/emulated/legacy
-on property:init.svc.sdcard=running
-    wait /mnt/shell/emulated/0
-    mount none /mnt/shell/emulated/0 /storage/emulated/legacy bind
-
 service hcidump /system/bin/sh /system/etc/hcidump.sh
     user bluetooth
     group bluetooth system net_bt_admin net_admin
@@ -863,12 +859,6 @@ service ssr_diag /system/bin/ssr_diag
     class late_start
 #    user system
     group system
-    disabled
-
-# Define fastmmi
-service fastmmi /system/bin/mmi
-    user root
-    group root
     disabled
 
 service fastmmisrv /system/bin/sh /init.qcom.factory.sh
@@ -928,24 +918,12 @@ on property:persist.sys.qlogd=1
 on property:persist.sys.qlogd=0
     stop qlogd
 
-service rootagent /system/bin/sh /system/etc/init.qcom.rootagent.sh
-    disabled
-    oneshot
-on property:persist.sys.rootagent=1
-    start rootagent
-on property:persist.sys.rootagent=0
-    stop rootagent
-
-service vm_bms /system/bin/vm_bms
-    user root
-    group root
-    disabled
-
 service msm_irqbalance /system/bin/msm_irqbalance -f /system/vendor/etc/msm_irqbalance.conf
     socket msm_irqbalance seqpacket 660 root system
     class core
     user root
     group root
+    writepid /dev/cpuset/system-background/tasks
     disabled
 
 # To enable fast dormancy for CU
@@ -964,15 +942,13 @@ on property:persist.radio.modem=X7-LTE
     setprop ro.sys.oosenhance.enable true
     setprop ro.sys.oosenhance.timer 20000
 
-service wfdservice /system/bin/wfdservice
-    class main
-    user system
-    group graphics audio camera inet net_bt net_bt_admin net_bt_stack drmrpc bluetooth media_rw media
+# Configure IO scheduler
+on property:sys.io.scheduler=*
+    write /sys/block/mmcblk0/queue/scheduler ${sys.io.scheduler}
 
-service RIDL /system/vendor/bin/RIDLClient.exe
-    class late_start
-    oneshot
-    user system
-    group system inet log sdcard_r sdcard_rw qcom_diag
-    # removed for security team - misc bluetooth radio gps wifi diag media_rw
-    # limited to 12 groups.  Unused: audio usb net_bt_admin net_bt_stac net_raw net_admin
+on property:persist.sys.io.scheduler=*
+    setprop sys.io.scheduler ${persist.sys.io.scheduler}
+
+on property:dev.bootcomplete=1
+    setprop sys.io.scheduler "cfq"
+

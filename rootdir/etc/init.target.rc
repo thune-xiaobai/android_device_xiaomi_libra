@@ -78,6 +78,12 @@ on post-fs-data
     chmod 0660 /dev/sysmatdrv
 
 on boot
+    # update foreground cpuset now that processors are up
+    write /dev/cpuset/foreground/cpus 0-5
+    write /dev/cpuset/foreground/boost/cpus 4-5
+    write /dev/cpuset/background/cpus 0
+    write /dev/cpuset/system-background/cpus 0-3
+
     start rmt_storage
     start rfs_access
 # access permission for secure touch
@@ -136,6 +142,7 @@ service qseecomd /system/bin/qseecomd
 service perfd /system/bin/perfd
    class main
    user root
+   writepid /dev/cpuset/system-background/tasks
    disabled
 
 #service mpdecision /system/bin/mpdecision --avg_comp
@@ -265,28 +272,6 @@ service wcnss-service /system/bin/wcnss_service
     group system wifi
     oneshot
 
-service smonsir /system/bin/smonsir
-    user root
-    group root
-    oneshot
-    disabled
-
-service smprosrv /system/bin/smprosrv
-    user root
-    group root
-    oneshot
-    disabled
-
-on property:persist.sys.matsir.enable=1
-    setprop sys.sysmat.service.control start
-    start smonsir
-    start smprosrv
-
-service smeloop /system/bin/smeloop
-    class late_start
-    user root
-    group root
-    oneshot
 
 on property:sys.ims.QMI_DAEMON_STATUS=1
     start imsdatadaemon
@@ -300,19 +285,6 @@ service ims_rtp_daemon /system/bin/ims_rtp_daemon
 
 on property:sys.ims.DATA_DAEMON_STATUS=1
     start ims_rtp_daemon
-
-service imscmservice /system/bin/imscmservice
-   class main
-   user system
-   group radio net_raw diag qcom_diag log
-
-service service_ad /system/bin/adenable
-    user root
-    oneshot
-    disabled
-
-on property:persist.sys.ltm_enable=*
-    start service_ad
 
 service ppd /system/bin/mm-pp-daemon
     class late_start
@@ -349,36 +321,11 @@ on charger
     chmod 0664 /sys/class/power_supply/bms/current_now
     chmod 0664 /sys/class/power_supply/bms/voltage_ocv
 
-service ml_daemon /system/bin/ml_daemon
-    class core
-    user root
-    group root
-
-service seald /system/bin/seald
-    class late_start
-    user root
-    group system
-
 service energy-awareness /system/bin/energy-awareness
     class main
     user root
     group system
     oneshot
-
-service dts_configurator /system/bin/dts_configurator
-    class late_start
-    user system
-    group system media audio
-    oneshot
-
-service dtseagleservice /system/bin/dts_eagle_service
-    class late_start
-    user system
-    group audio media
-    disabled
-
-on property:init.svc.dts_configurator=stopped
-    start dtseagleservice
 
 service fidodaemon /system/vendor/bin/fidodaemon
     class late_start
@@ -411,5 +358,5 @@ on property:persist.sys.display_cabc=2
 on property:persist.sys.display_cabc=3
     write /sys/devices/virtual/graphics/fb0/msm_fb_dispparam 0x300
 
-service mtservice /system/bin/mtd
-    class late_start
+    # Temp hack to fix torch not being registered on boot
+     restart media

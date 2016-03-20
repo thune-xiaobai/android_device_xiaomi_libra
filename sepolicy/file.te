@@ -1,0 +1,4 @@
+type sysfs_prox_cal, sysfs_type, file_type;
+type persist_proxcal_file, file_type;
+type touchpanel_sysfs, sysfs_type, file_type;
+type sysfs_vibrator, fs_type, sysfs_type;

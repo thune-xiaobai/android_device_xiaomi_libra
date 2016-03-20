@@ -10,15 +10,13 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
 $(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
 
-PRODUCT_COPY_FILES += \
+#PRODUCT_COPY_FILES += \
     device/xiaomi/libra/kernel:kernel \
     device/xiaomi/libra/dt.img:dt.img
 
 #chargeonlymode
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/rootdir/etc/sbin/chargeonlymode:root/sbin/chargeonlymode \
-    $(LOCAL_PATH)/rootdir/etc/sbin/qcrypto_module.ko:root/sbin/qcrypto_module.ko \
-    $(LOCAL_PATH)/rootdir/etc/sbin/qdrbg_module.ko:root/sbin/qdrbg_module.ko
+    $(LOCAL_PATH)/rootdir/etc/sbin/chargeonlymode:root/sbin/chargeonlymode
 
 #media
 PRODUCT_COPY_FILES += \
@@ -88,7 +86,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/data/qmi_config.xml:system/etc/data/qmi_config.xml 
 
 #wake_gesture
-PRODUCT_COPY_FILES += \
+#PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/wakegesture.sh:system/bin/wakegesture.sh
 
 #misc
@@ -190,10 +188,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     gps.msm8992
 
-# Vendor
-PRODUCT_PACKAGES += \
-    qcrilmsgtunnel \
-
 # Graphics
 PRODUCT_PACKAGES += \
     consumerir.msm8992.so \
@@ -209,6 +203,10 @@ PRODUCT_PACKAGES += \
     ebtables \
     ethertypes \
     libebtc
+
+# Camrera
+PRODUCT_PACKAGES += \
+    Snap
 
 # Keystore
 PRODUCT_PACKAGES += \
@@ -234,9 +232,15 @@ PRODUCT_PACKAGES += \
     libOmxEvrcEnc \
     libOmxQcelp13Enc \
     libOmxVdecHevc \
+    libOmxVdec \
+    libOmxVenc \
     libOmxVidcCommon \
     libstagefrighthw \
     qcmediaplayer
+
+#rmnetctl
+PRODUCT_PACKAGES += \
+    librmnetctl
 
 # Power
 PRODUCT_PACKAGES += \
@@ -273,6 +277,7 @@ PRODUCT_PACKAGES += \
     wpa_supplicant \
     libwpa_client \
     libwcnss_qmi \
+    wcnss_service \
     libQWiFiSoftApCfg \
     libqsap_sdk \
     wpa_supplicant_overlay.conf \
@@ -282,7 +287,7 @@ PRODUCT_PACKAGES += \
     dhcpcd.conf
 
 #wcnss
-PRODUCT_COPY_FILES += \
+#PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/wcnss_service:system/bin/wcnss_service
 
 #gps
@@ -308,15 +313,19 @@ PRODUCT_PACKAGES += \
     init.mdm.sh \
     init.qcom.class_core.sh \
     init.qcom.early_boot.sh	\
+    init.qcom.post_boot.sh \
     init.qcom.factory.sh \
     init.qcom.sh \
     init.qcom.syspart_fixup.sh \
     init.qcom.usb.sh \
     init.qcom.rc \
-    init.qcom.usb.cdrom.rc \
     init.qcom.usb.rc \
     init.recovery.hardware.rc \
     init.target.rc \
     ueventd.goldfish.rc \
     ueventd.qcom.rc \
     fstab.qcom
+
+PRODUCT_BUILD_PROP_OVERRIDES += \
+    BUILD_FINGERPRINT=Xiaomi/libra/libra:5.1.1/LMY47V/6.3.10:user/release-keys \
+    PRIVATE_BUILD_DESC="libra-user 5.1.1 LMY47V 6.3.10 release-keys"

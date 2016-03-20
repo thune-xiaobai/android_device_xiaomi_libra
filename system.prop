@@ -13,6 +13,8 @@ ril.subscription.types=NV,RUIM
 persist.sys.ssr.restart_level=ALL_ENABLE
 persist.sys.ssr.enable_ramdumps=1
 persist.radio.multisim.config=dsds
+persist.radio.atfwd.start=false
+radio.atfwd.start=false
 DEVICE_PROVISIONED=1
 ro.telephony.ril.config=simactivation
 ro.ril.multi_rat_capable=true
@@ -40,12 +42,12 @@ qcom.hw.aac.encoder=true
 #
 # system props for the cne module
 #
-persist.cne.feature=1
+persist.cne.feature=0
 
 #
 # system props for the dpm module
 #
-persist.dpm.feature=5
+persist.dpm.feature=0
 persist.dpm.nsrm.bkg.evt=3955
 
 #system props for the MM modules
@@ -63,13 +65,13 @@ media.aac_51_output_enabled=true
 #3314291: Decimal sum after adding FLAC parser flag 131072
 #37491 is decimal sum of supported codecs in AAL
 #codecs: DivX DivXHD AVI AC3 ASF AAC QCP DTS 3G2 MP2TS
-mm.enable.qcom_parser=3314291
+#mm.enable.qcom_parser=3314291
 
 # Enable AwesomePlayer stats
-persist.debug.sf.statistics=1
+#persist.debug.sf.statistics=1
 
 # Print clip name being played
-media.stagefright.log-uri=1
+#media.stagefright.log-uri=1
 
 # VIDC: debug_levels
 # 1:ERROR 2:HIGH 4:LOW 0:NOLOGS 7:AllLOGS
@@ -111,6 +113,11 @@ telephony.lteOnCdmaDevice=1
 # System props for bluetooth
 # System prop to turn on hfp client
 bluetooth.hfp.client=1
+
+
+#Simulate sdcard on /data/media
+#
+#persist.fuse_sdcard=true
 
 #system prop for Bluetooth SOC type
 qcom.bluetooth.soc=rome
@@ -251,3 +258,5 @@ keyguard.no_require_sim=true
 ro.product.cuptsm=XIAOMI|ESE|02|01
 persist.radio.apm_sim_not_pwdn=1
 
+# Maintainer
+ro.mk.maintainer=wood

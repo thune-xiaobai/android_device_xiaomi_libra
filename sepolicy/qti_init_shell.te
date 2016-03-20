@@ -1,0 +1,2 @@
+allow qti_init_shell graphics_device:chr_file getattr;
+allow qti_init_shell system_data_file:lnk_file { create unlink };

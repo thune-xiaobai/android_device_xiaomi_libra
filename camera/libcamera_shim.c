@@ -37,6 +37,10 @@
     //android::SensorManager::SensorManager(void)
     void _ZN7android13SensorManagerC1Ev(void *sensorMgr);
 
+    extern int _ZN7android5Fence4waitEi(int);
+
+    int _ZN7android5Fence4waitEj(unsigned int timeout);
+
 /*
  * FUNCTION: android::SensorManager::SensorManager(void)
  * USE:      INTERPOSE: construct a sensor manager object
@@ -44,7 +48,7 @@
  *           in a package name as a "string16" to the consrtuctor. Since this
  *           lib only services camera library, it is easy for us to just do that
  *           and this provide the constructor that the camera library wants.
- *           The package name we use if "camera.msm8226". Why not?
+ *           The package name we use if "camera.msm8992". Why not?
  */
 void _ZN7android13SensorManagerC1Ev(void *sensorMgr)
 {
@@ -57,4 +61,6 @@ void _ZN7android13SensorManagerC1Ev(void *sensorMgr)
     _ZN7android8String16D1Ev(&string);
 }
 
-void _ZN7android5Fence4waitEj() {}
+int _ZN7android5Fence4waitEj(unsigned int timeout) {
+    return _ZN7android5Fence4waitEi(timeout);
+}

@@ -28,17 +28,17 @@ import org.cyanogenmod.hardware.util.FileUtils;
  */
 
 public class KeyDisabler {
-
+    
     private static String GPIO_CONTROL_PATH = "/sys/devices/soc.0/gpio_keys.88/disabled_keys";
-
+    
     public static boolean isSupported() { return true; }
-
+    
     public static boolean isActive() {
-        return (FileUtils.readOneLine(GPIO_CONTROL_PATH).equals("102,139,158"));
+        return (FileUtils.readOneLine(GPIO_CONTROL_PATH).equals("115,528,766"));
     }
-
+    
     public static boolean setActive(boolean state) {
-        return FileUtils.writeLine(GPIO_CONTROL_PATH, (state ? "102,139,158" : " "));
+        return FileUtils.writeLine(GPIO_CONTROL_PATH, (state ? "115,528,766" : " "));
     }
-
+    
 }
