@@ -28,27 +28,22 @@ persist.hwc.mdpcomp.enable=true
 persist.mdpcomp.4k2kSplit=1
 persist.mdpcomp_perfhint=50
 debug.mdpcomp.logs=0
-persist.metadata_dynfps.disable=false
+persist.metadata_dynfps.disable=true
 persist.hwc.ptor.enable=true
 dalvik.vm.heapsize=36m
 dev.pm.dyn_samplingrate=1
 persist.demo.hdmirotationlock=false
 
 ro.hdmi.enable=true
-persist.speaker.prot.enable=true
+persist.speaker.prot.enable=false
 #0 is default(30 min)
 persist.spkr.cal.duration=0
 qcom.hw.aac.encoder=true
+
 #
 # system props for the cne module
 #
-persist.cne.feature=0
-
-#
-# system props for the dpm module
-#
-persist.dpm.feature=0
-persist.dpm.nsrm.bkg.evt=3955
+persist.cne.feature=1
 
 #system props for the MM modules
 
@@ -61,17 +56,18 @@ media.stagefright.enable-scan=true
 mmp.enable.3g2=true
 mm.enable.smoothstreaming=true
 media.aac_51_output_enabled=true
+av.debug.disable.pers.cache=true
 
-#3314291: Decimal sum after adding FLAC parser flag 131072
+#3379827: Decimal sum after adding WAV parser flag
 #37491 is decimal sum of supported codecs in AAL
 #codecs: DivX DivXHD AVI AC3 ASF AAC QCP DTS 3G2 MP2TS
-#mm.enable.qcom_parser=3314291
+mm.enable.qcom_parser=3379827
 
 # Enable AwesomePlayer stats
-#persist.debug.sf.statistics=1
+persist.debug.sf.statistics=1
 
 # Print clip name being played
-#media.stagefright.log-uri=1
+media.stagefright.log-uri=1
 
 # VIDC: debug_levels
 # 1:ERROR 2:HIGH 4:LOW 0:NOLOGS 7:AllLOGS
@@ -99,10 +95,7 @@ persist.timed.enable=true
 ro.opengles.version=196609
 
 # System property for cabl
-ro.qualcomm.cabl=0
-ro.qcom.ad=1
-ro.qcom.ad.calib.data=/system/etc/calib.cfg
-ro.qcom.ad.sensortype=2
+ro.qualcomm.cabl=2
 
 #
 # System props for telephony
@@ -114,31 +107,31 @@ telephony.lteOnCdmaDevice=1
 # System prop to turn on hfp client
 bluetooth.hfp.client=1
 
+# Set Bluetooth transport
+# initialization timeout
+bluetooth.enable_timeout_ms=12000
 
 #Simulate sdcard on /data/media
 #
-#persist.fuse_sdcard=true
+persist.fuse_sdcard=true
 
 #system prop for Bluetooth SOC type
 qcom.bluetooth.soc=rome
 
-#system prop for A4WP profile support
-ro.bluetooth.a4wp=true
-
 #system prop for wipower support
-ro.bluetooth.wipower=false
+ro.bluetooth.wipower=true
 
-#Set this true as ROME on 8992 always comes with Wipower programmed
-#and triggering embedded mode by deafult
-persist.BT3_2.version=true
+#Set this true as ROME which is programmed
+#as embedded wipower mode by deafult
+ro.bluetooth.emb_wp_mode=true
 
 #
 #snapdragon value add features
 #
-ro.qc.sdk.audio.ssr=true
-persist.audio.ssr.3mic=true
+ro.qc.sdk.audio.ssr=false
+persist.audio.ssr.3mic=false
 ##fluencetype can be "fluence" or "fluencepro" or "none"
-ro.qc.sdk.audio.fluencetype=fluence
+ro.qc.sdk.audio.fluencetype=none
 persist.audio.fluence.voicecall=true
 persist.audio.fluence.voicerec=false
 persist.audio.fluence.speaker=true
@@ -158,18 +151,20 @@ audio.offload.gapless.enabled=true
 audio.offload.buffer.size.kb=32
 
 #Enable offload audio video playback by default
-av.offload.enable=false
+audio.offload.video=true
 
 #Enable 16 bit PCM offload by default
-audio.offload.pcm.16bit.enable=false
+audio.offload.pcm.16bit.enable=true
 
 #Enable multi offload by default
 audio.offload.multiple.enabled=false
 
 #Enable 24 bit PCM offload by default
-audio.offload.pcm.24bit.enable=false
+audio.offload.pcm.24bit.enable=true
 
-audio.offload.disable=1
+#Enable music through deep buffer
+audio.deep_buffer.media=true
+
 #property to enable VDS WFD solution
 persist.hwc.enable_vds=1
 
@@ -192,9 +187,7 @@ ro.hwui.text_large_cache_width=2048
 ro.hwui.text_large_cache_height=1024
 
 # enable navigation bar
-
-# enable usb otg setting
-persist.sys.isUsbOtgEnabled=true
+qemu.hw.mainkeys=0
 
 #enable voice path for PCM VoIP by default
 use.voice.path.for.pcm.voip=true
@@ -257,6 +250,3 @@ ro.product.manufacturer=Xiaomi
 keyguard.no_require_sim=true
 ro.product.cuptsm=XIAOMI|ESE|02|01
 persist.radio.apm_sim_not_pwdn=1
-
-# Maintainer
-ro.mk.maintainer=wood
