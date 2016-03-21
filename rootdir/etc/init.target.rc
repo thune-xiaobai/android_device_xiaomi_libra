@@ -38,6 +38,19 @@ on init
 on early-boot
     start select_sns_hal
 
+on post-fs
+
+    export LD_SHIM_LIBS "/system/lib/libcrypto.so|libboringssl-compat.so:/system/vendor/lib/libmmcamera2_stats_modules.so|libcamera_shim.so:/system/lib/hw/camera.msm8992.so|libcamera_shim.so"
+
+    # We chown/chmod /cust again so because mount is run as root + defaults
+    chown system system /cust
+    chmod 0771 /cust
+    # We restorecon /cust in case the cust partition has been reset.
+    restorecon_recursive /cust
+
+    # create the lost+found directories, so as to enforce our permissions
+    mkdir /cust/lost+found 0770 root root
+
 on fs
     mount_all fstab.qcom
     swapon_all fstab.qcom
@@ -55,16 +68,6 @@ on fs
 
     wait /dev/block/bootdevice/by-name/bluetooth
     mount vfat /dev/block/bootdevice/by-name/bluetooth /bt_firmware ro shortname=lower,uid=1002,gid=3002,dmask=227,fmask=337
-
-on post-fs
-    # We chown/chmod /cust again so because mount is run as root + defaults
-    chown system system /cust
-    chmod 0771 /cust
-    # We restorecon /cust in case the cust partition has been reset.
-    restorecon_recursive /cust
-
-    # create the lost+found directories, so as to enforce our permissions
-    mkdir /cust/lost+found 0770 root root
 
 on post-fs-data
     mkdir /data/tombstones 0771 system system

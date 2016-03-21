@@ -38,10 +38,10 @@ on init
     # Set permissions for persist partition
     mkdir /persist 0771 system system
 
-    export LD_LIBRARY_PATH=/system/lib64:/system/lib
-    export LD_PRELOAD "libboringssl-compat.so"
+    #export LD_LIBRARY_PATH=/system/lib64:/system/lib
+    #export LD_PRELOAD "libboringssl-compat.so"
 
-    export LD_SHIM_LIBS /system/vendor/lib/libmmcamera2_stats_modules.so|libcamera_shim.so
+    #export LD_SHIM_LIBS /system/vendor/lib/libmmcamera2_stats_modules.so|libcamera_shim.so
 
     symlink /sdcard /mnt/sdcard
     symlink /sdcard /storage/sdcard0
