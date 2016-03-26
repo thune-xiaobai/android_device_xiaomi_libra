@@ -18,6 +18,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
+#include <sys/types.h>
 #include <pthread.h>
 #include <utils/Log.h>
 #include <hardware/power.h>
@@ -63,4 +64,9 @@ void _ZN7android13SensorManagerC1Ev(void *sensorMgr)
 
 int _ZN7android5Fence4waitEj(unsigned int timeout) {
     return _ZN7android5Fence4waitEi(timeout);
+}
+
+extern pid_t androidGetTid()
+{
+    return gettid();
 }

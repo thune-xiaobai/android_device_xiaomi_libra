@@ -182,6 +182,9 @@ on boot
     #doubletap to wake
     chown system system /sys/devices/soc.0/f9924000.i2c/i2c-2/2-0070/input/input1/wake_gesture
 
+    #keydisabler
+    chowm system system /sys/devices/soc.0/f9924000.i2c/i2c-2/2-0070/input/input1/0dbutton
+
     #torch
     chown system system /sys/class/leds/led:torch_0/brightness
     chmod 0666 /sys/class/leds/led:torch_0/brightness
@@ -339,6 +342,8 @@ on property:persist.sys.ssr.enable_ramdumps=0
 
 on property:sys.boot_completed=1
     write /dev/kmsg "Boot completed "
+    
+    restart media
 
 on property:persist.radio.atfwd.start=false
     stop atfwd
@@ -854,6 +859,7 @@ service hcidump /system/bin/sh /system/etc/hcidump.sh
 
 service charger /sbin/chargeonlymode
     class charger
+    seclabel u:r:healthd:s0
 
 service ssr_diag /system/bin/ssr_diag
     class late_start
@@ -888,6 +894,7 @@ on ffbm
 service qbcharger /charger -m 1
     disabled
     oneshot
+    seclabel u:r:healthd:s0
 
 on property:sys.qbcharger.enable=true
     start qbcharger

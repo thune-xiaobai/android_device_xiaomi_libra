@@ -19,6 +19,28 @@ LOCAL_SRC_FILES := \
 
 LOCAL_SHARED_LIBRARIES := libutils libgui liblog libcutils libbinder libui
 LOCAL_MODULE := libcamera_shim
+LOCAL_MODULE_CLASS := SHARED_LIBRARIES
+
+LOCAL_32_BIT_ONLY := $(BOARD_QTI_CAMERA_32BIT_ONLY)
+include $(BUILD_SHARED_LIBRARY)
+
+include $(CLEAR_VARS)
+
+LOCAL_C_INCLUDES := \
+    system/media/camera/include
+
+LOCAL_SRC_FILES := \
+    CameraWrapper.cpp
+
+LOCAL_C_INCLUDES := \
+    system/media/camera/include
+
+LOCAL_SHARED_LIBRARIES := \
+    libhardware liblog libcamera_client libutils libcutils
+
+LOCAL_MODULE_PATH := $(2ND_TARGET_OUT_SHARED_LIBRARIES)/hw
+LOCAL_MODULE := camera.$(TARGET_BOARD_PLATFORM)
 LOCAL_MODULE_TAGS := optional
 
+LOCAL_32_BIT_ONLY := $(BOARD_QTI_CAMERA_32BIT_ONLY)
 include $(BUILD_SHARED_LIBRARY)

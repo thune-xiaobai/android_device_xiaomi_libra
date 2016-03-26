@@ -16,6 +16,10 @@
 
 package org.cyanogenmod.hardware;
 
+import android.util.Log;
+
+import java.io.File;
+
 import org.cyanogenmod.hardware.util.FileUtils;
 
 /*
@@ -28,17 +32,39 @@ import org.cyanogenmod.hardware.util.FileUtils;
  */
 
 public class KeyDisabler {
-    
-    private static String GPIO_CONTROL_PATH = "/sys/devices/soc.0/gpio_keys.88/disabled_keys";
-    
-    public static boolean isSupported() { return true; }
-    
+
+    private static final String TAG = "KeyDisabler";
+
+    private static final String FILE_KEYDISABLER = "/sys/devices/soc.0/f9924000.i2c/i2c-2/2-0070/input/input1/0dbutton";
+
+    /*
+     * All HAF classes should export this boolean.
+     * Real implementations must, of course, return true
+     */
+
+    public static boolean isSupported() {
+        return new File(FILE_KEYDISABLER).exists();
+    }
+
+    /*
+     * Are the keys currently blocked?
+     */
+
     public static boolean isActive() {
-        return (FileUtils.readOneLine(GPIO_CONTROL_PATH).equals("115,528,766"));
+        try {
+            return Integer.parseInt(FileUtils.readOneLine(FILE_KEYDISABLER)) == 0;
+        } catch (Exception e) {
+            Log.e(TAG, e.getMessage(), e);
+        }
+        return false;
     }
-    
+
+    /*
+     * Disable capacitive keys
+     */
+
     public static boolean setActive(boolean state) {
-        return FileUtils.writeLine(GPIO_CONTROL_PATH, (state ? "115,528,766" : " "));
+        return FileUtils.writeLine(FILE_KEYDISABLER, state ? "0" : "1");
     }
-    
-}
+
+} 

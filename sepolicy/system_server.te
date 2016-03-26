@@ -7,3 +7,6 @@ allow system_server touchpanel_sysfs:dir { search };
 
 # Vibrator
 allow system_server sysfs_vibrator:file rw_file_perms;
+
+# Consumerir
+allow system_server lirc_device:chr_file rw_file_perms;

@@ -40,7 +40,9 @@ on early-boot
 
 on post-fs
 
-    export LD_SHIM_LIBS "/system/lib/libcrypto.so|libboringssl-compat.so:/system/vendor/lib/libmmcamera2_stats_modules.so|libcamera_shim.so:/system/lib/hw/camera.msm8992.so|libcamera_shim.so"
+    export LD_SHIM_LIBS "/system/lib/libcrypto.so|libboringssl-compat.so:/system/vendor/lib/libmmcamera2_stats_modules.so|libcamera_shim.so:/system/lib/hw/camera.vendor.msm8992.so|libcamera_shim.so"
+
+   setprop ro.hardware.sensors lsm6db0
 
     # We chown/chmod /cust again so because mount is run as root + defaults
     chown system system /cust
@@ -64,10 +66,10 @@ on fs
     mkdir /persist/data 0700 system system
 
     wait /dev/block/bootdevice/by-name/modem
-    mount vfat /dev/block/bootdevice/by-name/modem /firmware ro shortname=lower,uid=1000,gid=1000,dmask=227,fmask=337
+    mount vfat /dev/block/bootdevice/by-name/modem /firmware ro shortname=lower,uid=1000,gid=1000,dmask=227,fmask=337,context=u:object_r:firmware_file:s0
 
     wait /dev/block/bootdevice/by-name/bluetooth
-    mount vfat /dev/block/bootdevice/by-name/bluetooth /bt_firmware ro shortname=lower,uid=1002,gid=3002,dmask=227,fmask=337
+    mount vfat /dev/block/bootdevice/by-name/bluetooth /bt_firmware ro shortname=lower,uid=1002,gid=3002,dmask=227,fmask=337,context=u:object_r:bt_firmware_file:s0
 
 on post-fs-data
     mkdir /data/tombstones 0771 system system
@@ -142,7 +144,7 @@ service qseecomd /system/bin/qseecomd
 #   group system
 #   socket seempdw dgram 0666 system system
 
-service perfd /system/bin/perfd
+service perfd /system/vendor/bin/perfd
    class main
    user root
    writepid /dev/cpuset/system-background/tasks
@@ -174,7 +176,7 @@ on property:sys.shutdown.requested=*
 #   group system
 #   disabled
 #
-service thermal-engine /system/bin/thermal-engine
+service thermal-engine /system/vendor/bin/thermal-engine
    class main
    user root
    socket thermal-send-client stream 0666 system system
@@ -263,7 +265,7 @@ service imsdatadaemon /system/bin/imsdatadaemon
     group system wifi radio inet net_raw log qcom_diag net_admin
     disabled
 #
-service select_sns_hal /system/bin/sensor_select.sh
+service select_sns_hal /system/vendor/bin/sensor_select.sh
     class main
     user root
     group root
@@ -360,6 +362,3 @@ on property:persist.sys.display_cabc=2
 
 on property:persist.sys.display_cabc=3
     write /sys/devices/virtual/graphics/fb0/msm_fb_dispparam 0x300
-
-    # Temp hack to fix torch not being registered on boot
-     restart media

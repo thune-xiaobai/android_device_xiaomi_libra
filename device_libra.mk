@@ -49,8 +49,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/permissions/cneapiclient.xml:system/etc/permissions/cneapiclient.xml \
     $(LOCAL_PATH)/permissions/com.qti.snapdragon.sdk.display.xml:system/etc/permissions/com.qti.snapdragon.sdk.display.xml \
-    $(LOCAL_PATH)/permissions/com.qualcomm.location.vzw_library.xml:system/etc/permissions/com.qualcomm.location.vzw_library.xml \
-    $(LOCAL_PATH)/permissions/com.qualcomm.location.xml:system/etc/permissions/com.qualcomm.location.xml \
     $(LOCAL_PATH)/permissions/com.quicinc.cne.xml:system/etc/permissions/com.quicinc.cne.xml \
     $(LOCAL_PATH)/permissions/dpmapi.xml:system/etc/permissions/dpmapi.xml \
     $(LOCAL_PATH)/permissions/embms.xml:system/etc/permissions/embms.xml \
@@ -184,6 +182,13 @@ PRODUCT_PACKAGES += \
     make_ext4fs \
     setup_fs
 
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/gps/flp.conf:system/etc/flp.conf \
+    $(LOCAL_PATH)/gps/gps.conf:system/etc/gps.conf \
+    $(LOCAL_PATH)/gps/izat.conf:system/etc/izat.conf \
+    $(LOCAL_PATH)/gps/quipc.conf:system/etc/quipc.conf \
+    $(LOCAL_PATH)/gps/sap.conf:system/etc/sap.conf
+
 # GPS
 PRODUCT_PACKAGES += \
     gps.msm8992
@@ -267,12 +272,19 @@ PRODUCT_PACKAGES += \
     libstlport \
     libcamera_shim
 
+# CameraWrapper
+PRODUCT_PACKAGES += \
+    camera.msm8992
+
 # USB
 PRODUCT_PACKAGES += \
     com.android.future.usb.accessory
 
 # Wifi
 PRODUCT_PACKAGES += \
+    ipacm \
+    ipacm-diag \
+    IPACM_cfg.xml \
     wpa_supplicant.conf \
     wpa_supplicant \
     libwpa_client \
@@ -289,10 +301,6 @@ PRODUCT_PACKAGES += \
 #wcnss
 #PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/wcnss_service:system/bin/wcnss_service
-
-#gps
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/gps/gps.conf:system/etc/gps.conf
 
 # Screen density
 PRODUCT_AAPT_CONFIG := normal

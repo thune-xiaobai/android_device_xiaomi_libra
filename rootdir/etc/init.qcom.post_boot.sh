@@ -109,7 +109,7 @@ echo 30 > /proc/sys/kernel/sched_small_task
 
 # android background processes are set to nice 10. Never schedule these on the a57s.
 echo 9 > /proc/sys/kernel/sched_upmigrate_min_nice
-for i in cpu0 cpu1 cpu2 cpu3 cpu4 cpu5 cpu6 cpu7
+for i in cpu0 cpu1 cpu2 cpu3 cpu4 cpu5
 do
     echo 20 > /sys/devices/system/cpu/$i/sched_mostly_idle_load
     echo 3 > /sys/devices/system/cpu/$i/sched_mostly_idle_nr_run
@@ -122,11 +122,11 @@ echo 400000 > /proc/sys/kernel/sched_freq_dec_notify
 echo 8 >  /sys/class/net/rmnet_ipa0/queues/rx-0/rps_cpus
 for devfreq_gov in /sys/class/devfreq/qcom,cpubw*/governor
 do
-    echo "bw_hwmon" > $devfreq_gov
+    echo "powersave" > $devfreq_gov
 done
 for devfreq_gov in /sys/class/devfreq/qcom,mincpubw*/governor
 do
-    echo "cpufreq" > $devfreq_gov
+    echo "powersave" > $devfreq_gov
 done
 # Disable sched_boost
 echo 0 > /proc/sys/kernel/sched_boost
