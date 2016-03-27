@@ -139,8 +139,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     com.dsi.ant.antradio_library \
     AntHalService \
-    libantradio \
-    antradio_app
+    libantradio
 
 # Audio
 PRODUCT_PACKAGES += \
@@ -149,9 +148,10 @@ PRODUCT_PACKAGES += \
     audio.usb.default \
     audio.r_submix.default \
     audio.primary.msm8992 \
-    tinymix \
-    libtinycompress \
-    cplay
+    libqcompostprocbundle \
+    libqcomvisualizer \
+    libqcomvoiceprocessing \
+    tinymix
 
 PRODUCT_PACKAGES += \
     libaudio-resampler \
@@ -167,9 +167,13 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     charger_res_images
 
-# Connectivity Engine support
+# Connectivity Engine support (CNE)
 PRODUCT_PACKAGES += \
-    libcnefeatureconfig
+    CNEService \
+    cneapiclient \
+    com.quicinc.cne \
+    libcnefeatureconfig \
+    services-ext
 
 # Curl
 PRODUCT_PACKAGES += \
@@ -188,6 +192,11 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/gps/izat.conf:system/etc/izat.conf \
     $(LOCAL_PATH)/gps/quipc.conf:system/etc/quipc.conf \
     $(LOCAL_PATH)/gps/sap.conf:system/etc/sap.conf
+
+# DPM
+PRODUCT_PACKAGES += \
+    com.qti.dpmframework \
+    dpmapi
 
 # GPS
 PRODUCT_PACKAGES += \
@@ -225,23 +234,15 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     librs_jni
 
-# OMX
 PRODUCT_PACKAGES += \
-    libc2dcolorconvert \
-    libdashplayer \
-    libdivxdrmdecrypt \
-    libmm-omxcore \
     libOmxAacEnc \
     libOmxAmrEnc \
     libOmxCore \
     libOmxEvrcEnc \
     libOmxQcelp13Enc \
-    libOmxVdecHevc \
     libOmxVdec \
     libOmxVenc \
-    libOmxVidcCommon \
-    libstagefrighthw \
-    qcmediaplayer
+    libstagefrighthw
 
 #rmnetctl
 PRODUCT_PACKAGES += \
