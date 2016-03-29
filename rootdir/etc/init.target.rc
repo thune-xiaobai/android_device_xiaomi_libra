@@ -40,7 +40,7 @@ on early-boot
 
 on post-fs
 
-    export LD_SHIM_LIBS "/system/lib/libcrypto.so|libboringssl-compat.so:/system/vendor/lib/libmmcamera2_stats_modules.so|libcamera_shim.so:/system/lib/hw/camera.vendor.msm8992.so|libcamera_shim.so"
+    export LD_SHIM_LIBS "/system/lib/libcrypto.so|libboringssl-compat.so:/system/vendor/lib/libmmcamera2_stats_modules.so|libcamera_shim.so:/system/lib/hw/camera.msm8992.so|libcamera_shim.so"
 
    setprop ro.hardware.sensors lsm6db0
 

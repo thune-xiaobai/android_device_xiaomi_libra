@@ -42,7 +42,7 @@ NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
 TARGET_USES_ION := true
 TARGET_USES_NEW_ION_API :=true
 TARGET_USES_OVERLAY := true
-FORCE_HWC_COPY_FOR_VIRTUAL_DISPLAYS := true
+TARGET_USES_C2D_COMPOSITION := true
 TARGET_FORCE_HWC_FOR_VIRTUAL_DISPLAYS := true
 MAX_VIRTUAL_DISPLAY_DIMENSION := 2048
 
@@ -53,6 +53,9 @@ HAVE_ADRENO_SOURCE:= false
 OVERRIDE_RS_DRIVER:= libRSDriver_adreno.so
 BOARD_USES_OPENSSL_SYMBOLS := true
 
+# Enable keymaster app checking
+TARGET_KEYMASTER_WAIT_FOR_QSEE := true
+
 # Fonts
 EXTENDED_FONT_FOOTPRINT := true
 
@@ -62,7 +65,7 @@ USE_DEVICE_SPECIFIC_GPS := true
 USE_DEVICE_SPECIFIC_LOC_API := true
 
 # ANT+
-BOARD_ANT_WIRELESS_DEVICE := "vfs-prerelease"
+BOARD_ANT_WIRELESS_DEVICE := "qualcomm-uart"
 
 # Audio
 BOARD_USES_ALSA_AUDIO := true
@@ -90,6 +93,9 @@ AUDIO_USE_LL_AS_PRIMARY_OUTPUT := true
 BOARD_HAVE_BLUETOOTH_QCOM := true
 BOARD_HAS_QCA_BT_ROME := true
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/xiaomi/libra/bluetooth
+QCOM_BT_USE_BTNV := true
+QCOM_BT_USE_SMD_TTY := true
+WCNSS_FILTER_USES_SIBS := true
 
 USE_OPENGL_RENDERER := true
 BOARD_USE_LEGACY_UI := true
@@ -133,7 +139,9 @@ MAX_EGL_CACHE_SIZE := 2048*1024
 TARGET_PLATFORM_DEVICE_BASE := /devices/soc.0/
 TARGET_INIT_VENDOR_LIB := libinit_msm
 
+# CNE and DPM
 TARGET_LDPRELOAD := libNimsWrap.so
+BOARD_USES_QCNE := true
 
 # Camera
 USE_DEVICE_SPECIFIC_CAMERA := true
@@ -141,6 +149,7 @@ USE_DEVICE_SPECIFIC_CAMERA := true
 # Once camera module can run in the native mode of the system (either
 # 32-bit or 64-bit), the following line should be deleted
 BOARD_QTI_CAMERA_32BIT_ONLY := true
+COMMON_GLOBAL_CFLAGS += -DCAMERA_VENDOR_L_COMPAT
 
 #Light HAL
 TARGET_PROVIDES_LIBLIGHT := true
@@ -148,6 +157,9 @@ TARGET_PROVIDES_LIBLIGHT := true
 # Charger
 BOARD_CHARGER_ENABLE_SUSPEND := true
 BOARD_CHARGER_SHOW_PERCENTAGE := true
+BOARD_CHARGER_DISABLE_INIT_BLANK := true
+BOARD_HAL_STATIC_LIBRARIES += \
+    libhealthd.msm8992
 
 # Added to indicate that protobuf-c is supported in this build
 PROTOBUF_SUPPORTED := true
@@ -171,9 +183,10 @@ TARGET_ENABLE_QC_AV_ENHANCEMENTS := true
 BOARD_USES_QC_TIME_SERVICES := true
 
 #Use dlmalloc instead of jemalloc for mallocs
-#MALLOC_IMPL := dlmalloc
+MALLOC_IMPL := dlmalloc
 
 # CMHW
+BOARD_USES_CYANOGEN_HARDWARE := true
 BOARD_HARDWARE_CLASS := \
     hardware/cyanogen/cmhw \
     device/xiaomi/libra/cmhw
@@ -183,10 +196,9 @@ BOARD_HARDWARE_CLASS := \
 TARGET_TAP_TO_WAKE_NODE := "/sys/devices/soc.0/f9924000.i2c/i2c-2/2-0070/input/input1/wake_gesture"
 
 # Ril
+FEATURE_QCRIL_UIM_SAP_SERVER_MODE := true
 TARGET_RIL_VARIANT := caf
-SIM_COUNT := 2
-TARGET_GLOBAL_CFLAGS += -DANDROID_MULTI_SIM
-TARGET_GLOBAL_CPPFLAGS += -DANDROID_MULTI_SIM
+
 # Added to indicate that protobuf-c is supported in this build
 PROTOBUF_SUPPORTED := true
 
