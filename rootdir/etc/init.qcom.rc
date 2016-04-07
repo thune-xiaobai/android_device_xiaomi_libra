@@ -183,7 +183,10 @@ on boot
     chown system system /sys/devices/soc.0/f9924000.i2c/i2c-2/2-0070/input/input1/wake_gesture
 
     #keydisabler
-    chowm system system /sys/devices/soc.0/f9924000.i2c/i2c-2/2-0070/input/input1/0dbutton
+    chown system system /sys/devices/soc.0/f9924000.i2c/i2c-2/2-0070/input/input1/0dbutton
+
+    #VibratorHW
+    chown system system /sys/devices/virtual/timed_output/vibrator/amp
 
     #torch
     chown system system /sys/class/leds/led:torch_0/brightness

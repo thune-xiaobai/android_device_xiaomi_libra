@@ -1,2 +1,4 @@
 allow qti_init_shell graphics_device:chr_file getattr;
 allow qti_init_shell system_data_file:lnk_file { create unlink };
+allow qti_init_shell btnvtool_exec:file getattr;
+allow qti_init_shell su_exec:file getattr;

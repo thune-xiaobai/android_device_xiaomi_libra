@@ -103,7 +103,7 @@ BOARD_USE_LEGACY_UI := true
 #Kernel
 #BOARD_CUSTOM_BOOTIMG_MK := device/xiaomi/libra/mkbootimg.mk
 TARGET_KERNEL_SOURCE := kernel/xiaomi/libra
-TARGET_KERNEL_CONFIG := libra_user_defconfig
+TARGET_KERNEL_CONFIG := cyanogenmod_libra_defconfig
 BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x37 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 boot_cpus=0-5 ramoops_memreserve=2M
 BOARD_KERNEL_SEPARATED_DT := true
 BOARD_KERNEL_BASE        := 0x00000000
@@ -131,6 +131,9 @@ BOARD_SYSTEMIMAGE_PARTITION_SIZE := 2013265920 #1920M
 BOARD_CACHEIMAGE_PARTITION_SIZE := 402653184 #384M
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 27980184576 #26G
 TARGET_USERIMAGES_USE_EXT4 := true
+ifneq (,$(filter linux darwin, $(HOST_OS)))
+TARGET_USERIMAGES_USE_F2FS := true
+endif
 BOARD_FLASH_BLOCK_SIZE := 131072 #262144 #(BOARD_KERNEL_PAGESIZE * 64)
 
 MAX_EGL_CACHE_KEY_SIZE := 12*1024
@@ -186,7 +189,6 @@ BOARD_USES_QC_TIME_SERVICES := true
 MALLOC_IMPL := dlmalloc
 
 # CMHW
-BOARD_USES_CYANOGEN_HARDWARE := true
 BOARD_HARDWARE_CLASS := \
     hardware/cyanogen/cmhw \
     device/xiaomi/libra/cmhw

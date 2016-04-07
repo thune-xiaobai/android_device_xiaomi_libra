@@ -40,7 +40,7 @@ on early-boot
 
 on post-fs
 
-    export LD_SHIM_LIBS "/system/lib/libcrypto.so|libboringssl-compat.so:/system/vendor/lib/libmmcamera2_stats_modules.so|libcamera_shim.so:/system/lib/hw/camera.msm8992.so|libcamera_shim.so"
+    export LD_SHIM_LIBS "/system/lib/libcrypto.so|libboringssl-compat.so:/system/lib64/libcrypto.so|libboringssl-compat.so:/system/vendor/lib/libmmcamera2_stats_modules.so|libcamera_shim.so:/system/lib/hw/camera.vendor.msm8992.so|libcamera_shim.so:/system/vendor/lib/libmmqjpeg_codec.so|libboringssl-compat.so:/vendor/lib/mediadrm/libwvdrmengine.so|libboringssl-compat.so"
 
    setprop ro.hardware.sensors lsm6db0
 
@@ -59,6 +59,7 @@ on fs
 
     wait /dev/block/bootdevice/by-name/cache
     mount ext4 /dev/block/bootdevice/by-name/cache /cache nosuid nodev barrier=1
+    mount f2fs /dev/block/bootdevice/by-name/cache /cache rw discard nosuid nodev noatime nodiratime inline_xattr
 
     wait /dev/block/bootdevice/by-name/persist
     mount ext4 /dev/block/bootdevice/by-name/persist /persist nosuid nodev barrier=1
