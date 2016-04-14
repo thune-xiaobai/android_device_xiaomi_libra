@@ -94,10 +94,10 @@ char const*const BLUE_DUTY_STEPS_FILE
         = "/sys/class/leds/blue/duty_pcts";
 
 // Number of steps to use in the duty array
-#define LED_DUTY_STEPS       60
+#define LED_DUTY_STEPS       100
 
 // Brightness ramp up/down time for blinking
-#define LED_RAMP_MS          500
+#define LED_RAMP_MS          6000
 
 /**
  * device methods
@@ -168,10 +168,14 @@ static int
 set_speaker_light_locked(struct light_device_t* dev,
         struct light_state_t const* state)
 {
-    int len;
+    int len, blink;
     int red, green, blue;
     int onMS, offMS;
     unsigned int colorRGB;
+
+    if(!dev) {
+        return -1;
+    }
 
     switch (state->flashMode) {
         case LIGHT_FLASH_TIMED:
@@ -195,12 +199,18 @@ set_speaker_light_locked(struct light_device_t* dev,
     red = (colorRGB >> 16) & 0xFF;
     green = (colorRGB >> 8) & 0xFF;
     blue = colorRGB & 0xFF;
+    // bias for true white
+    if (colorRGB != 0 && red == green && green == blue) {
+        blue = (blue * 171) / 256;
+    }
 
-    write_int(RED_LED_FILE, red);
-    write_int(GREEN_LED_FILE, green);
-    write_int(BLUE_LED_FILE, blue);
+    write_int(RED_BLINK_FILE, 0);
+    write_int(GREEN_BLINK_FILE, 0);
+    write_int(BLUE_BLINK_FILE, 0);
 
-    if (onMS > 0 && offMS > 0) {
+    blink = onMS > 0 && offMS > 0;
+
+    if (blink) {
         char dutystr[(3+1)*LED_DUTY_STEPS+1];
         char* p = dutystr;
         int stepMS;
@@ -234,6 +244,10 @@ set_speaker_light_locked(struct light_device_t* dev,
             write_int(BLUE_RAMP_MS_FILE, stepMS);
             write_int(BLUE_BLINK_FILE, 1);
         }
+    } else {
+        write_int(RED_LED_FILE, red);
+        write_int(GREEN_LED_FILE, green);
+        write_int(BLUE_LED_FILE, blue);
     }
 
     return 0;

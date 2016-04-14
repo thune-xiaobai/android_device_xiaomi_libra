@@ -1,1 +1,6 @@
+# mm-qcamerad delays gyro initialization until native sensor APIs are ready
+allow mm-qcamerad servicemanager:service_manager find;
+allow mm-qcamerad package_service:service_manager find;
+allow mm-qcamerad permission_service:service_manager find;
+
 allow mm-qcamerad persist_file:dir search;

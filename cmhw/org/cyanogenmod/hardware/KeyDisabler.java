@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014 The CyanogenMod Project
+ * Copyright (C) 2016 The CyanogenMod Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,11 +16,9 @@
 
 package org.cyanogenmod.hardware;
 
-import android.util.Log;
+import org.cyanogenmod.hardware.util.FileUtils;
 
 import java.io.File;
-
-import org.cyanogenmod.hardware.util.FileUtils;
 
 /*
  * Disable capacitive keys
@@ -33,38 +31,17 @@ import org.cyanogenmod.hardware.util.FileUtils;
 
 public class KeyDisabler {
 
-    private static final String TAG = "KeyDisabler";
-
-    private static final String FILE_KEYDISABLER = "/sys/devices/soc.0/f9924000.i2c/i2c-2/2-0070/input/input1/0dbutton";
-
-    /*
-     * All HAF classes should export this boolean.
-     * Real implementations must, of course, return true
-     */
+    private static String CONTROL_PATH = "/sys/devices/soc.0/f9924000.i2c/i2c-2/2-0070/input/input1/0dbutton";
 
     public static boolean isSupported() {
-        return new File(FILE_KEYDISABLER).exists();
+        return new File(CONTROL_PATH).exists();
     }
-
-    /*
-     * Are the keys currently blocked?
-     */
 
     public static boolean isActive() {
-        try {
-            return Integer.parseInt(FileUtils.readOneLine(FILE_KEYDISABLER)) == 0;
-        } catch (Exception e) {
-            Log.e(TAG, e.getMessage(), e);
-        }
-        return false;
+        return (FileUtils.readOneLine(CONTROL_PATH).equals("0"));
     }
-
-    /*
-     * Disable capacitive keys
-     */
 
     public static boolean setActive(boolean state) {
-        return FileUtils.writeLine(FILE_KEYDISABLER, state ? "0" : "1");
+        return FileUtils.writeLine(CONTROL_PATH, (state ? "0" : "1"));
     }
-
-} 
+}
