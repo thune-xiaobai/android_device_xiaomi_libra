@@ -65,7 +65,6 @@ PRODUCT_COPY_FILES += \
 #keylayout
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/ft5x46.kl:system/usr/keylayout/ft5x46.kl \
-    $(LOCAL_PATH)/Generic.kl:system/usr/keylayout/Generic.kl \
     $(LOCAL_PATH)/atmel-maxtouch.kl:system/usr/keylayout/atmel-maxtouch.kl \
     $(LOCAL_PATH)/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl \
     $(LOCAL_PATH)/synaptics_dsx_edge.kl:system/usr/keylayout/synaptics_dsx_edge.kl \
@@ -83,14 +82,9 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/data/netmgr_config.xml:system/etc/data/netmgr_config.xml \
     $(LOCAL_PATH)/data/qmi_config.xml:system/etc/data/qmi_config.xml 
 
-#wake_gesture
-#PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/wakegesture.sh:system/bin/wakegesture.sh
-
 #misc
 PRODUCT_COPY_FILES += \
     $(call find-copy-subdir-files,*,$(LOCAL_PATH)/misc,system/etc)
-
 
 PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
@@ -222,6 +216,11 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     Snap
 
+
+# Gello
+PRODUCT_PACKAGES += \
+    Gello
+
 # Keystore
 PRODUCT_PACKAGES += \
     keystore.msm8992
@@ -252,9 +251,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     power.msm8992
 
-PRODUCT_BOOT_JARS += \
-    qcmediaplayer
-
 # Ril
 PRODUCT_PACKAGES += \
     libtinyxml2 \
@@ -270,12 +266,12 @@ PRODUCT_PACKAGES += \
 
 #stlport
 PRODUCT_PACKAGES += \
-    libstlport \
-    libcamera_shim
+    libstlport
 
 # CameraWrapper
 PRODUCT_PACKAGES += \
-    camera.msm8992
+    camera.msm8992 \
+    libcamera_shim
 
 # USB
 PRODUCT_PACKAGES += \
@@ -289,8 +285,6 @@ PRODUCT_PACKAGES += \
     wpa_supplicant.conf \
     wpa_supplicant \
     libwpa_client \
-    libwcnss_qmi \
-    wcnss_service \
     libQWiFiSoftApCfg \
     libqsap_sdk \
     wpa_supplicant_overlay.conf \
@@ -298,10 +292,6 @@ PRODUCT_PACKAGES += \
     hostapd \
     hostapd_cli \
     dhcpcd.conf
-
-#wcnss
-#PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/wcnss_service:system/bin/wcnss_service
 
 # Screen density
 PRODUCT_AAPT_CONFIG := normal
@@ -334,7 +324,3 @@ PRODUCT_PACKAGES += \
     ueventd.goldfish.rc \
     ueventd.qcom.rc \
     fstab.qcom
-
-PRODUCT_BUILD_PROP_OVERRIDES += \
-    BUILD_FINGERPRINT=Xiaomi/libra/libra:5.1.1/LMY47V/6.3.10:user/release-keys \
-    PRIVATE_BUILD_DESC="libra-user 5.1.1 LMY47V 6.3.10 release-keys"

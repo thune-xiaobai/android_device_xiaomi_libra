@@ -1,3 +1,0 @@
-allow untrusted_app device:dir read;
-allow untrusted_app persist_file:dir search;
-allow untrusted_app self:udp_socket ioctl;

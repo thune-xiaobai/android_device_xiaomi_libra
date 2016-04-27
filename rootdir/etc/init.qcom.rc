@@ -963,5 +963,5 @@ on property:persist.sys.io.scheduler=*
     setprop sys.io.scheduler ${persist.sys.io.scheduler}
 
 on property:dev.bootcomplete=1
-    setprop sys.io.scheduler "cfq"
+    setprop sys.io.scheduler "bfq"
 
