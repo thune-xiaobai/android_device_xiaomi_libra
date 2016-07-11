@@ -583,6 +583,11 @@ static void lazy_init_sensors_list() {
             ALOGV("module_index %d, local_handle %d, global_handle %d",
                     module_index, local_handle, global_handle);
 
+            if (mutable_sensor_list[mutable_sensor_index].type == SENSOR_TYPE_PROXIMITY) {
+                ALOGV("override proximity range");
+                mutable_sensor_list[mutable_sensor_index].maxRange = 5.0;
+            }
+
             mutable_sensor_index++;
         }
         module_index++;
