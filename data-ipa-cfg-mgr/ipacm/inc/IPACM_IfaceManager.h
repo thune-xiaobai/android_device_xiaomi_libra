@@ -1,7 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
-
-Copyright (c) 2014, The Linux Foundation. All rights reserved.
+/*
+Copyright (c) 2013-2016, The Linux Foundation. All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
@@ -27,12 +25,66 @@ BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
 WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
 OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
 IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*/
+/*!
+	@file
+	IPACM_IfaceManager.h
 
--->
-<resources>
-    <!-- Enable doze mode -->
-    <bool name="doze_display_state_supported">true</bool>
+	@brief
+	This file implements the IPAM iface_manager definitions
 
-    <!-- When true, show RSSI instead of SNR. -->
-    <bool name="config_showRsrpSignalLevelforLTE">true</bool>
-</resources>
+	@Author
+	Skylar Chang
+
+*/
+#ifndef IPACM_IFACEMANAGER_H
+#define IPACM_IFACEMANAGER_H
+
+#include <stdio.h>
+#include <IPACM_CmdQueue.h>
+
+#include "IPACM_Routing.h"
+#include "IPACM_Filtering.h"
+#include "IPACM_Listener.h"
+#include "IPACM_Iface.h"
+
+#define IPA_INSTANCE_NOT_FOUND  0
+#define IPA_INSTANCE_FOUND  1
+
+/* queue */
+typedef struct _iface_instances
+{
+    /* Linux interface id */
+	int ipa_if_index;
+	IPACM_Listener *obj;
+	_iface_instances *next;
+}  iface_instances;
+
+
+class IPACM_IfaceManager : public IPACM_Listener
+{
+
+public:
+
+  IPACM_IfaceManager();
+
+  void event_callback(ipa_cm_event_id event,
+                      void *data);
+
+  /* api for all iface instances to de-register instances */
+  static int deregistr(IPACM_Listener *param);
+
+
+private:
+	int create_iface_instance(ipacm_ifacemgr_data *);
+
+    /* api to register instances */
+	int registr(int ipa_if_index, IPACM_Listener *obj);
+
+	int SearchInstance(int ipa_if_index);
+
+	static iface_instances *head;
+
+};
+
+#endif /* IPACM_IFACEMANAGER_H */

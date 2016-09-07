@@ -110,6 +110,7 @@ service qcamerasvr /system/bin/mm-qcamera-daemon
     class late_start
     user camera
     group camera system inet input graphics
+    writepid /dev/cpuset/system-background/tasks
 
 ## Allow usb charging to be disabled persistently
 #on property:persist.usb.chgdisabled=1
@@ -184,6 +185,7 @@ service thermal-engine /system/vendor/bin/thermal-engine
    socket thermal-recv-client stream 0660 system system
    socket thermal-recv-passive-client stream 0666 system system
    group root
+   writepid /dev/cpuset/system-background/tasks
 
 service security-check1 /sbin/security_boot_check system
     class core

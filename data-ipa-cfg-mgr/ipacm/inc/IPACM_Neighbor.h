@@ -1,7 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
-
-Copyright (c) 2014, The Linux Foundation. All rights reserved.
+/* 
+Copyright (c) 2013, The Linux Foundation. All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
@@ -27,12 +25,57 @@ BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
 WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
 OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
 IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*/
+/*!
+	@file
+	IPACM_Neighbor.h
 
--->
-<resources>
-    <!-- Enable doze mode -->
-    <bool name="doze_display_state_supported">true</bool>
+	@brief
+	This file implements the functionality of handling IPACM Neighbor events.
 
-    <!-- When true, show RSSI instead of SNR. -->
-    <bool name="config_showRsrpSignalLevelforLTE">true</bool>
-</resources>
+	@Author
+	Skylar Chang
+
+*/
+#ifndef IPACM_NEIGHBOR_H
+#define IPACM_NEIGHBOR_H
+
+#include <stdio.h>
+#include <IPACM_CmdQueue.h>
+#include <linux/msm_ipa.h>
+#include "IPACM_Routing.h"
+#include "IPACM_Filtering.h"
+#include "IPACM_Listener.h"
+#include "IPACM_Iface.h"
+
+#define IPA_MAX_NUM_NEIGHBOR_CLIENTS  100
+
+struct ipa_neighbor_client
+{
+	uint8_t mac_addr[6];
+	int iface_index;
+	uint32_t v4_addr;
+	int ipa_if_num;
+};
+
+class IPACM_Neighbor : public IPACM_Listener
+{
+
+public:
+
+	IPACM_Neighbor();
+
+	void event_callback(ipa_cm_event_id event,
+											void *data);
+
+private:
+
+	int num_neighbor_client;
+
+	int circular_index;
+
+	ipa_neighbor_client neighbor_client[IPA_MAX_NUM_NEIGHBOR_CLIENTS];
+
+};
+
+#endif /* IPACM_NEIGHBOR_H */

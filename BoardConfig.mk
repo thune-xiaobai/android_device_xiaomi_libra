@@ -25,12 +25,14 @@ TARGET_2ND_CPU_ABI := armeabi-v7a
 TARGET_2ND_CPU_ABI2 := armeabi
 TARGET_2ND_CPU_VARIANT := cortex-a53.a57
 TARGET_CPU_CORTEX_A53 := true
+
 ENABLE_CPUSETS := true
+
 TARGET_USES_64_BIT_BINDER := true
 TARGET_CPU_SMP := true
 
 #some flags to make blobs work
-COMMON_GLOBAL_CFLAGS += \
+#COMMON_GLOBAL_CFLAGS += \
     -DFORCE_HWC_COPY_FOR_VIRTUAL_DISPLAYS \
     -DADD_LEGACY_ANDROID_GET_TID_SYMBOL \
     -DADD_LEGACY_JPEG_MEM_SRC_SYMBOL \
@@ -102,8 +104,8 @@ BOARD_USE_LEGACY_UI := true
 
 #Kernel
 #BOARD_CUSTOM_BOOTIMG_MK := device/xiaomi/libra/mkbootimg.mk
-TARGET_KERNEL_SOURCE := kernel/xiaomi/libra
-TARGET_KERNEL_CONFIG := cyanogenmod_libra_defconfig
+TARGET_KERNEL_SOURCE := kernel/xiaomi/nougat
+TARGET_KERNEL_CONFIG := libra_user_efconfig
 BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x37 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 boot_cpus=0-5 ramoops_memreserve=2M
 BOARD_KERNEL_SEPARATED_DT := true
 BOARD_KERNEL_BASE        := 0x00000000
@@ -140,7 +142,6 @@ MAX_EGL_CACHE_KEY_SIZE := 12*1024
 MAX_EGL_CACHE_SIZE := 2048*1024
 
 TARGET_PLATFORM_DEVICE_BASE := /devices/soc.0/
-TARGET_INIT_VENDOR_LIB := libinit_msm
 
 # CNE and DPM
 TARGET_LDPRELOAD := libNimsWrap.so
@@ -209,7 +210,7 @@ BOARD_HAS_QCOM_WLAN             := true
 BOARD_HAS_QCOM_WLAN_SDK         := true
 BOARD_HOSTAPD_DRIVER            := NL80211
 BOARD_HOSTAPD_PRIVATE_LIB       :=lib_driver_cmd_qcwcn
-BOARD_WLAN_DEVICE               :=qcwcn
+BOARD_WLAN_DEVICE               := qcwcn
 BOARD_WPA_SUPPLICANT_DRIVER :=  NL80211
 BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_qcwcn
 TARGET_USES_WCNSS_CTRL          := true

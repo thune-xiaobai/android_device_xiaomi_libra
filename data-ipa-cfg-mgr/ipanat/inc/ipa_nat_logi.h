@@ -1,7 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
-
-Copyright (c) 2014, The Linux Foundation. All rights reserved.
+/* 
+Copyright (c) 2013, The Linux Foundation. All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
@@ -27,12 +25,49 @@ BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
 WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
 OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
 IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*/
+/*!
+	@file
+	ipa_nat_logi.h
 
--->
-<resources>
-    <!-- Enable doze mode -->
-    <bool name="doze_display_state_supported">true</bool>
+	@brief
+	This file implements the IPAM log functionality.
 
-    <!-- When true, show RSSI instead of SNR. -->
-    <bool name="config_showRsrpSignalLevelforLTE">true</bool>
-</resources>
+	@Author
+	
+
+*/
+
+#ifndef IPA_NAT_LOGI_H
+#define IPA_NAT_LOGI_H
+
+#ifdef __cplusplus
+extern "C"
+{
+#endif
+
+#include <stdio.h>
+#include <string.h>
+#include <syslog.h>
+
+#define PERROR(fmt) printf("%s:%d %s()", __FILE__, __LINE__, __FUNCTION__);\
+                    perror(fmt);
+
+#define IPAERR(fmt, ...)  printf("ERR: %s:%d %s() " fmt, __FILE__,  __LINE__, __FUNCTION__, ##__VA_ARGS__);
+
+#ifdef DEBUG
+#define IPADBG(fmt, ...) printf("%s:%d %s() " fmt, __FILE__,  __LINE__, __FUNCTION__, ##__VA_ARGS__);
+
+#define IPADUMP(fmt, ...) printf(fmt, ##__VA_ARGS__);
+
+#else
+#define IPADBG(fmt, ...)
+#define IPADUMP(fmt, ...)
+#endif
+
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif /* IPA_NAT_LOGI_H */

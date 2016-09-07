@@ -10,10 +10,6 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
 $(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
 
-#PRODUCT_COPY_FILES += \
-    device/xiaomi/libra/kernel:kernel \
-    device/xiaomi/libra/dt.img:dt.img
-
 #chargeonlymode
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/etc/sbin/chargeonlymode:root/sbin/chargeonlymode
@@ -106,6 +102,7 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.wifi.direct.xml:system/etc/permissions/android.hardware.wifi.direct.xml \
     frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
     frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
+    frameworks/native/data/etc/android.hardware.sensor.ambient_temperature.xml:system/etc/permissions/android.hardware.sensor.ambient_temperature.xml \
     frameworks/native/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
     frameworks/native/data/etc/android.hardware.sensor.light.xml:system/etc/permissions/android.hardware.sensor.light.xml \
     frameworks/native/data/etc/android.hardware.sensor.gyroscope.xml:system/etc/permissions/android.hardware.sensor.gyroscope.xml \
@@ -191,6 +188,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     com.qti.dpmframework \
     dpmapi
+
+# Doze
+PRODUCT_PACKAGES += \
+    LibraDoze
 
 # GPS
 PRODUCT_PACKAGES += \
@@ -282,16 +283,13 @@ PRODUCT_PACKAGES += \
     ipacm \
     ipacm-diag \
     IPACM_cfg.xml \
-    wpa_supplicant.conf \
-    wpa_supplicant \
-    libwpa_client \
-    libQWiFiSoftApCfg \
     libqsap_sdk \
-    wpa_supplicant_overlay.conf \
-    p2p_supplicant_overlay.conf \
+    libQWiFiSoftApCfg \
+    libwpa_client \
     hostapd \
-    hostapd_cli \
-    dhcpcd.conf
+    dhcpcd.conf \
+    wpa_supplicant \
+    wpa_supplicant.conf
 
 # Screen density
 PRODUCT_AAPT_CONFIG := normal
