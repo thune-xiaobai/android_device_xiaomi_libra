@@ -31,14 +31,6 @@ ENABLE_CPUSETS := true
 TARGET_USES_64_BIT_BINDER := true
 TARGET_CPU_SMP := true
 
-#some flags to make blobs work
-#COMMON_GLOBAL_CFLAGS += \
-    -DFORCE_HWC_COPY_FOR_VIRTUAL_DISPLAYS \
-    -DADD_LEGACY_ANDROID_GET_TID_SYMBOL \
-    -DADD_LEGACY_JPEG_MEM_SRC_SYMBOL \
-    -DMIUI_SENSOR_LSM6DB0 \
-    -DPRE_BT_FIRMWARE_PATH
-
 # Graphics
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
 TARGET_USES_ION := true
@@ -105,7 +97,7 @@ BOARD_USE_LEGACY_UI := true
 #Kernel
 #BOARD_CUSTOM_BOOTIMG_MK := device/xiaomi/libra/mkbootimg.mk
 TARGET_KERNEL_SOURCE := kernel/xiaomi/nougat
-TARGET_KERNEL_CONFIG := libra_user_efconfig
+TARGET_KERNEL_CONFIG := libra_user_defconfig
 BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x37 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 boot_cpus=0-5 ramoops_memreserve=2M
 BOARD_KERNEL_SEPARATED_DT := true
 BOARD_KERNEL_BASE        := 0x00000000
@@ -119,12 +111,12 @@ TARGET_USES_UNCOMPRESSED_KERNEL := true
 BOARD_DTBTOOL_ARGS := -2
 BOARD_KERNEL_IMAGE_NAME := Image
 
-WLAN_MODULES:
-	mkdir -p $(KERNEL_MODULES_OUT)/qca_cld
-	mv $(KERNEL_MODULES_OUT)/wlan.ko $(KERNEL_MODULES_OUT)/qca_cld/qca_cld_wlan.ko
-	ln -sf /system/lib/modules/qca_cld/qca_cld_wlan.ko $(TARGET_OUT)/lib/modules/wlan.ko
-
-TARGET_KERNEL_MODULES += WLAN_MODULES
+#WLAN_MODULES:
+#	mkdir -p $(KERNEL_MODULES_OUT)/qca_cld
+#	mv $(KERNEL_MODULES_OUT)/wlan.ko $(KERNEL_MODULES_OUT)/qca_cld/qca_cld_wlan.ko
+#	ln -sf /system/lib/modules/qca_cld/qca_cld_wlan.ko $(TARGET_OUT)/lib/modules/wlan.ko
+#
+#TARGET_KERNEL_MODULES += WLAN_MODULES
 
 # fix this up by examining /proc/mtd on a running device
 BOARD_BOOTIMAGE_PARTITION_SIZE := 67108864 #64M
@@ -153,7 +145,7 @@ USE_DEVICE_SPECIFIC_CAMERA := true
 # Once camera module can run in the native mode of the system (either
 # 32-bit or 64-bit), the following line should be deleted
 BOARD_QTI_CAMERA_32BIT_ONLY := true
-COMMON_GLOBAL_CFLAGS += -DCAMERA_VENDOR_L_COMPAT
+#COMMON_GLOBAL_CFLAGS += -DCAMERA_VENDOR_L_COMPAT
 
 #Light HAL
 TARGET_PROVIDES_LIBLIGHT := true
@@ -185,9 +177,6 @@ TARGET_ENABLE_QC_AV_ENHANCEMENTS := true
 
 # Time services
 BOARD_USES_QC_TIME_SERVICES := true
-
-#Use dlmalloc instead of jemalloc for mallocs
-MALLOC_IMPL := dlmalloc
 
 # CMHW
 BOARD_HARDWARE_CLASS := \
