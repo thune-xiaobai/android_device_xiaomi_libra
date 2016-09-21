@@ -99,7 +99,7 @@ BOARD_USE_LEGACY_UI := true
 #BOARD_CUSTOM_BOOTIMG_MK := device/xiaomi/libra/mkbootimg.mk
 TARGET_KERNEL_SOURCE := kernel/xiaomi/nougat
 TARGET_KERNEL_CONFIG := libra_user_defconfig
-BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x37 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 boot_cpus=0-5 ramoops_memreserve=2M
+BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x37 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 boot_cpus=0-5 ramoops_memreserve=2M androidboot.selinux=permissive
 BOARD_KERNEL_SEPARATED_DT := true
 BOARD_KERNEL_BASE        := 0x00000000
 BOARD_KERNEL_PAGESIZE    := 4096
@@ -112,12 +112,12 @@ TARGET_USES_UNCOMPRESSED_KERNEL := true
 BOARD_DTBTOOL_ARGS := -2
 BOARD_KERNEL_IMAGE_NAME := Image
 
-#WLAN_MODULES:
-#	mkdir -p $(KERNEL_MODULES_OUT)/qca_cld
-#	mv $(KERNEL_MODULES_OUT)/wlan.ko $(KERNEL_MODULES_OUT)/qca_cld/qca_cld_wlan.ko
-#	ln -sf /system/lib/modules/qca_cld/qca_cld_wlan.ko $(TARGET_OUT)/lib/modules/wlan.ko
-#
-#TARGET_KERNEL_MODULES += WLAN_MODULES
+WLAN_MODULES:
+	mkdir -p $(KERNEL_MODULES_OUT)/qca_cld
+	mv $(KERNEL_MODULES_OUT)/wlan.ko $(KERNEL_MODULES_OUT)/qca_cld/qca_cld_wlan.ko
+	ln -sf /system/lib/modules/qca_cld/qca_cld_wlan.ko $(TARGET_OUT)/lib/modules/wlan.ko
+
+TARGET_KERNEL_MODULES += WLAN_MODULES
 
 # fix this up by examining /proc/mtd on a running device
 BOARD_BOOTIMAGE_PARTITION_SIZE := 67108864 #64M
@@ -174,7 +174,7 @@ TARGET_POWERHAL_VARIANT := qcom
 BOARD_USES_QCOM_HARDWARE := true
 
 # QC_AV
-TARGET_ENABLE_QC_AV_ENHANCEMENTS := true
+#TARGET_ENABLE_QC_AV_ENHANCEMENTS := true
 
 # Time services
 BOARD_USES_QC_TIME_SERVICES := true
