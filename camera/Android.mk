@@ -32,7 +32,7 @@ LOCAL_SRC_FILES := \
     CameraWrapper.cpp
 
 LOCAL_SHARED_LIBRARIES := \
-    libhardware liblog libutils libgui
+    libhardware liblog libutils libgui libcamera_client
 
 LOCAL_C_INCLUDES += \
     system/media/camera/include
