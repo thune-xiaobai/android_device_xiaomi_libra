@@ -1,16 +1,2 @@
-allow system_server sensors_persist_file:dir search;
-allow system_server sensors_persist_file:file { open read };
-allow system_server persist_file:file { read write };
-allow system_server persist_proxcal_file:file { open read write };
-allow system_server touchpanel_sysfs:file rw_file_perms;
-allow system_server touchpanel_sysfs:dir { search };
-
-#============= system_server ==============
-allow system_server persist_file:dir read;
-allow system_server persist_file:file { getattr open };
-
-# Vibrator
-allow system_server sysfs_vibrator:file rw_file_perms;
-
 # Consumerir
 allow system_server lirc_device:chr_file rw_file_perms;

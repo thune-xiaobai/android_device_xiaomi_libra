@@ -16,7 +16,7 @@
 
 package org.cyanogenmod.hardware;
 
-import org.cyanogenmod.hardware.util.FileUtils;
+import org.cyanogenmod.internal.util.FileUtils; 
 import java.io.File;
 
 public class VibratorHW {
@@ -24,7 +24,7 @@ public class VibratorHW {
     private static String LEVEL_PATH = "/sys/devices/virtual/timed_output/vibrator/amp";
 
     public static boolean isSupported() {
-        return new File(LEVEL_PATH).exists();
+        return FileUtils.isFileWritable(LEVEL_PATH);
     }
 
     public static int getMaxIntensity()  {
