@@ -44,6 +44,10 @@ MAX_VIRTUAL_DISPLAY_DIMENSION := 2048
 MAX_EGL_CACHE_KEY_SIZE := 12*1024
 MAX_EGL_CACHE_SIZE := 2048*1024
 
+# Assertions
+TARGET_BOARD_INFO_FILE ?= $(DEVICE_PATH)/board-info.txt
+TARGET_OTA_ASSERT_DEVICE := 4C,libra
+
 HAVE_ADRENO_SOURCE:= false
 OVERRIDE_RS_DRIVER:= libRSDriver_adreno.so
 BOARD_USES_OPENSSL_SYMBOLS := true
@@ -213,6 +217,10 @@ TARGET_RECOVERY_UI_LIB := librecovery_ui_msm
 TARGET_RECOVERY_UPDATER_LIBS := librecovery_updater_msm
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
+
+# Releasetools
+TARGET_RECOVERY_UPDATER_LIBS := librecovery_updater_libra
+TARGET_RELEASETOOLS_EXTENSIONS := $(LOCAL_PATH)
 
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk
