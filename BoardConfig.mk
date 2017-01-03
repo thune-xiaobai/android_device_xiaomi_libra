@@ -136,10 +136,6 @@ MAX_EGL_CACHE_SIZE := 2048*1024
 
 TARGET_PLATFORM_DEVICE_BASE := /devices/soc.0/
 
-# CNE and DPM
-TARGET_LDPRELOAD := libNimsWrap.so
-BOARD_USES_QCNE := true
-
 # Camera
 USE_DEVICE_SPECIFIC_CAMERA := true
 # Force camera module to be compiled only in 32-bit mode on 64-bit systems
@@ -173,9 +169,6 @@ TARGET_POWERHAL_VARIANT := qcom
 # Qualcomm support
 BOARD_USES_QCOM_HARDWARE := true
 
-# QC_AV
-#TARGET_ENABLE_QC_AV_ENHANCEMENTS := true
-
 # Time services
 BOARD_USES_QC_TIME_SERVICES := true
 
@@ -186,7 +179,6 @@ BOARD_HARDWARE_CLASS := \
     device/xiaomi/libra/cmhw
 
 # dt2w
-#TARGET_TAP_TO_WAKE_NODE := "/data/wake_gesture"
 TARGET_TAP_TO_WAKE_NODE := "/sys/devices/soc.0/f9924000.i2c/i2c-2/2-0070/input/input1/wake_gesture"
 
 # Ril
@@ -232,19 +224,6 @@ TW_EXTRA_LANGUAGES := true
 TW_DEFAULT_LANGUAGE := zh_CN
 TW_NO_EXFAT_FUSE := true
 TW_NO_EXFAT := true
-endif
-
-# Enable dex pre-opt to speed up initial boot
-ifneq ($(TARGET_USES_AOSP),true)
-  ifeq ($(HOST_OS),linux)
-    ifeq ($(WITH_DEXPREOPT),)
-      WITH_DEXPREOPT := true
-      ifneq ($(TARGET_BUILD_VARIANT),user)
-        # Retain classes.dex in APK's for non-user builds
-        DEX_PREOPT_DEFAULT := nostripping
-      endif
-    endif
-  endif
 endif
 
 # SELinux
