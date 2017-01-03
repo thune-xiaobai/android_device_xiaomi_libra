@@ -273,10 +273,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libstlport
 
-# Telephony-ext
-PRODUCT_PACKAGES += telephony-ext
-PRODUCT_BOOT_JARS += telephony-ext
-
 # CameraWrapper
 PRODUCT_PACKAGES += \
     camera.msm8992 \
@@ -318,7 +314,6 @@ PRODUCT_PACKAGES += \
     init.mdm.sh \
     init.qcom.class_core.sh \
     init.qcom.early_boot.sh	\
-    init.qcom.post_boot.sh \
     init.qcom.factory.sh \
     init.qcom.sh \
     init.qcom.syspart_fixup.sh \
@@ -327,6 +322,6 @@ PRODUCT_PACKAGES += \
     init.qcom.usb.rc \
     init.recovery.hardware.rc \
     init.target.rc \
-    ueventd.goldfish.rc \
+    init.qcom.power.rc \
     ueventd.qcom.rc \
     fstab.qcom
