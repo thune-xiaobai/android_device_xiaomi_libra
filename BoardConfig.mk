@@ -204,7 +204,7 @@ TARGET_USES_QCOM_WCNSS_QMI      := true
 WPA_SUPPLICANT_VERSION          := VER_0_8_X
 
 #Recovery
-RECOVERY_VARIANT := twrp
+#RECOVERY_VARIANT := twrp
 ifneq ($(RECOVERY_VARIANT),twrp)
 #TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/recovery/recovery.fstab
 else
