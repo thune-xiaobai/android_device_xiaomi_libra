@@ -9,6 +9,10 @@ TARGET_OTA_ASSERT_DEVICE := 4C,libra
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
 $(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
+$(call inherit-product, frameworks/native/build/phone-xxxhdpi-4096-hwui-memory.mk)
+
+# Haters gonna hate..
+PRODUCT_CHARACTERISTICS := nosdcard
 
 #chargeonlymode
 PRODUCT_COPY_FILES += \
@@ -136,23 +140,15 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     audiod \
     audio.a2dp.default \
-    audio.usb.default \
-    audio.r_submix.default \
     audio.primary.msm8992 \
+    audio.r_submix.default \
+    audio.usb.default \
+    audio_policy.msm8992 \
+    libaudio-resampler \
     libqcompostprocbundle \
     libqcomvisualizer \
     libqcomvoiceprocessing \
     tinymix
-
-PRODUCT_PACKAGES += \
-    libaudio-resampler \
-    libqcomvisualizer \
-    libqcomvoiceprocessing \
-    libqcompostprocbundle
-
-# Bson
-PRODUCT_PACKAGES += \
-    libbson
 
 # Charger
 PRODUCT_PACKAGES += \
@@ -160,16 +156,10 @@ PRODUCT_PACKAGES += \
 
 # Connectivity Engine support (CNE)
 PRODUCT_PACKAGES += \
-    CNEService \
     cneapiclient \
     com.quicinc.cne \
     libcnefeatureconfig \
     services-ext
-
-# Curl
-PRODUCT_PACKAGES += \
-    libcurl \
-    curl
 
 # Filesystem management tools
 PRODUCT_PACKAGES += \
@@ -188,11 +178,6 @@ PRODUCT_PACKAGES += \
     sap.conf \
     xtwifi.conf
 
-# DPM
-PRODUCT_PACKAGES += \
-    com.qti.dpmframework \
-    dpmapi
-
 # Doze
 PRODUCT_PACKAGES += \
     LibraDoze
@@ -203,24 +188,21 @@ PRODUCT_PACKAGES += \
 
 # Graphics
 PRODUCT_PACKAGES += \
-    consumerir.msm8992.so \
-    copybit.msm8992 \
-    gralloc.msm8992 \
-    hwcomposer.msm8992 \
-    memtrack.msm8992 \
+    copybit.msm8994 \
+    gralloc.msm8994 \
+    hwcomposer.msm8994 \
+    memtrack.msm8994 \
     liboverlay \
     libtinyxml
 
 # IPv6
 PRODUCT_PACKAGES += \
     ebtables \
-    ethertypes \
-    libebtc
+    ethertypes
 
 # Camrera
 PRODUCT_PACKAGES += \
     Snap
-
 
 # Gello
 PRODUCT_PACKAGES += \
@@ -230,53 +212,46 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     keystore.msm8992
 
+# IRSC
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/sec_config:system/etc/sec_config
+
 # Lights
 PRODUCT_PACKAGES += \
     lights.msm8992
 
-# Live Wallpapers
+# OMX
 PRODUCT_PACKAGES += \
-    librs_jni
-
-PRODUCT_PACKAGES += \
+    libc2dcolorconvert \
+    libdashplayer \
+    libdivxdrmdecrypt \
+    libextmedia_jni \
     libOmxAacEnc \
     libOmxAmrEnc \
     libOmxCore \
     libOmxEvrcEnc \
     libOmxQcelp13Enc \
+    libOmxSwVencMpeg4 \
+    libOmxSwVencHevc \
     libOmxVdec \
+    libOmxVdecHevc \
     libOmxVenc \
-    libstagefrighthw
+    libOmxVidcCommon \
+    libstagefrighthw \
+    libstagefright_soft_flacdec
 
-#rmnetctl
+# RIL
 PRODUCT_PACKAGES += \
-    librmnetctl
+    librmnetctl \
+    libxml2
 
 # Power
 PRODUCT_PACKAGES += \
     power.msm8992
 
-# Ril
-PRODUCT_PACKAGES += \
-    libtinyxml2 \
-    libxml2
-
-#workaround
-PRODUCT_PACKAGES += \
-    libboringssl-compat
-
 # Sensors
 PRODUCT_PACKAGES += \
     sensors.msm8992
-
-#stlport
-PRODUCT_PACKAGES += \
-    libstlport
-
-# CameraWrapper
-PRODUCT_PACKAGES += \
-    camera.msm8992 \
-    libcamera_shim
 
 # USB
 PRODUCT_PACKAGES += \
