@@ -175,8 +175,8 @@ BOARD_USES_QC_TIME_SERVICES := true
 # CMHW
 BOARD_USES_CYANOGEN_HARDWARE := true
 BOARD_HARDWARE_CLASS := \
-    hardware/cyanogen/cmhw \
-    device/xiaomi/libra/cmhw
+    hardware/mokee/mkhw \
+    device/xiaomi/libra/mkhw
 
 # dt2w
 TARGET_TAP_TO_WAKE_NODE := "/sys/devices/soc.0/f9924000.i2c/i2c-2/2-0070/input/input1/wake_gesture"
@@ -205,7 +205,7 @@ TARGET_USES_QCOM_WCNSS_QMI      := true
 WPA_SUPPLICANT_VERSION          := VER_0_8_X
 
 #Recovery
-#RECOVERY_VARIANT := twrp
+RECOVERY_VARIANT := twrp
 ifneq ($(RECOVERY_VARIANT),twrp)
 #TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/recovery/recovery.fstab
 else
