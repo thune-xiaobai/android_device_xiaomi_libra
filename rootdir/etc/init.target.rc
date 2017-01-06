@@ -40,8 +40,6 @@ on early-boot
 
 on post-fs
 
-    export LD_SHIM_LIBS "/system/lib/libmmcamera_interface.so|libcamera_shim.so:/system/vendor/lib/libmmcamera2_sensor_modules.so|libcamera_shim.so:/system/vendor/lib/libmmcamera2_stats_modules.so|libcamera_shim.so:/system/bin/mm-qcamera-daemon|libcamera_shim.so"
-
    setprop ro.hardware.sensors lsm6db0
 
     # We chown/chmod /cust again so because mount is run as root + defaults
