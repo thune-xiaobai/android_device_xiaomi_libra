@@ -173,7 +173,7 @@ BOARD_USES_QCOM_HARDWARE := true
 BOARD_USES_QC_TIME_SERVICES := true
 
 # CMHW
-BOARD_USES_CYANOGEN_HARDWARE := true
+BOARD_USES_MOKEE_HARDWARE := true
 BOARD_HARDWARE_CLASS := \
     hardware/mokee/mkhw \
     device/xiaomi/libra/mkhw

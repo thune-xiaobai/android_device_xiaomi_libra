@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.moke.hardware;
+package org.mokee.hardware;
 
 import org.mokee.internal.util.FileUtils;
 
