@@ -27,7 +27,6 @@
 
 import init.qcom.usb.rc
 import init.target.rc
-import init.qcom.power.rc
 
 on init
     # Set permissions for persist partition
@@ -340,8 +339,7 @@ on property:persist.sys.ssr.enable_ramdumps=0
 
 on property:sys.boot_completed=1
     write /dev/kmsg "Boot completed "
-    
-    restart media
+    start qcom-post-boot
 
 on property:persist.radio.atfwd.start=false
     stop atfwd
@@ -753,6 +751,12 @@ on property:drmdiag.load=0
 service qcom-sh /system/bin/sh /init.qcom.sh
     class late_start
     user root
+    oneshot
+
+service qcom-post-boot /system/bin/sh /system/etc/init.qcom.post_boot.sh
+    class late_start
+    user root
+    disabled
     oneshot
 
 service wifi-sdio-on /system/bin/sh /system/etc/init.qcom.sdio.sh
