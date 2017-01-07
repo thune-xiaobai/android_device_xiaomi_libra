@@ -52,6 +52,7 @@ lib/libmmcamera_interface.so
 lib/libmmjpeg_interface.so
 lib/libqomx_core.so
 lib/hw/camera.msm8992.so
+vendor/lib/libarcsoft_beauty_shot.so
 vendor/lib/libFaceProc.so
 vendor/lib/libfastcvadsp_stub.so
 vendor/lib/libflash_pmic.so
@@ -468,6 +469,7 @@ etc/firmware/cpp_firmware_v1_4_0.fw
 etc/firmware/cpp_firmware_v1_6_0.fw
 etc/firmware/cpp_firmware_v1_8_0.fw
 
+# CND
 bin/cnd
 etc/cne/SwimConfig.xml
 etc/cne/andsfCne.xml
@@ -489,6 +491,10 @@ vendor/lib64/libcneqmiutils.so
 vendor/lib64/libvendorconn.so
 vendor/lib64/libwqe.so
 vendor/lib64/libxml.so
+
+# Consumer IR
+lib/hw/consumerir.msm8992.so
+lib64/hw/consumerir.msm8992.so
 
 # DPM
 bin/dpmd
@@ -528,7 +534,6 @@ etc/permissions/com.qualcomm.location.xml
 -lib/libloc_ds_api.so
 -lib64/libloc_api_v02.so
 -lib64/libloc_ds_api.so
--priv-app/com.qualcomm.location/com.qualcomm.location.apk
 vendor/bin/slim_daemon
 vendor/lib/hw/flp.default.so
 vendor/lib/libdataitems.so
@@ -698,6 +703,12 @@ vendor/lib64/libqcmaputils.so
 vendor/lib64/libril-qc-qmi-1.so
 vendor/lib64/libril-qc-radioconfig.so
 vendor/lib64/libril-qcril-hook-oem.so
+vendor/lib/librilqmiservices.so
+vendor/lib64/librilqmiservices.so
+vendor/lib/libril-qc-ltedirectdisc.so
+vendor/lib64/libril-qc-ltedirectdisc.so
+vendor/lib/libsettings.so
+vendor/lib64/libsettings.so
 vendor/lib64/libsystem_health_mon.so
 vendor/qcril.db
 
@@ -733,6 +744,8 @@ vendor/lib64/libvoice-svc.so
 bin/sensors.qcom
 etc/sensors/sensor_def_qcomdev.conf
 lib/hw/activity_recognition.msm8994.so
+lib/hw/sensors.lsm6db0.so
+lib64/hw/sensors.lsm6db0.so
 vendor/lib/libsensor1.so
 vendor/lib/libsensor_reg.so
 vendor/lib/sensors.ssc.so
