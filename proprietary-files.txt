@@ -742,7 +742,7 @@ vendor/lib64/libsensor_reg.so
 vendor/lib64/sensors.ssc.so
 
 # Thermal
-etc/thermal-engine.conf
+etc/thermal-engine-8992.conf
 vendor/bin/thermal-engine
 vendor/lib/libthermalclient.so
 vendor/lib64/libthermalclient.so
