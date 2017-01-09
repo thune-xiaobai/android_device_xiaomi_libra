@@ -230,6 +230,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     sensors.msm8992
 
+# Multi HAL configuration file
+PRODUCT_COPY_FILES += \
+    device/xiaomi/libra/configs/hals.conf:system/etc/sensors/hals.conf
+
 # USB
 PRODUCT_PACKAGES += \
     com.android.future.usb.accessory

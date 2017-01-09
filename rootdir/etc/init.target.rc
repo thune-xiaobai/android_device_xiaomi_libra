@@ -40,8 +40,6 @@ on early-boot
 
 on post-fs
 
-   setprop ro.hardware.sensors lsm6db0
-
     # We chown/chmod /cust again so because mount is run as root + defaults
     chown system system /cust
     chmod 0771 /cust
