@@ -169,6 +169,9 @@ TARGET_POWERHAL_VARIANT := qcom
 # Qualcomm support
 BOARD_USES_QCOM_HARDWARE := true
 
+# Sensors
+TARGET_NO_SENSOR_PERMISSION_CHECK := true
+
 # Time services
 BOARD_USES_QC_TIME_SERVICES := true
 
