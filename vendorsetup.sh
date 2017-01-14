@@ -1,2 +1,0 @@
-add_lunch_combo mk_libra-eng
-add_lunch_combo mk_libra-userdebug
