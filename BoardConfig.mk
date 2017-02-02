@@ -175,7 +175,7 @@ TARGET_NO_SENSOR_PERMISSION_CHECK := true
 # Time services
 BOARD_USES_QC_TIME_SERVICES := true
 
-# CMHW
+# MKHW
 BOARD_USES_MOKEE_HARDWARE := true
 BOARD_HARDWARE_CLASS := \
     hardware/mokee/mkhw \
