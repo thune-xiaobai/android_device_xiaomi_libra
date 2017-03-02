@@ -10,9 +10,5 @@
   {
     "repository": "android_device_qcom_common",
     "target_path": "device/qcom/common"
-  },
-  {
-    "repository":"android_vendor_qcom_binaries",
-    "target_path":"vendor/qcom/binaries"
   }
 ]
