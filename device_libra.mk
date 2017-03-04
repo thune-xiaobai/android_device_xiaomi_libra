@@ -151,9 +151,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     LibraDoze
 
-# GPS
+# IMS
 PRODUCT_PACKAGES += \
-    gps.msm8992
+    libshims_ims
 
 # Graphics
 PRODUCT_PACKAGES += \
