@@ -8,7 +8,7 @@ USE_CAMERA_STUB := true
 #Platform
 TARGET_BOARD_PLATFORM := msm8992
 TARGET_BOOTLOADER_BOARD_NAME := msm8992
-ARGET_NO_BOOTLOADER := true
+TARGET_NO_BOOTLOADER := true
 BOOTLOADER_PLATFORM := msm8994 # use msm8994 LK configuration
 TARGET_BOARD_PLATFORM_GPU := qcom-adreno418
 TARGET_BOARD_SUFFIX := _64
@@ -96,7 +96,6 @@ USE_OPENGL_RENDERER := true
 BOARD_USE_LEGACY_UI := true
 
 #Kernel
-#BOARD_CUSTOM_BOOTIMG_MK := device/xiaomi/libra/mkbootimg.mk
 TARGET_KERNEL_SOURCE := kernel/xiaomi/libra
 TARGET_KERNEL_CONFIG := libra_user_defconfig
 BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x37 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 boot_cpus=0-5 ramoops_memreserve=2M androidboot.selinux=permissive
