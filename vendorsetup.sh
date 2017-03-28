@@ -1,2 +1,2 @@
-add_lunch_combo cm_libra-eng
-add_lunch_combo cm_libra-userdebug
+add_lunch_combo lineage_libra-eng
+add_lunch_combo lineage_libra-userdebug
