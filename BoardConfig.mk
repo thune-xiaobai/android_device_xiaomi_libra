@@ -178,8 +178,8 @@ BOARD_USES_QC_TIME_SERVICES := true
 # MKHW
 BOARD_USES_MOKEE_HARDWARE := true
 BOARD_HARDWARE_CLASS := \
-    hardware/mokee/mkhw \
-    device/xiaomi/libra/mkhw
+    hardware/cyanogen/cmhw \
+    device/xiaomi/libra/cmhw
 
 # dt2w
 TARGET_TAP_TO_WAKE_NODE := "/sys/devices/soc.0/f9924000.i2c/i2c-2/2-0070/input/input1/wake_gesture"
