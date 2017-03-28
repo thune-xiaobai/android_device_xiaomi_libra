@@ -51,7 +51,7 @@ lib/libmm-qcamera.so
 lib/libmmcamera_interface.so
 lib/libmmjpeg_interface.so
 lib/libqomx_core.so
-lib/hw/camera.msm8992.so
+lib/hw/camera.msm8992.so:lib/hw/camera.vendor.msm8992.so
 vendor/lib/libarcsoft_beauty_shot.so
 vendor/lib/libFaceProc.so
 vendor/lib/libfastcvadsp_stub.so
@@ -479,6 +479,7 @@ etc/permissions/com.quicinc.cne.xml
 framework/ConnectivityExt.jar
 framework/cneapiclient.jar
 framework/com.quicinc.cne.jar
+-priv-app/CNEService/CNEService.apk
 vendor/lib/libcne.so
 vendor/lib/libcneapiclient.so
 vendor/lib/libcneqmiutils.so
@@ -502,6 +503,10 @@ etc/dpm/dpm.conf
 etc/dpm/nsrm/NsrmConfiguration.xml
 etc/permissions/com.qti.dpmframework.xml
 etc/permissions/dpmapi.xml
+framework/com.qti.dpmframework.jar
+framework/dpmapi.jar
+framework/tcmclient.jar
+-priv-app/dpmserviceapp/dpmserviceapp.apk
 vendor/lib/libdpmctmgr.so
 vendor/lib/libdpmfdmgr.so
 vendor/lib/libdpmframework.so
@@ -530,10 +535,12 @@ vendor/lib64/hw/gatekeeper.msm8992.so
 bin/loc_launcher
 etc/permissions/com.qti.location.sdk.xml
 etc/permissions/com.qualcomm.location.xml
+framework/com.qti.location.sdk.jar
 -lib/libloc_api_v02.so
 -lib/libloc_ds_api.so
 -lib64/libloc_api_v02.so
 -lib64/libloc_ds_api.so
+-priv-app/com.qualcomm.location/com.qualcomm.location.apk
 vendor/bin/slim_daemon
 vendor/lib/hw/flp.default.so
 vendor/lib/libdataitems.so
@@ -566,12 +573,49 @@ vendor/lib64/libxtadapter.so
 vendor/lib64/libxtwifi_ulp_adaptor.so
 
 # Graphics
+
+vendor/lib/egl/eglSubDriverAndroid.so
+vendor/lib/egl/libEGL_adreno.so
+vendor/lib/egl/libGLESv1_CM_adreno.so
+vendor/lib/egl/libGLESv2_adreno.so
 vendor/lib/egl/libQTapGLES.so
+vendor/lib/egl/libq3dtools_adreno.so
 vendor/lib/egl/libq3dtools_esx.so
+vendor/lib/libC2D2.so
+vendor/lib/libCB.so
 vendor/lib/libOpenCL.so
+vendor/lib/libRSDriver_adreno.so
+vendor/lib/libadreno_utils.so
+vendor/lib/libbccQTI.so
+vendor/lib/libc2d30-a4xx.so
+vendor/lib/libgsl.so
+vendor/lib/libllvm-glnext.so
+vendor/lib/libllvm-qcom.so
+vendor/lib/libmm-disp-apis.so
+vendor/lib/librs_adreno.so
+vendor/lib/librs_adreno_sha1.so
+vendor/lib/libscale.so
+vendor/lib64/egl/eglSubDriverAndroid.so
+vendor/lib64/egl/libEGL_adreno.so
+vendor/lib64/egl/libGLESv1_CM_adreno.so
+vendor/lib64/egl/libGLESv2_adreno.so
 vendor/lib64/egl/libQTapGLES.so
+vendor/lib64/egl/libq3dtools_adreno.so
 vendor/lib64/egl/libq3dtools_esx.so
+vendor/lib64/libC2D2.so
+vendor/lib64/libCB.so
 vendor/lib64/libOpenCL.so
+vendor/lib64/libRSDriver_adreno.so
+vendor/lib64/libadreno_utils.so
+vendor/lib64/libbccQTI.so
+vendor/lib64/libc2d30-a4xx.so
+vendor/lib64/libgsl.so
+vendor/lib64/libllvm-glnext.so
+vendor/lib64/libllvm-qcom.so
+vendor/lib64/libmm-disp-apis.so
+vendor/lib64/librs_adreno.so
+vendor/lib64/librs_adreno_sha1.so
+vendor/lib64/libscale.so
 
 # Graphics firmware
 etc/firmware/a420_pfp.fw
@@ -610,6 +654,7 @@ etc/firmware/venus.mbn
 etc/firmware/venus.mdt
 
 # Network
+-priv-app/QtiTetherService/QtiTetherService.apk
 vendor/lib/libconnctrl.so
 vendor/lib64/libconnctrl.so
 vendor/lib64/libQtiTether.so
@@ -681,6 +726,10 @@ vendor/lib64/libqmi_encdec.so
 vendor/lib64/libsmemlog.so
 
 # Radio
+-app/datastatusnotification/datastatusnotification.apk
+-app/fastdormancy/fastdormancy.apk
+-app/QtiTelephonyService/QtiTelephonyService.apk
+-app/shutdownlistener/shutdownlistener.apk
 bin/ipacm-diag
 bin/netmgrd
 bin/qmuxd
@@ -693,6 +742,11 @@ etc/data/qmi_config.xml
 etc/permissions/qcnvitems.xml
 etc/permissions/qcrilhook.xml
 etc/permissions/telephonyservice.xml
+-framework/qcnvitems.jar
+-framework/qcrilhook.jar
+framework/qti-telephony-common.jar
+framework/QtiTelephonyServicelibrary.jar
+-priv-app/qcrilmsgtunnel/qcrilmsgtunnel.apk
 vendor/bin/qti
 -vendor/lib/libmdmdetect.so
 vendor/lib64/libconfigdb.so
@@ -739,6 +793,8 @@ vendor/lib64/libimscamera_jni.so
 vendor/lib64/libimsmedia_jni.so
 vendor/lib64/librcc.so
 vendor/lib64/libvoice-svc.so
+-vendor/app/ims/ims.apk
+-vendor/app/imssettings/imssettings.apk
 
 # Sensors
 bin/sensors.qcom
