@@ -111,16 +111,15 @@ start_msm_irqbalance()
 	fi
 }
 
+start_copying_prebuilt_qcril_db()
+{
+    if [ -f /system/vendor/qcril.db -a ! -f /data/misc/radio/qcril.db ]; then
+        cp /system/vendor/qcril.db /data/misc/radio/qcril.db
+        chown -h radio.radio /data/misc/radio/qcril.db
+    fi
+}
+
 baseband=`getprop ro.baseband`
-#
-# Suppress default route installation during RA for IPV6; user space will take
-# care of this
-# exception default ifc
-for file in /proc/sys/net/ipv6/conf/*
-do
-  echo 0 > $file/accept_ra_defrtr
-done
-echo 1 > /proc/sys/net/ipv6/conf/default/accept_ra_defrtr
 
 case "$baseband" in
         "svlte2a")
@@ -157,20 +156,75 @@ else
 fi
 fi
 
+if [ $(getprop ro.boot.hwversion | grep -e [3-4].[0-9].[0-9]) ]; then
+if [ "$leftvalue" = "" ]; then
+       echo 80 > /sys/class/leds/button-backlight1/max_brightness
+else
+       echo $leftvalue > /sys/class/leds/button-backlight1/max_brightness
+fi
+if [ "$rightvalue" = "" ]; then
+       echo 80 > /sys/class/leds/button-backlight/max_brightness
+else
+       echo $rightvalue > /sys/class/leds/button-backlight/max_brightness
+fi
+fi
+
+
 chown -h system.system /sys/class/leds/button-backlight/brightness
 chown -h system.system /sys/class/leds/button-backlight1/brightness
 
-if [ $(getprop ro.boot.hwversion | grep -e 2.[0-9].[0-9]) ]; then
-echo 48 > /sys/class/leds/red/max_brightness
-echo 48 > /sys/class/leds/green/max_brightness
-echo 48 > /sys/class/leds/blue/max_brightness
+# Update the panel color property
+if [ $(getprop ro.boot.hwversion | grep -e [34].*) ]; then
+    if [ -f /sys/bus/i2c/devices/2-004a/panel_color ]; then
+        # Atmel
+        color=`cat /sys/bus/i2c/devices/2-004a/panel_color`
+    elif [ -f /sys/bus/i2c/devices/2-0038/panel_color ]; then
+        color=`cat /sys/bus/i2c/devices/2-0038/panel_color`
+    else
+        color="0"
+    fi
+
+    case "$color" in
+        "1")
+            setprop sys.panel.color WHITE
+            echo 108 > /sys/class/leds/red/max_brightness
+            echo 190 > /sys/class/leds/green/max_brightness
+            echo 255 > /sys/class/leds/blue/max_brightness
+            ;;
+        "2")
+            setprop sys.panel.color BLACK
+            echo 48 > /sys/class/leds/red/max_brightness
+            echo 96 > /sys/class/leds/green/max_brightness
+            echo 96 > /sys/class/leds/blue/max_brightness
+            ;;
+        "7")
+            setprop sys.panel.color PURPLE
+            echo 48 > /sys/class/leds/red/max_brightness
+            echo 226 > /sys/class/leds/green/max_brightness
+            echo 166 > /sys/class/leds/blue/max_brightness
+            ;;
+        "8")
+            setprop sys.panel.color GOLDEN
+            echo 118 > /sys/class/leds/red/max_brightness
+            echo 214 > /sys/class/leds/green/max_brightness
+            echo 255 > /sys/class/leds/blue/max_brightness
+            ;;
+        *)
+            setprop sys.panel.color UNKNOWN
+            ;;
+    esac
+elif [ $(getprop ro.boot.hwversion | grep -e 2.[0-9].[0-9]) ]; then
+    echo 48 > /sys/class/leds/red/max_brightness
+    echo 48 > /sys/class/leds/green/max_brightness
+    echo 48 > /sys/class/leds/blue/max_brightness
 else
-echo 48 > /sys/class/leds/red/max_brightness
-echo 48 > /sys/class/leds/green/max_brightness
-echo 96 > /sys/class/leds/blue/max_brightness
+    echo 48 > /sys/class/leds/red/max_brightness
+    echo 48 > /sys/class/leds/green/max_brightness
+    echo 96 > /sys/class/leds/blue/max_brightness
 fi
 
 #start_sensors
+start_copying_prebuilt_qcril_db
 
 case "$target" in
     "msm7630_surf" | "msm7630_1x" | "msm7630_fusion")
@@ -301,9 +355,22 @@ esac
 #
 # Make modem config folder and copy firmware config to that folder
 #
-rm -rf /data/misc/radio/modem_config
-mkdir /data/misc/radio/modem_config
-chmod 660 /data/misc/radio/modem_config
-cp -r /firmware/image/modem_pr/mbn_ota/* /data/misc/radio/modem_config
-chown -hR radio.radio /data/misc/radio/modem_config
+if [ -f /data/misc/radio/ver_info.txt ]; then
+    prev_version_info=`cat /data/misc/radio/ver_info.txt`
+else
+    prev_version_info=""
+fi
+
+cur_version_info=`cat /firmware/verinfo/ver_info.txt`
+if [ ! -f /firmware/verinfo/ver_info.txt -o "$prev_version_info" != "$cur_version_info" ]; then
+    rm -rf /data/misc/radio/modem_config
+    mkdir /data/misc/radio/modem_config
+    chmod 770 /data/misc/radio/modem_config
+    cp -r /firmware/image/modem_pr/mcfg/configs/* /data/misc/radio/modem_config
+    chown -hR radio.radio /data/misc/radio/modem_config
+    cp /firmware/verinfo/ver_info.txt /data/misc/radio/ver_info.txt
+    chown radio.radio /data/misc/radio/ver_info.txt
+fi
+cp /firmware/image/modem_pr/mbn_ota.txt /data/misc/radio/modem_config
+chown radio.radio /data/misc/radio/modem_config/mbn_ota.txt
 echo 1 > /data/misc/radio/copy_complete

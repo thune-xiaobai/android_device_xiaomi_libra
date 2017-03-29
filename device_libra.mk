@@ -256,19 +256,14 @@ PRODUCT_DEVICE := libra
 PRODUCT_MANUFACTURER := Xiaomi
 PRODUCT_MODEL := Mi-4c
 
-# Init scripts
+# Ramdisk
 PRODUCT_PACKAGES += \
-    init.mdm.sh \
-    init.qcom.class_core.sh \
-    init.qcom.early_boot.sh	\
-    init.qcom.factory.sh \
-    init.qcom.sh \
-    init.qcom.syspart_fixup.sh \
-    init.qcom.usb.sh \
-    init.qcom.rc \
-    init.qcom.usb.rc \
-    init.recovery.hardware.rc \
-    init.target.rc \
+    fstab.qcom \
+    init.qcom.bt.sh \
     init.qcom.power.rc \
-    ueventd.qcom.rc \
-    fstab.qcom
+    init.qcom.rc \
+    init.qcom.sh \
+    init.qcom.usb.rc \
+    init.qcom.usb.sh \
+    init.target.rc \
+    ueventd.qcom.rc
