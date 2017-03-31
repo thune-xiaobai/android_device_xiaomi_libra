@@ -77,17 +77,6 @@ extern "C" {
 #define AGPS_CERTIFICATE_MAX_LENGTH 2000
 #define AGPS_CERTIFICATE_MAX_SLOTS 10
 
-typedef uint32_t LocPosTechMask;
-#define LOC_POS_TECH_MASK_DEFAULT ((LocPosTechMask)0x00000000)
-#define LOC_POS_TECH_MASK_SATELLITE ((LocPosTechMask)0x00000001)
-#define LOC_POS_TECH_MASK_CELLID ((LocPosTechMask)0x00000002)
-#define LOC_POS_TECH_MASK_WIFI ((LocPosTechMask)0x00000004)
-#define LOC_POS_TECH_MASK_SENSORS ((LocPosTechMask)0x00000008)
-#define LOC_POS_TECH_MASK_REFERENCE_LOCATION ((LocPosTechMask)0x00000010)
-#define LOC_POS_TECH_MASK_INJECTED_COARSE_POSITION ((LocPosTechMask)0x00000020)
-#define LOC_POS_TECH_MASK_AFLT ((LocPosTechMask)0x00000040)
-#define LOC_POS_TECH_MASK_HYBRID ((LocPosTechMask)0x00000080)
-
 enum loc_registration_mask_status {
     LOC_REGISTRATION_MASK_ENABLED,
     LOC_REGISTRATION_MASK_DISABLED
@@ -104,7 +93,6 @@ typedef struct {
     GpsLocation     gpsLocation;
     /* Provider indicator for HYBRID or GPS */
     uint16_t        position_source;
-    LocPosTechMask  tech_mask;
     /*allows HAL to pass additional information related to the location */
     int             rawDataSize;         /* in # of bytes */
     void            * rawData;
@@ -240,18 +228,6 @@ typedef uint16_t GpsLocationExtendedFlags;
 #define GPS_LOCATION_EXTENDED_HAS_HOR_ELIP_UNC_MINOR 0x0400
 /** GpsLocationExtended has valid Elliptical Horizontal Uncertainty Azimuth */
 #define GPS_LOCATION_EXTENDED_HAS_HOR_ELIP_UNC_AZIMUTH 0x0800
-/** GpsLocationExtended has valid gnss sv used in position data */
-#define GPS_LOCATION_EXTENDED_HAS_GNSS_SV_USED_DATA 0x1000
-
-/** GPS PRN Range */
-#define GPS_SV_PRN_MIN      1
-#define GPS_SV_PRN_MAX      32
-#define GLO_SV_PRN_MIN      65
-#define GLO_SV_PRN_MAX      96
-#define BDS_SV_PRN_MIN      201
-#define BDS_SV_PRN_MAX      235
-#define GAL_SV_PRN_MIN      301
-#define GAL_SV_PRN_MAX      336
 
 typedef enum {
     LOC_RELIABILITY_NOT_SET = 0,
@@ -260,13 +236,6 @@ typedef enum {
     LOC_RELIABILITY_MEDIUM = 3,
     LOC_RELIABILITY_HIGH = 4
 }LocReliability;
-
-typedef struct {
-    uint64_t gps_sv_used_ids_mask;
-    uint64_t glo_sv_used_ids_mask;
-    uint64_t gal_sv_used_ids_mask;
-    uint64_t bds_sv_used_ids_mask;
-} GnssSvUsedInPosition;
 
 /** Represents gps location extended. */
 typedef struct {
@@ -300,8 +269,6 @@ typedef struct {
     float           horUncEllipseSemiMinor;
     /*    Elliptical Horizontal Uncertainty Azimuth */
     float           horUncEllipseOrientAzimuth;
-    /** Gnss sv used in position data */
-    GnssSvUsedInPosition gnss_sv_used_ids;
 } GpsLocationExtended;
 
 enum loc_sess_status {
@@ -309,6 +276,17 @@ enum loc_sess_status {
     LOC_SESS_INTERMEDIATE,
     LOC_SESS_FAILURE
 };
+
+typedef uint32_t LocPosTechMask;
+#define LOC_POS_TECH_MASK_DEFAULT ((LocPosTechMask)0x00000000)
+#define LOC_POS_TECH_MASK_SATELLITE ((LocPosTechMask)0x00000001)
+#define LOC_POS_TECH_MASK_CELLID ((LocPosTechMask)0x00000002)
+#define LOC_POS_TECH_MASK_WIFI ((LocPosTechMask)0x00000004)
+#define LOC_POS_TECH_MASK_SENSORS ((LocPosTechMask)0x00000008)
+#define LOC_POS_TECH_MASK_REFERENCE_LOCATION ((LocPosTechMask)0x00000010)
+#define LOC_POS_TECH_MASK_INJECTED_COARSE_POSITION ((LocPosTechMask)0x00000020)
+#define LOC_POS_TECH_MASK_AFLT ((LocPosTechMask)0x00000040)
+#define LOC_POS_TECH_MASK_HYBRID ((LocPosTechMask)0x00000080)
 
 // Nmea sentence types mask
 typedef uint32_t NmeaSentenceTypesMask;
