@@ -151,10 +151,6 @@ TARGET_PROVIDES_LIBLIGHT := true
 
 # Charger
 BOARD_CHARGER_ENABLE_SUSPEND := true
-BOARD_CHARGER_SHOW_PERCENTAGE := true
-BOARD_CHARGER_DISABLE_INIT_BLANK := true
-BOARD_HAL_STATIC_LIBRARIES += \
-    libhealthd.msm8992
 
 # Added to indicate that protobuf-c is supported in this build
 PROTOBUF_SUPPORTED := true
