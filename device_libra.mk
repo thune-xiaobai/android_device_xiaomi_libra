@@ -29,10 +29,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/mixer_paths_i2s.xml:system/etc/mixer_paths_i2s.xml \
     $(LOCAL_PATH)/audio/surround_sound_3mic/surround_sound_rec_AZ.cfg:system/etc/surround_sound_3mic/surround_sound_rec_AZ.cfg
 
-#Sensor
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/sensor/sensor_diag.cfg:system/etc/sensor_diag.cfg
-
 #keylayout
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/keylayout/ft5x46.kl:system/usr/keylayout/ft5x46.kl \
@@ -221,7 +217,8 @@ PRODUCT_PACKAGES += \
 
 # Multi HAL configuration file
 PRODUCT_COPY_FILES += \
-    device/xiaomi/libra/configs/hals.conf:system/etc/sensors/hals.conf
+    $(LOCAL_PATH)/configs/sensor_diag.cfg:system/etc/sensor_diag.cfg \
+    $(LOCAL_PATH)/configs/hals.conf:system/etc/sensors/hals.conf
 
 # USB
 PRODUCT_PACKAGES += \
