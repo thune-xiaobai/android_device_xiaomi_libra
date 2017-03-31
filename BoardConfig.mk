@@ -1,4 +1,4 @@
-LOCAL_PATH := device/xiaomi/libra
+DEVICE_PATH := device/xiaomi/libra
 
 USE_CAMERA_STUB := true
 
@@ -207,7 +207,7 @@ WPA_SUPPLICANT_VERSION          := VER_0_8_X
 
 #Recovery
 BOARD_HAS_LARGE_FILESYSTEM := true
-TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/rootdir/etc/fstab.qcom
+TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/rootdir/etc/fstab.qcom
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 TARGET_RECOVERY_UI_LIB := librecovery_ui_msm
 TARGET_RECOVERY_UPDATER_LIBS := librecovery_updater_msm
@@ -216,7 +216,7 @@ TARGET_USERIMAGES_USE_F2FS := true
 
 # Releasetools
 TARGET_RECOVERY_UPDATER_LIBS := librecovery_updater_libra
-TARGET_RELEASETOOLS_EXTENSIONS := $(LOCAL_PATH)
+TARGET_RELEASETOOLS_EXTENSIONS := $(DEVICE_PATH)
 
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk
