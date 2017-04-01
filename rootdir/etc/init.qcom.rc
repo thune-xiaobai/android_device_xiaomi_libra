@@ -355,6 +355,7 @@ service perfd /system/vendor/bin/perfd
    user root
    disabled
    socket perfd seqpacket 0666 root system
+   writepid /dev/cpuset/system-background/tasks
 
 on property:persist.sys.ssr.restart_level=*
     start ssr_setup
@@ -430,10 +431,12 @@ on property:persist.env.fastdorm.enabled=true
 service cnd /system/bin/cnd
     class main
     socket cnd stream 660 root inet
+    writepid /dev/cpuset/system-background/tasks
 
 service dpmd /system/bin/dpmd
     class late_start
     socket dpmd stream 660 root system
+    writepid /dev/cpuset/system-background/tasks
 
 service irsc_util /system/bin/irsc_util "/etc/sec_config"
     class main
@@ -443,15 +446,18 @@ service irsc_util /system/bin/irsc_util "/etc/sec_config"
 service rmt_storage /system/bin/rmt_storage
     class core
     user root
+    writepid /dev/cpuset/system-background/tasks
 
 service rfs_access /system/bin/rfs_access
-   class core
-   user root
-   group system net_raw
+    class core
+    user root
+    group system net_raw
+    writepid /dev/cpuset/system-background/tasks
 
 service tftp_server /system/bin/tftp_server
-   class core
-   user root
+    class core
+    user root
+    writepid /dev/cpuset/system-background/tasks
 
 on property:wc_transport.start_hci=true
     start start_hci_filter
@@ -558,30 +564,30 @@ service qmuxd /system/bin/qmuxd
     class main
     user root
     group radio audio bluetooth gps nfc diag
-    disabled
+    writepid /dev/cpuset/system-background/tasks
+
 
 service netmgrd /system/bin/netmgrd
     class main
-    disabled
+    writepid /dev/cpuset/system-background/tasks
 
 service ipacm-diag /system/bin/ipacm-diag
     class main
     user system
     socket ipacm_log_file dgram 660 system net_admin
     group net_admin diag
-    disabled
 
 service ipacm /system/bin/ipacm
     class main
     user net_admin
     group net_admin inet
-    disabled
+    writepid /dev/cpuset/system-background/tasks
 
 service qti /system/vendor/bin/qti
     class main
     user radio
     group radio net_raw diag usb net_admin
-    disabled
+    writepid /dev/cpuset/system-background/tasks
 
 on property:ro.use_data_netmgrd=false
     # netmgr not supported on specific target
@@ -733,6 +739,7 @@ service loc_launcher /system/bin/loc_launcher
     #loc_launcher will start as root and set its uid to gps
     class late_start
     group gps inet net_raw diag net_admin wifi
+    writepid /dev/cpuset/system-background/tasks
 
 service fm_dl /system/bin/sh /system/etc/init.qcom.fm.sh
     class late_start
@@ -870,6 +877,7 @@ service charger /charger
     class charger
     group system graphics
     seclabel u:r:healthd:s0
+    writepid /dev/cpuset/system-background/tasks
 
 service ssr_diag /system/bin/ssr_diag
     class late_start
@@ -965,6 +973,7 @@ service msm_irqbalance /system/bin/msm_irqbalance -f /system/vendor/etc/msm_irqb
     user root
     group root
     disabled
+    writepid /dev/cpuset/system-background/tasks
 
 service mmbn-daemon /system/bin/mmbn-daemon
     class main
