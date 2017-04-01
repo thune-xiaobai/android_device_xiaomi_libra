@@ -1,2 +1,2 @@
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/device_libra.mk
+    $(LOCAL_DIR)/device.mk
