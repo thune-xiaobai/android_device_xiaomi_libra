@@ -1,9 +1,8 @@
+BOARD_VENDOR := xiaomi
+
 DEVICE_PATH := device/xiaomi/libra
 
-USE_CAMERA_STUB := true
-
-# inherit from the proprietary version
--include vendor/xiaomi/libra/BoardConfigVendor.mk
+TARGET_SPECIFIC_HEADER_PATH := device/xiaomi/libra/include
 
 #Platform
 TARGET_BOARD_PLATFORM := msm8992
@@ -44,19 +43,15 @@ MAX_VIRTUAL_DISPLAY_DIMENSION := 2048
 MAX_EGL_CACHE_KEY_SIZE := 12*1024
 MAX_EGL_CACHE_SIZE := 2048*1024
 
-# Assertions
-TARGET_BOARD_INFO_FILE ?= $(DEVICE_PATH)/board-info.txt
-TARGET_OTA_ASSERT_DEVICE := 4C,libra
-
 HAVE_ADRENO_SOURCE:= false
 OVERRIDE_RS_DRIVER:= libRSDriver_adreno.so
 BOARD_USES_OPENSSL_SYMBOLS := true
 
+USE_OPENGL_RENDERER := true
+BOARD_USE_LEGACY_UI := true
+
 # Enable keymaster app checking
 TARGET_KEYMASTER_WAIT_FOR_QSEE := true
-
-# Fonts
-EXTENDED_FONT_FOOTPRINT := true
 
 # GPS
 TARGET_NO_RPC := true
@@ -95,9 +90,6 @@ BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/xiaomi/libra/bluetooth
 QCOM_BT_USE_BTNV := true
 QCOM_BT_USE_SMD_TTY := true
 WCNSS_FILTER_USES_SIBS := true
-
-USE_OPENGL_RENDERER := true
-BOARD_USE_LEGACY_UI := true
 
 #Kernel
 TARGET_KERNEL_SOURCE := kernel/xiaomi/libra
@@ -167,9 +159,6 @@ TARGET_POWERHAL_VARIANT := qcom
 # Qualcomm support
 BOARD_USES_QCOM_HARDWARE := true
 
-# Sensors
-TARGET_NO_SENSOR_PERMISSION_CHECK := true
-
 # Time services
 BOARD_USES_QC_TIME_SERVICES := true
 
@@ -218,7 +207,15 @@ TARGET_USERIMAGES_USE_F2FS := true
 TARGET_RECOVERY_UPDATER_LIBS := librecovery_updater_libra
 TARGET_RELEASETOOLS_EXTENSIONS := $(DEVICE_PATH)
 
+# Assertions
+TARGET_BOARD_INFO_FILE ?= $(DEVICE_PATH)/board-info.txt
+TARGET_OTA_ASSERT_DEVICE := 4C,libra
+
+
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk
 
 BOARD_SEPOLICY_DIRS += device/xiaomi/libra/sepolicy
+
+# Inherit from the proprietary version
+-include vendor/xiaomi/libra/BoardConfigVendor.mk
