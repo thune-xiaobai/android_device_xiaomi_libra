@@ -8,8 +8,7 @@ $(call inherit-product-if-exists, vendor/xiaomi/libra/libra-vendor.mk)
 
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 
-$(call inherit-product, frameworks/native/build/phone-xxhdpi-2048-dalvik-heap.mk)
-$(call inherit-product, frameworks/native/build/phone-xxhdpi-2048-hwui-memory.mk)
+$(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
 
 # Haters gonna hate..
 PRODUCT_CHARACTERISTICS := nosdcard
