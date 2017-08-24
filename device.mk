@@ -93,6 +93,10 @@ PRODUCT_PACKAGES += \
 
 # Audio
 PRODUCT_PACKAGES += \
+    android.hardware.audio@2.0-impl \
+    android.hardware.audio.effect@2.0-impl \
+    android.hardware.broadcastradio@1.0-impl \
+    android.hardware.soundtrigger@2.0-impl \
     audiod \
     audio.a2dp.default \
     audio.primary.msm8992 \
@@ -109,12 +113,41 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     charger_res_images
 
+# Consumerir
+PRODUCT_PACKAGES += \
+    android.hardware.ir@1.0-impl
+
+# Bluetooth HAL
+PRODUCT_PACKAGES += \
+    android.hardware.bluetooth@1.0-impl
+
+# Camera
+PRODUCT_PACKAGES += \
+    camera.msm8992 \
+    Snap \
+    camera.device@3.2-impl \
+    android.hardware.camera.provider@2.4-impl
+
 # Connectivity Engine support (CNE)
 PRODUCT_PACKAGES += \
     cneapiclient \
     com.quicinc.cne \
     libcnefeatureconfig \
     services-ext
+
+# Display
+PRODUCT_PACKAGES += \
+    copybit.msm8994 \
+    gralloc.msm8994 \
+    hwcomposer.msm8994 \
+    memtrack.msm8994 \
+    liboverlay \
+    libtinyxml \
+    android.hardware.graphics.allocator@2.0-impl \
+    android.hardware.graphics.allocator@2.0-service \
+    android.hardware.graphics.mapper@2.0-impl \
+    android.hardware.memtrack@1.0-impl \
+    android.hardware.graphics.composer@2.1-impl
 
 # Filesystem management tools
 PRODUCT_PACKAGES += \
@@ -133,6 +166,14 @@ PRODUCT_PACKAGES += \
     sap.conf \
     xtwifi.conf
 
+# Gatekeeper HAL
+PRODUCT_PACKAGES += \
+    android.hardware.gatekeeper@1.0-impl
+
+#GNSS HAL
+PRODUCT_PACKAGES += \
+    android.hardware.gnss@1.0-impl
+
 # Doze
 PRODUCT_PACKAGES += \
     LibraDoze
@@ -141,32 +182,22 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libshims_ims
 
-# Graphics
-PRODUCT_PACKAGES += \
-    copybit.msm8992 \
-    gralloc.msm8992 \
-    hwcomposer.msm8992 \
-    memtrack.msm8992 \
-    liboverlay \
-    libtinyxml
-
 # IPv6
 PRODUCT_PACKAGES += \
     ebtables \
     ethertypes
 
-# Camera
+# Keymaster HAL
 PRODUCT_PACKAGES += \
-    camera.msm8992 \
-    Snap
-
-# Gello
-PRODUCT_PACKAGES += \
-    Gello
+    android.hardware.keymaster@3.0-impl
 
 # Keystore
 PRODUCT_PACKAGES += \
     keystore.msm8992
+
+# Gello
+PRODUCT_PACKAGES += \
+    Gello
 
 # IRSC
 PRODUCT_COPY_FILES += \
@@ -174,10 +205,12 @@ PRODUCT_COPY_FILES += \
 
 # Lights
 PRODUCT_PACKAGES += \
-    lights.msm8992
+    lights.msm8992 \
+    android.hardware.light@2.0-impl
 
 # OMX
 PRODUCT_PACKAGES += \
+    android.hardware.drm@1.0-impl \
     libc2dcolorconvert \
     libdashplayer \
     libdivxdrmdecrypt \
@@ -200,6 +233,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     librecovery_updater_libra
 
+# RenderScript HAL
+PRODUCT_PACKAGES += \
+    android.hardware.renderscript@1.0-impl
+
 # RIL
 PRODUCT_PACKAGES += \
     librmnetctl \
@@ -207,23 +244,40 @@ PRODUCT_PACKAGES += \
 
 # Power
 PRODUCT_PACKAGES += \
-    power.msm8992
+    power.msm8992 \
+    android.hardware.power@1.0-impl
 
 # Sensors
 PRODUCT_PACKAGES += \
-    sensors.msm8992
+    sensors.msm8992 \
+    context_hub.default \
+    android.hardware.sensors@1.0-impl \
+    android.hardware.contexthub@1.0-impl
 
 # Multi HAL configuration file
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/sensor_diag.cfg:system/etc/sensor_diag.cfg \
     $(LOCAL_PATH)/configs/hals.conf:system/etc/sensors/hals.conf
 
+# Thermal HAL
+PRODUCT_PACKAGES += \
+    android.hardware.thermal@1.0-impl
+
 # USB
 PRODUCT_PACKAGES += \
     com.android.future.usb.accessory
 
+#USB HAL
+PRODUCT_PACKAGES += \
+    android.hardware.usb@1.0-service
+
+# Vibrator
+PRODUCT_PACKAGES += \
+    android.hardware.vibrator@1.0-impl
+
 # Wifi
 PRODUCT_PACKAGES += \
+    android.hardware.wifi@1.0-service \
     ipacm \
     ipacm-diag \
     IPACM_cfg.xml \
