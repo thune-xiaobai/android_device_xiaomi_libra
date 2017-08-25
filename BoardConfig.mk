@@ -52,6 +52,7 @@ BOARD_USE_LEGACY_UI := true
 
 # Enable keymaster app checking
 TARGET_KEYMASTER_WAIT_FOR_QSEE := true
+TARGET_PROVIDES_KEYMASTER := true
 
 # GPS
 TARGET_NO_RPC := true
@@ -94,6 +95,7 @@ WCNSS_FILTER_USES_SIBS := true
 #Kernel
 TARGET_KERNEL_SOURCE := kernel/xiaomi/libra
 TARGET_KERNEL_CONFIG := libra_user_defconfig
+TARGET_PREBUILT_KERNEL := device/xiaomi/libra/prebuilt/zImage
 BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x37 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 boot_cpus=0-5 androidboot.selinux=permissive
 TARGET_KERNEL_APPEND_DTB := true
 BOARD_KERNEL_BASE        := 0x00000000
@@ -195,25 +197,25 @@ TARGET_USES_QCOM_WCNSS_QMI      := true
 WPA_SUPPLICANT_VERSION          := VER_0_8_X
 
 #Recovery
-BOARD_HAS_LARGE_FILESYSTEM := true
+# BOARD_HAS_LARGE_FILESYSTEM := true
 TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/rootdir/etc/fstab.qcom
-TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
-TARGET_RECOVERY_UI_LIB := librecovery_ui_msm
-TARGET_RECOVERY_UPDATER_LIBS := librecovery_updater_msm
-TARGET_USERIMAGES_USE_EXT4 := true
-TARGET_USERIMAGES_USE_F2FS := true
-
-# Releasetools
-TARGET_RECOVERY_UPDATER_LIBS := librecovery_updater_libra
-TARGET_RELEASETOOLS_EXTENSIONS := $(DEVICE_PATH)
-
-# Assertions
-TARGET_BOARD_INFO_FILE ?= $(DEVICE_PATH)/board-info.txt
-TARGET_OTA_ASSERT_DEVICE := 4C,libra
+# TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
+# TARGET_RECOVERY_UI_LIB := librecovery_ui_msm
+# TARGET_RECOVERY_UPDATER_LIBS := librecovery_updater_msm
+# TARGET_USERIMAGES_USE_EXT4 := true
+# TARGET_USERIMAGES_USE_F2FS := true
+# 
+# # Releasetools
+# TARGET_RECOVERY_UPDATER_LIBS := librecovery_updater_libra
+# TARGET_RELEASETOOLS_EXTENSIONS := $(DEVICE_PATH)
+# 
+# # Assertions
+# TARGET_BOARD_INFO_FILE ?= $(DEVICE_PATH)/board-info.txt
+# TARGET_OTA_ASSERT_DEVICE := 4C,libra
 
 
 # SELinux
-include device/qcom/sepolicy/sepolicy.mk
+# include device/qcom/sepolicy/sepolicy.mk
 
 BOARD_SEPOLICY_DIRS += device/xiaomi/libra/sepolicy
 
