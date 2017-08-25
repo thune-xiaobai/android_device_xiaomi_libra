@@ -3,16 +3,30 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 # Get non-open-source specific aspects
 $(call inherit-product-if-exists, vendor/xiaomi/libra/libra-vendor.mk)
 
+TARGET_PREBUILT_KERNEL := device/xiaomi/libra/prebuilt/zImage
+
+LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
+
+PRODUCT_SHIPPING_API_LEVEL := 25
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_KERNEL):kernel
+
 # System properties
 -include $(LOCAL_PATH)/system_prop.mk
 
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 
-$(call inherit-product, frameworks/native/build/phone-xxhdpi-2048-dalvik-heap.mk)
-$(call inherit-product, frameworks/native/build/phone-xxhdpi-2048-hwui-memory.mk)
+$(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
+$(call inherit-product-if-exists, hardware/qcom/msm8994/msm8992.mk)
+# $(call inherit-product, frameworks/native/build/phone-xhdpi-2048-hwui-memory.mk)
 
 # Haters gonna hate..
 PRODUCT_CHARACTERISTICS := nosdcard
+
+# Vendor Interface Manifest
+PRODUCT_COPY_FILES += \
+    device/xiaomi/libra/manifest.xml:system/vendor/manifest.xml
 
 #media
 PRODUCT_COPY_FILES += \
@@ -45,7 +59,6 @@ PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml
 
 PRODUCT_COPY_FILES += \
-    external/ant-wireless/antradio-library/com.dsi.ant.antradio_library.xml:system/etc/permissions/com.dsi.ant.antradio_library.xml \
     frameworks/native/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
     frameworks/native/data/etc/android.hardware.camera.front.xml:system/etc/permissions/android.hardware.camera.front.xml \
     frameworks/native/data/etc/android.hardware.camera.full.xml:system/etc/permissions/android.hardware.camera.full.xml\
@@ -145,11 +158,56 @@ PRODUCT_PACKAGES += \
 # Graphics
 PRODUCT_PACKAGES += \
     copybit.msm8992 \
+    android.hardware.graphics.allocator@2.0-impl \
+    android.hardware.graphics.allocator@2.0-service \
+    android.hardware.graphics.mapper@2.0-impl \
     gralloc.msm8992 \
     hwcomposer.msm8992 \
     memtrack.msm8992 \
+    android.hardware.memtrack@1.0-impl \
     liboverlay \
     libtinyxml
+
+# RenderScript HAL
+PRODUCT_PACKAGES += \
+    android.hardware.renderscript@1.0-impl
+
+PRODUCT_PACKAGES += \
+    android.hardware.drm@1.0-impl \
+
+PRODUCT_PACKAGES += \
+    android.hardware.audio@2.0-impl \
+    android.hardware.audio.effect@2.0-impl \
+    android.hardware.broadcastradio@1.0-impl \
+    android.hardware.soundtrigger@2.0-impl
+
+PRODUCT_PACKAGES += \
+    android.hardware.graphics.composer@2.1-impl
+
+# Keymaster HAL
+PRODUCT_PACKAGES += \
+    android.hardware.keymaster@3.0-impl \
+    android.hardware.keymaster@3.0-service
+
+# Vibrator HAL
+PRODUCT_PACKAGES += \
+    android.hardware.vibrator@1.0-impl
+
+PRODUCT_PACKAGES += \
+    android.hardware.wifi@1.0-service \
+
+PRODUCT_PACKAGES += \
+    android.hardware.camera.provider@2.4-impl \
+    camera.device@3.2-impl
+
+PRODUCT_PACKAGES += \
+    context_hub.default \
+    android.hardware.sensors@1.0-impl \
+    android.hardware.contexthub@1.0-impl \
+
+# new gatekeeper HAL
+PRODUCT_PACKAGES += \
+    android.hardware.gatekeeper@1.0-impl
 
 # IPv6
 PRODUCT_PACKAGES += \
@@ -231,6 +289,8 @@ PRODUCT_PACKAGES += \
     libqsap_sdk \
     libQWiFiSoftApCfg \
     libwpa_client \
+    wificond \
+    wifilogd \
     hostapd \
     dhcpcd.conf \
     wpa_supplicant \
@@ -252,10 +312,32 @@ PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 TARGET_SCREEN_HEIGHT := 1920
 TARGET_SCREEN_WIDTH := 1080
 
-PRODUCT_NAME := full_libra
-PRODUCT_DEVICE := libra
-PRODUCT_MANUFACTURER := Xiaomi
-PRODUCT_MODEL := Mi-4c
+# Bluetooth HAL
+PRODUCT_PACKAGES += \
+    libbt-vendor \
+    android.hardware.bluetooth@1.0-impl \
+    android.hardware.bluetooth@1.0-service
+
+# Consumerir
+PRODUCT_PACKAGES += \
+    android.hardware.ir@1.0-impl
+
+# Power HAL
+PRODUCT_PACKAGES += \
+    android.hardware.power@1.0-impl \
+
+# Thermal HAL
+PRODUCT_PACKAGES += \
+    android.hardware.thermal@1.0-impl \
+
+#USB HAL
+PRODUCT_PACKAGES += \
+    android.hardware.usb@1.0-service
+
+# PRODUCT_NAME := full_libra
+# PRODUCT_DEVICE := libra
+# PRODUCT_MANUFACTURER := Xiaomi
+# PRODUCT_MODEL := Mi-4c
 
 # Ramdisk
 PRODUCT_PACKAGES += \
